@@ -11,5 +11,6 @@ class All extends Seeder
         $this->call('SeedAuthPermissionsGroups');
         $this->call('SeedUsers');
         $this->call('SeedAuthMenus');
+        $this->call('SeedAcademicYears');
     }
 }
