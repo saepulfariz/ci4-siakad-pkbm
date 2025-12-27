@@ -4,33 +4,33 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class SeedStudents extends Seeder
+class SeedTeachers extends Seeder
 {
     public function run()
     {
         $data = [
 
             [
-                'name' => 'students.access',
-                'title' => 'Can access the students area',
+                'name' => 'teachers.access',
+                'title' => 'Can access the teachers area',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'students.create',
-                'title' => 'Can create sub students',
+                'name' => 'teachers.create',
+                'title' => 'Can create sub teachers',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'students.edit',
-                'title' => 'Can update sub students',
+                'name' => 'teachers.edit',
+                'title' => 'Can update sub teachers',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'students.delete',
-                'title' => 'Can delete sub students',
+                'name' => 'teachers.delete',
+                'title' => 'Can delete sub teachers',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -41,25 +41,25 @@ class SeedStudents extends Seeder
         $data = [
             [
                 'group_id' => 1,
-                'permission' => 'students.access',
+                'permission' => 'teachers.access',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'students.create',
+                'permission' => 'teachers.create',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'students.edit',
+                'permission' => 'teachers.edit',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'students.delete',
+                'permission' => 'teachers.delete',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -70,12 +70,12 @@ class SeedStudents extends Seeder
         $data = [
             [
                 'parent_id' => NULL,
-                'title' => 'Students',
+                'title' => 'Teachers',
                 'icon' => 'fas fa-list',
-                'route' => 'students',
+                'route' => 'teachers',
                 'order' => 5,
                 'active' => 1,
-                'permission' => 'students.access',
+                'permission' => 'teachers.access',
             ],
         ];
 
@@ -84,19 +84,18 @@ class SeedStudents extends Seeder
         $data = [
             [
                 'user_id' => 1,
-                'nis' => '8889999',
-                'nisn' => '8889999',
-                'full_name' => 'Jajang Dadan',
+                'nip' => '8889999',
+                'full_name' => 'Aceng Dadan',
                 'gender' => 'L',
                 'birth_place' => 'Subang',
                 'birth_date' => '2025-12-20',
                 'address' => 'Subang',
                 'phone' => '08XXXXXXXXXX',
-                'parent_name' => 'Kang Ibing',
-                'photo' => 'student.png',
+                'education' => 'SMK BISA',
+                'photo' => 'teacher.png',
             ],
         ];
 
-        $this->db->table('students')->insertBatch($data);
+        $this->db->table('teachers')->insertBatch($data);
     }
 }
