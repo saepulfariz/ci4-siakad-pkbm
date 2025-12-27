@@ -36,4 +36,6 @@ $routes->get('semesters/(:any)/activate', '\App\Controllers\Semesters::activate/
 $routes->get('semesters/(:any)/deactivate', '\App\Controllers\Semesters::deactivate/$1');
 $routes->resource('semesters', ['controller' => '\App\Controllers\Semesters', 'filter' => 'session']);
 
+$routes->resource('students', ['controller' => '\App\Controllers\Students', 'filter' => 'session']);
+
 service('auth')->routes($routes);
