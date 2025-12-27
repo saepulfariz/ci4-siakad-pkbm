@@ -32,4 +32,8 @@ $routes->get('academic-years/(:any)/activate', '\App\Controllers\AcademicYears::
 $routes->get('academic-years/(:any)/deactivate', '\App\Controllers\AcademicYears::deactivate/$1');
 $routes->resource('academic-years', ['controller' => '\App\Controllers\AcademicYears', 'filter' => 'session']);
 
+$routes->get('semesters/(:any)/activate', '\App\Controllers\Semesters::activate/$1');
+$routes->get('semesters/(:any)/deactivate', '\App\Controllers\Semesters::deactivate/$1');
+$routes->resource('semesters', ['controller' => '\App\Controllers\Semesters', 'filter' => 'session']);
+
 service('auth')->routes($routes);

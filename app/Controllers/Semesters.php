@@ -5,15 +5,17 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AcademicYears extends BaseController
+class Semesters extends BaseController
 {
     private $model;
-    private $link = 'academic-years';
-    private $view = 'academic-years';
-    private $title = 'Academic Years';
+    private $model_academic;
+    private $link = 'semesters';
+    private $view = 'semesters';
+    private $title = 'Semesters';
     public function __construct()
     {
-        $this->model = new \App\Models\AcademicYearModel();
+        $this->model = new \App\Models\SemesterModel();
+        $this->model_academic = new \App\Models\AcademicYearModel();
     }
 
     /**
@@ -23,7 +25,7 @@ class AcademicYears extends BaseController
      */
     public function index()
     {
-        $redirect = checkPermission('academic-years.access');
+        $redirect = checkPermission('semesters.access');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
@@ -31,7 +33,7 @@ class AcademicYears extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'academic_years' => $this->model->orderBy('id', 'desc')->findAll()
+            'semesters' => $this->model->select('semesters.*, academic_years.name as academic_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -56,7 +58,7 @@ class AcademicYears extends BaseController
      */
     public function new()
     {
-        $redirect = checkPermission('academic-years.create');
+        $redirect = checkPermission('semesters.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
@@ -64,6 +66,7 @@ class AcademicYears extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
+            'academic_years' => $this->model_academic->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -76,15 +79,16 @@ class AcademicYears extends BaseController
      */
     public function create()
     {
-        $redirect = checkPermission('academic_years.create');
+        $redirect = checkPermission('semesters.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
         $rules = [
+            'academic_year_id' => 'required',
             'name' => 'required',
-            'start_year' => 'required',
-            'end_year' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -98,9 +102,10 @@ class AcademicYears extends BaseController
 
         try {
             $data = [
+                'academic_year_id' => htmlspecialchars($this->request->getVar('academic_year_id'), true),
                 'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
-                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+                'start_date' => htmlspecialchars($this->request->getVar('start_date'), true),
+                'end_date' => htmlspecialchars($this->request->getVar('end_date'), true),
                 'is_active' => 0,
             ];
 
@@ -108,7 +113,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create academic year')->withInput();
+                return redirect()->back()->with('error', 'Failed to create semester')->withInput();
             }
 
             $this->db->transCommit();
@@ -116,10 +121,10 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year created successfully.')->to($this->link);
+            return redirect()->with('success', 'Semester created successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create Academic year')->withInput();
+            return redirect()->back()->with('error', 'Failed to create Semester')->withInput();
         }
     }
 
@@ -133,14 +138,14 @@ class AcademicYears extends BaseController
      */
     public function edit($id = null)
     {
-        $redirect = checkPermission('academic-years.edit');
+        $redirect = checkPermission('semesters.edit');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $academic_year = $this->model->find($id);
+        $semester = $this->model->find($id);
 
-        if (!$academic_year) {
+        if (!$semester) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             // return redirect()->to($this->link);
         }
@@ -148,7 +153,8 @@ class AcademicYears extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'academic_year' => $academic_year,
+            'semester' => $semester,
+            'academic_years' => $this->model_academic->findAll()
         ];
 
         return view($this->view . '/edit', $data);
@@ -163,21 +169,22 @@ class AcademicYears extends BaseController
      */
     public function update($id = null)
     {
-        $redirect = checkPermission('academic-years.edit');
+        $redirect = checkPermission('semesters.edit');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $academic_year = $this->model->find($id);
+        $semester = $this->model->find($id);
 
-        if (!$academic_year) {
+        if (!$semester) {
             return redirect()->to($this->link);
         }
 
         $rules = [
+            'academic_year_id' => 'required',
             'name' => 'required',
-            'start_year' => 'required',
-            'end_year' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -193,9 +200,10 @@ class AcademicYears extends BaseController
 
 
             $data = [
+                'academic_year_id' => htmlspecialchars($this->request->getVar('academic_year_id'), true),
                 'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
-                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+                'start_date' => htmlspecialchars($this->request->getVar('start_date'), true),
+                'end_date' => htmlspecialchars($this->request->getVar('end_date'), true),
             ];
 
 
@@ -203,7 +211,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Academic year')->withInput();
+                return redirect()->back()->with('error', 'Failed to update Semester')->withInput();
             }
 
             $this->db->transCommit();
@@ -211,10 +219,10 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year updated successfully.')->to($this->link);
+            return redirect()->with('success', 'Semester updated successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Academic year ')->withInput();
+            return redirect()->back()->with('error', 'Failed to update Semester ')->withInput();
         }
     }
 
@@ -227,14 +235,14 @@ class AcademicYears extends BaseController
      */
     public function delete($id = null)
     {
-        $redirect = checkPermission('academic-years.delete');
+        $redirect = checkPermission('semesters.delete');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $academic_year = $this->model->find($id);
+        $semester = $this->model->find($id);
 
-        if (!$academic_year) {
+        if (!$semester) {
             return redirect()->to($this->link);
         }
 
@@ -245,7 +253,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+                return redirect()->back()->with('error', 'Failed to delete semester')->withInput();
             }
 
             $this->db->transCommit();
@@ -253,19 +261,19 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year deleted successfully.')->to($this->link);
+            return redirect()->with('success', 'Semester deleted successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+            return redirect()->back()->with('error', 'Failed to delete semester')->withInput();
         }
     }
 
 
     function activate($id = null)
     {
-        $academic_year = $this->model->find($id);
+        $semester = $this->model->find($id);
 
-        if (!$academic_year) {
+        if (!$semester) {
             return redirect()->to($this->link);
         }
 
@@ -274,14 +282,14 @@ class AcademicYears extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Academic year activated successfully.')->to($this->link);
+        return redirect()->with('success', 'Semester activated successfully.')->to($this->link);
     }
 
     function deactivate($id = null)
     {
-        $academic_year = $this->model->find($id);
+        $semester = $this->model->find($id);
 
-        if (!$academic_year) {
+        if (!$semester) {
             return redirect()->to($this->link);
         }
 
@@ -290,6 +298,6 @@ class AcademicYears extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Academic year deactivated successfully.')->to($this->link);
+        return redirect()->with('success', 'Semester deactivated successfully.')->to($this->link);
     }
 }
