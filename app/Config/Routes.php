@@ -39,4 +39,6 @@ $routes->resource('semesters', ['controller' => '\App\Controllers\Semesters', 'f
 $routes->resource('students', ['controller' => '\App\Controllers\Students', 'filter' => 'session']);
 $routes->resource('teachers', ['controller' => '\App\Controllers\Teachers', 'filter' => 'session']);
 
+$routes->resource('educations', ['controller' => '\App\Controllers\Educations', 'filter' => 'session']);
+
 service('auth')->routes($routes);
