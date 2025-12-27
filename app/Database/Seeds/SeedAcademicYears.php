@@ -70,7 +70,7 @@ class SeedAcademicYears extends Seeder
         $data = [
             [
                 'parent_id' => NULL,
-                'title' => 'Academic-years',
+                'title' => 'Academic Years',
                 'icon' => 'fas fa-list',
                 'route' => 'academic-years',
                 'order' => 5,

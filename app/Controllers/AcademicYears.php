@@ -1,0 +1,295 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class AcademicYears extends BaseController
+{
+    private $model;
+    private $link = 'academic-years';
+    private $view = 'academic-years';
+    private $title = 'Academic Years';
+    public function __construct()
+    {
+        $this->model = new \App\Models\AcademicYearModel();
+    }
+
+    /**
+     * Return an array of resource objects, themselves in array format.
+     *
+     * @return ResponseInterface
+     */
+    public function index()
+    {
+        $redirect = checkPermission('academic-years.access');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $data = [
+            'title' => $this->title,
+            'link' => $this->link,
+            'academic_years' => $this->model->orderBy('id', 'desc')->findAll()
+        ];
+
+        return view($this->view . '/index', $data);
+    }
+
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function show($id = null)
+    {
+        return redirect()->to($this->link);
+    }
+
+    /**
+     * Return a new resource object, with default properties.
+     *
+     * @return ResponseInterface
+     */
+    public function new()
+    {
+        $redirect = checkPermission('academic-years.create');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $data = [
+            'title' => $this->title,
+            'link' => $this->link,
+        ];
+
+        return view($this->view . '/new', $data);
+    }
+
+    /**
+     * Create a new resource object, from "posted" parameters.
+     *
+     * @return ResponseInterface
+     */
+    public function create()
+    {
+        $redirect = checkPermission('menus.create');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $rules = [
+            'name' => 'required',
+            'start_year' => 'required',
+            'end_year' => 'required',
+        ];
+
+        $input = $this->request->getVar();
+
+        if (!$this->validateData($input, $rules)) {
+            return redirect()->back()->withInput();
+        }
+
+        $this->db->transBegin();
+
+
+        try {
+            $data = [
+                'name' => htmlspecialchars($this->request->getVar('name'), true),
+                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
+                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+                'is_active' => 0,
+            ];
+
+            $this->model->insert($data);
+
+            if ($this->db->transStatus() === false) {
+                $this->db->transRollback();
+                return redirect()->back()->with('error', 'Failed to create academic year')->withInput();
+            }
+
+            $this->db->transCommit();
+
+            $cache = \Config\Services::cache();
+            $cache->delete($this->model->cacheKey);
+
+            return redirect()->with('success', 'Academic year created successfully.')->to($this->link);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Failed to create Academic year')->withInput();
+        }
+    }
+
+
+    /**
+     * Return the editable properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function edit($id = null)
+    {
+        $redirect = checkPermission('academic-years.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $academic_year = $this->model->find($id);
+
+        if (!$academic_year) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            // return redirect()->to($this->link);
+        }
+
+        $data = [
+            'title' => $this->title,
+            'link' => $this->link,
+            'academic_year' => $academic_year,
+        ];
+
+        return view($this->view . '/edit', $data);
+    }
+
+    /**
+     * Add or update a model resource, from "posted" properties.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function update($id = null)
+    {
+        $redirect = checkPermission('academic-years.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $academic_year = $this->model->find($id);
+
+        if (!$academic_year) {
+            return redirect()->to($this->link);
+        }
+
+        $rules = [
+            'name' => 'required',
+            'start_year' => 'required',
+            'end_year' => 'required',
+        ];
+
+        $input = $this->request->getVar();
+
+        if (!$this->validateData($input, $rules)) {
+            return redirect()->back()->withInput();
+        }
+
+
+        $this->db->transBegin();
+
+        try {
+
+
+            $data = [
+                'name' => htmlspecialchars($this->request->getVar('name'), true),
+                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
+                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+            ];
+
+
+            $this->model->update($id, $data);
+
+            if ($this->db->transStatus() === false) {
+                $this->db->transRollback();
+                return redirect()->back()->with('error', 'Failed to update Academic year')->withInput();
+            }
+
+            $this->db->transCommit();
+
+            $cache = \Config\Services::cache();
+            $cache->delete($this->model->cacheKey);
+
+            return redirect()->with('success', 'Academic year updated successfully.')->to($this->link);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Failed to update Academic year ')->withInput();
+        }
+    }
+
+    /**
+     * Delete the designated resource object from the model.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function delete($id = null)
+    {
+        $redirect = checkPermission('academic-years.delete');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $academic_year = $this->model->find($id);
+
+        if (!$academic_year) {
+            return redirect()->to($this->link);
+        }
+
+        $this->db->transBegin();
+
+        try {
+            $this->model->delete($id);
+
+            if ($this->db->transStatus() === false) {
+                $this->db->transRollback();
+                return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+            }
+
+            $this->db->transCommit();
+
+            $cache = \Config\Services::cache();
+            $cache->delete($this->model->cacheKey);
+
+            return redirect()->with('success', 'Academic year deleted successfully.')->to($this->link);
+        } catch (\Throwable $th) {
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+        }
+    }
+
+
+    function activate($id = null)
+    {
+        $academic_year = $this->model->find($id);
+
+        if (!$academic_year) {
+            return redirect()->to($this->link);
+        }
+
+        $this->model->update($id, ['is_active' => 1]);
+
+        $cache = \Config\Services::cache();
+        $cache->delete($this->model->cacheKey);
+
+        return redirect()->with('success', 'Academic year activated successfully.')->to($this->link);
+    }
+
+    function deactivate($id = null)
+    {
+        $academic_year = $this->model->find($id);
+
+        if (!$academic_year) {
+            return redirect()->to($this->link);
+        }
+
+        $this->model->update($id, ['is_active' => 0]);
+
+        $cache = \Config\Services::cache();
+        $cache->delete($this->model->cacheKey);
+
+        return redirect()->with('success', 'Academic year deactivated successfully.')->to($this->link);
+    }
+}

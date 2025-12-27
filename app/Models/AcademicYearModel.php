@@ -22,9 +22,10 @@ class AcademicYearModel extends Model
         'end_year',
         'is_active',
     ];
+    protected $cacheKey = 'academic_years';
 
     protected bool $allowEmptyInserts = false;
-    protected bool $updateOnlyChanged = true;
+    protected bool $updateOnlyChanged = false;
 
     protected array $casts = [];
     protected array $castHandlers = [];
