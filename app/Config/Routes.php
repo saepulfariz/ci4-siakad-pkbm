@@ -41,5 +41,6 @@ $routes->resource('teachers', ['controller' => '\App\Controllers\Teachers', 'fil
 
 $routes->resource('educations', ['controller' => '\App\Controllers\Educations', 'filter' => 'session']);
 $routes->resource('classes', ['controller' => '\App\Controllers\Classes', 'filter' => 'session']);
+$routes->resource('subjects', ['controller' => '\App\Controllers\Subjects', 'filter' => 'session']);
 
 service('auth')->routes($routes);
