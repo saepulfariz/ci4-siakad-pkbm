@@ -2,26 +2,27 @@
 
 namespace App\Models;
 
-use App\Entities\StudentClass;
+use App\Entities\TeacherSubject;
 use App\Traits\LogUserTrait;
 use CodeIgniter\Model;
 
-class StudentClassModel extends Model
+class TeacherSubjectModel extends Model
 {
+
     use LogUserTrait;
 
-    protected $table            = 'student_classes';
+    protected $table            = 'teacher_subjects';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = StudentClass::class;
+    protected $returnType       = TeacherSubject::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'student_id',
-        'class_id'
+        'teacher_id',
+        'subject_id'
     ];
 
-    protected $cacheKey = 'student_classes';
+    protected $cacheKey = 'teacher_subjects';
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = false;

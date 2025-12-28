@@ -44,5 +44,6 @@ $routes->resource('classes', ['controller' => '\App\Controllers\Classes', 'filte
 $routes->resource('subjects', ['controller' => '\App\Controllers\Subjects', 'filter' => 'session']);
 
 $routes->resource('student-classes', ['controller' => '\App\Controllers\StudentClasses', 'filter' => 'session']);
+$routes->resource('teacher-subjects', ['controller' => '\App\Controllers\TeacherSubjects', 'filter' => 'session']);
 
 service('auth')->routes($routes);

@@ -4,33 +4,33 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class SeedSubjects extends Seeder
+class SeedTeacherSubjects extends Seeder
 {
     public function run()
     {
         $data = [
 
             [
-                'name' => 'subjects.access',
-                'title' => 'Can access the subjects area',
+                'name' => 'teacher-subjects.access',
+                'title' => 'Can access the teacher-subjects area',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'subjects.create',
-                'title' => 'Can create sub subjects',
+                'name' => 'teacher-subjects.create',
+                'title' => 'Can create sub teacher-subjects',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'subjects.edit',
-                'title' => 'Can update sub subjects',
+                'name' => 'teacher-subjects.edit',
+                'title' => 'Can update sub teacher-subjects',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
-                'name' => 'subjects.delete',
-                'title' => 'Can delete sub subjects',
+                'name' => 'teacher-subjects.delete',
+                'title' => 'Can delete sub teacher-subjects',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -41,25 +41,25 @@ class SeedSubjects extends Seeder
         $data = [
             [
                 'group_id' => 1,
-                'permission' => 'subjects.access',
+                'permission' => 'teacher-subjects.access',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'subjects.create',
+                'permission' => 'teacher-subjects.create',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'subjects.edit',
+                'permission' => 'teacher-subjects.edit',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
                 'group_id' => 1,
-                'permission' => 'subjects.delete',
+                'permission' => 'teacher-subjects.delete',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -70,12 +70,12 @@ class SeedSubjects extends Seeder
         $data = [
             [
                 'parent_id' => NULL,
-                'title' => 'Subjects',
+                'title' => 'Teacher Subjects',
                 'icon' => 'fas fa-list',
-                'route' => 'subjects',
+                'route' => 'teacher-subjects',
                 'order' => 5,
                 'active' => 1,
-                'permission' => 'subjects.access',
+                'permission' => 'teacher-subjects.access',
             ],
         ];
 
@@ -83,19 +83,11 @@ class SeedSubjects extends Seeder
 
         $data = [
             [
-                'code' => 'MTK-X',
-                'name' => 'Matematika X',
-            ],
-            [
-                'code' => 'MTK-XI',
-                'name' => 'Matematika XI',
-            ],
-            [
-                'code' => 'MTK-XII',
-                'name' => 'Matematika XII',
+                'teacher_id' => 1,
+                'subject_id' => 1,
             ],
         ];
 
-        $this->db->table('subjects')->insertBatch($data);
+        $this->db->table('teacher_subjects')->insertBatch($data);
     }
 }

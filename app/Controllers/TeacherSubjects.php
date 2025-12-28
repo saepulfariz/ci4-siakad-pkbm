@@ -5,19 +5,19 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class StudentClasses extends BaseController
+class TeacherSubjects extends BaseController
 {
     private $model;
-    private $model_class;
-    private $model_student;
-    private $link = 'student-classes';
-    private $view = 'student-classes';
-    private $title = 'Student Classes';
+    private $model_subject;
+    private $model_teacher;
+    private $link = 'teacher-subjects';
+    private $view = 'teacher-subjects';
+    private $title = 'Teacher Subjects';
     public function __construct()
     {
-        $this->model = new \App\Models\StudentClassModel();
-        $this->model_class = new \App\Models\ClassModel();
-        $this->model_student = new \App\Models\StudentModel();
+        $this->model = new \App\Models\TeacherSubjectModel();
+        $this->model_subject = new \App\Models\SubjectModel();
+        $this->model_teacher = new \App\Models\TeacherModel();
     }
 
     /**
@@ -27,7 +27,7 @@ class StudentClasses extends BaseController
      */
     public function index()
     {
-        $redirect = checkPermission('student-classes.access');
+        $redirect = checkPermission('teacher-subjects.access');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
@@ -35,7 +35,7 @@ class StudentClasses extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'student_classes' => $this->model->select('student_classes.*, classes.name as class_name, students.full_name as student_name')->join('students', 'students.id = student_classes.student_id', 'left')->join('classes', 'classes.id = student_classes.class_id', 'left')->orderBy('student_classes.id', 'desc')->findAll()
+            'teacher_subjects' => $this->model->select('teacher_subjects.*, subjects.name as subject_name, teachers.full_name as teacher_name')->join('teachers', 'teachers.id = teacher_subjects.teacher_id', 'left')->join('subjects', 'subjects.id = teacher_subjects.subject_id', 'left')->orderBy('teacher_subjects.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -60,7 +60,7 @@ class StudentClasses extends BaseController
      */
     public function new()
     {
-        $redirect = checkPermission('student-classes.create');
+        $redirect = checkPermission('teacher-subjects.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
@@ -68,8 +68,8 @@ class StudentClasses extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'classes' => $this->model_class->findAll(),
-            'students' => $this->model_student->findAll(),
+            'subjects' => $this->model_subject->findAll(),
+            'teachers' => $this->model_teacher->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -82,14 +82,14 @@ class StudentClasses extends BaseController
      */
     public function create()
     {
-        $redirect = checkPermission('student-classes.create');
+        $redirect = checkPermission('teacher-subjects.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
         $rules = [
-            'class_id' => 'required',
-            'student_id' => 'required',
+            'subject_id' => 'required',
+            'teacher_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -103,15 +103,15 @@ class StudentClasses extends BaseController
 
         try {
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
+                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
+                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
             ];
 
             $this->model->insert($data);
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create student class')->withInput();
+                return redirect()->back()->with('error', 'Failed to create Teacher subject')->withInput();
             }
 
             $this->db->transCommit();
@@ -119,10 +119,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class created successfully.')->to($this->link);
+            return redirect()->with('success', 'Teacher subject created successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create student class')->withInput();
+            return redirect()->back()->with('error', 'Failed to create Teacher subject')->withInput();
         }
     }
 
@@ -136,14 +136,14 @@ class StudentClasses extends BaseController
      */
     public function edit($id = null)
     {
-        $redirect = checkPermission('student-classes.edit');
+        $redirect = checkPermission('teacher-subjects.edit');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $student_class = $this->model->find($id);
+        $teacher_subject = $this->model->find($id);
 
-        if (!$student_class) {
+        if (!$teacher_subject) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             // return redirect()->to($this->link);
         }
@@ -151,9 +151,9 @@ class StudentClasses extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'student_class' => $student_class,
-            'classes' => $this->model_class->findAll(),
-            'students' => $this->model_student->findAll(),
+            'teacher_subject' => $teacher_subject,
+            'subjects' => $this->model_subject->findAll(),
+            'teachers' => $this->model_teacher->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -168,20 +168,20 @@ class StudentClasses extends BaseController
      */
     public function update($id = null)
     {
-        $redirect = checkPermission('student-classes.edit');
+        $redirect = checkPermission('teacher-subjects.edit');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $student_class = $this->model->find($id);
+        $teacher_subject = $this->model->find($id);
 
-        if (!$student_class) {
+        if (!$teacher_subject) {
             return redirect()->to($this->link);
         }
 
         $rules = [
-            'class_id' => 'required',
-            'student_id' => 'required',
+            'subject_id' => 'required',
+            'teacher_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -197,8 +197,8 @@ class StudentClasses extends BaseController
 
 
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
+                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
+                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
             ];
 
 
@@ -206,7 +206,7 @@ class StudentClasses extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Student class')->withInput();
+                return redirect()->back()->with('error', 'Failed to update Teacher subject')->withInput();
             }
 
             $this->db->transCommit();
@@ -214,10 +214,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class updated successfully.')->to($this->link);
+            return redirect()->with('success', 'Teacher subject updated successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Student class ')->withInput();
+            return redirect()->back()->with('error', 'Failed to update Teacher subject ')->withInput();
         }
     }
 
@@ -230,14 +230,14 @@ class StudentClasses extends BaseController
      */
     public function delete($id = null)
     {
-        $redirect = checkPermission('student-classes.delete');
+        $redirect = checkPermission('teacher-subjects.delete');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
 
-        $student_class = $this->model->find($id);
+        $teacher_subject = $this->model->find($id);
 
-        if (!$student_class) {
+        if (!$teacher_subject) {
             return redirect()->to($this->link);
         }
 
@@ -248,7 +248,7 @@ class StudentClasses extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete student class')->withInput();
+                return redirect()->back()->with('error', 'Failed to delete Teacher subject')->withInput();
             }
 
             $this->db->transCommit();
@@ -256,10 +256,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class deleted successfully.')->to($this->link);
+            return redirect()->with('success', 'Teacher subject deleted successfully.')->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete student class')->withInput();
+            return redirect()->back()->with('error', 'Failed to delete Teacher subject')->withInput();
         }
     }
 }
