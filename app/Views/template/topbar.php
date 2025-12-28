@@ -8,6 +8,34 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
+    <?php
+    $currentLang = service('request')->getLocale();
+    ?>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <?php if ($currentLang === 'id'): ?>
+          🇮🇩 ID
+        <?php else: ?>
+          🇺🇸 EN
+        <?php endif ?>
+        <i class="fas fa-language"></i>
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        <a href="<?= site_url('lang/id') ?>"
+          class="dropdown-item <?= $currentLang === 'id' ? 'active' : '' ?>">
+          🇮🇩 Indonesia
+        </a>
+
+        <a href="<?= site_url('lang/en') ?>"
+          class="dropdown-item <?= $currentLang === 'en' ? 'active' : '' ?>">
+          🇺🇸 English
+        </a>
+      </div>
+    </li>
+
+
     <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -61,8 +89,8 @@
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
-          <a href="<?= base_url('change_password'); ?>" class="btn btn-default btn-flat">Change Password</a>
-          <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-flat float-right">Logout</a>
+          <a href="<?= base_url('change_password'); ?>" class="btn btn-default btn-flat"><?= lang('app.change-password') ?></a>
+          <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-flat float-right"><?= lang('app.logout') ?></a>
         </li>
       </ul>
     </li>
