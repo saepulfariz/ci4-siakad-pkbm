@@ -62,7 +62,7 @@
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="teacher_id">Parent class</label>
+                                <label for="teacher_id">Teacher</label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('teacher_id')) ? 'border-danger' : ((old('teacher_id')) ? 'border-success' : ''); ?> " value="<?= old('teacher_id'); ?>" id="teacher_id" name="teacher_id">
                                     <?php foreach ($teachers as $teacher): ?>
                                         <?php if (old('teacher_id')): ?>

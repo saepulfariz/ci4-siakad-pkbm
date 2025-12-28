@@ -28,9 +28,9 @@
             <div class="col-12">
                 <?php
 
-                $can_create = auth()->user()->can('classes.create');
-                $can_edit = auth()->user()->can('classes.edit');
-                $can_delete = auth()->user()->can('classes.delete');
+                $can_create = auth()->user()->can('student-classes.create');
+                $can_edit = auth()->user()->can('student-classes.edit');
+                $can_delete = auth()->user()->can('student-classes.delete');
 
                 ?>
                 <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
@@ -40,22 +40,18 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Parent</th>
-                                    <th>Name</th>
-                                    <th>Homeroom</th>
-                                    <th>Education</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $a = 1;
-                                foreach ($classes as $class): ?>
+                                foreach ($student_classes as $class): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $class->class_parent; ?></td>
-                                        <td><?= $class->name; ?></td>
-                                        <td><?= $class->teacher_name; ?></td>
-                                        <td><?= $class->education_name; ?></td>
+                                        <td><?= $class->student_name; ?></td>
+                                        <td><?= $class->class_name; ?></td>
                                         <td>
                                             <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $class->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <form class="d-inline" action='<?= base_url($link . '/' . $class->id); ?>' method='post' enctype='multipart/form-data'>
