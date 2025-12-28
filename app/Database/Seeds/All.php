@@ -20,5 +20,6 @@ class All extends Seeder
         $this->call('SeedSubjects');
         $this->call('SeedStudentClasses');
         $this->call('SeedTeacherSubjects');
+        $this->call('SeedClassSubjects');
     }
 }
