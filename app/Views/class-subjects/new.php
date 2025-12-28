@@ -55,7 +55,7 @@
 
                             <div class="form-group">
                                 <label for="subject_id">Subject</label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('subject_id')) ? 'border-danger' : ((old('subject_id')) ? 'border-success' : ''); ?> " value="<?= old('subject_id'); ?>" id="subject_id" name="subject_id">
+                                <select type="text" multiple class="form-control <?= ($error = validation_show_error('subject_id')) ? 'border-danger' : ((old('subject_id')) ? 'border-success' : ''); ?> " value="<?= old('subject_id'); ?>" id="subject_id" name="subject_id[]">
                                     <?php foreach ($subjects as $subject): ?>
                                         <?php if (old('subject_id')): ?>
                                             <?php if (old('subject_id') == $subject->id): ?>

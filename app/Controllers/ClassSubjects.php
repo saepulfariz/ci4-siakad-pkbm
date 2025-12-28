@@ -100,18 +100,20 @@ class ClassSubjects extends BaseController
 
         $this->db->transBegin();
 
-
         try {
-            $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
-            ];
+            $subjects = $this->request->getVar('subject_id');
+            foreach ($subjects as $subject) {
+                $data = [
+                    'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
+                    'subject_id' => htmlspecialchars($subject, true),
+                ];
 
-            $this->model->insert($data);
+                $this->model->insert($data);
 
-            if ($this->db->transStatus() === false) {
-                $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create class subject')->withInput();
+                if ($this->db->transStatus() === false) {
+                    $this->db->transRollback();
+                    return redirect()->back()->with('error', 'Failed to create class subject')->withInput();
+                }
             }
 
             $this->db->transCommit();
