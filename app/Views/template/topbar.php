@@ -89,8 +89,8 @@
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
-          <a href="<?= base_url('change_password'); ?>" class="btn btn-default btn-flat"><?= lang('app.change-password') ?></a>
-          <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-flat float-right"><?= lang('app.logout') ?></a>
+          <a href="<?= base_url('change_password'); ?>" class="btn btn-default btn-flat"><?= temp_lang('app.change-password') ?></a>
+          <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-flat float-right"><?= temp_lang('app.logout') ?></a>
         </li>
       </ul>
     </li>
