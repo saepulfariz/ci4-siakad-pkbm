@@ -28,9 +28,9 @@
             <div class="col-12">
                 <?php
 
-                $can_create = auth()->user()->can('assignment-submissions.create');
-                $can_edit = auth()->user()->can('assignment-submissions.edit');
-                $can_delete = auth()->user()->can('assignment-submissions.delete');
+                $can_create = auth()->user()->can('notifications.create');
+                $can_edit = auth()->user()->can('notifications.edit');
+                $can_delete = auth()->user()->can('notifications.delete');
 
                 ?>
                 <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
@@ -40,31 +40,27 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Assignment</th>
-                                    <th>Student</th>
-                                    <th>Description</th>
-                                    <th>File</th>
+                                    <th>Username</th>
+                                    <th>Title</th>
+                                    <th>Message</th>
                                     <th>Status</th>
-                                    <th>Score</th>
-                                    <th>Feedback</th>
+                                    <th>Datetime</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $a = 1;
-                                foreach ($assignment_submissions as $submission): ?>
+                                foreach ($notifications as $notification): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $submission->assignment_title; ?></td>
-                                        <td><?= $submission->student_name; ?></td>
-                                        <td><?= $submission->description; ?></td>
-                                        <td><?= $submission->file; ?></td>
-                                        <td><?= $submission->status; ?></td>
-                                        <td><?= $submission->score; ?></td>
-                                        <td><?= $submission->feedback; ?></td>
+                                        <td><?= $notification->user_name; ?></td>
+                                        <td><?= $notification->title; ?></td>
+                                        <td><?= $notification->message; ?></td>
+                                        <td><?= $notification->status; ?></td>
+                                        <td><?= $notification->created_at; ?></td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $submission->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
-                                            <form class="d-inline" action='<?= base_url($link . '/' . $submission->id); ?>' method='post' enctype='multipart/form-data'>
+                                            <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $notification->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                            <form class="d-inline" action='<?= base_url($link . '/' . $notification->id); ?>' method='post' enctype='multipart/form-data'>
                                                 <?= csrf_field(); ?>
                                                 <input type='hidden' name='_method' value='DELETE' />
                                                 <!-- GET, POST, PUT, PATCH, DELETE-->
