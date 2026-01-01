@@ -50,5 +50,6 @@ $routes->resource('teacher-subjects', ['controller' => '\App\Controllers\Teacher
 $routes->resource('class-subjects', ['controller' => '\App\Controllers\ClassSubjects', 'filter' => 'session']);
 $routes->resource('materials', ['controller' => '\App\Controllers\Materials', 'filter' => 'session']);
 $routes->resource('assignments', ['controller' => '\App\Controllers\Assignments', 'filter' => 'session']);
+$routes->resource('assignment-submissions', ['controller' => '\App\Controllers\AssignmentSubmissions', 'filter' => 'session']);
 
 service('auth')->routes($routes);
