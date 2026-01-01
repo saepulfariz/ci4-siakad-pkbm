@@ -53,4 +53,5 @@ $routes->resource('assignments', ['controller' => '\App\Controllers\Assignments'
 $routes->resource('assignment-submissions', ['controller' => '\App\Controllers\AssignmentSubmissions', 'filter' => 'session']);
 
 $routes->resource('notifications', ['controller' => '\App\Controllers\Notifications', 'filter' => 'session']);
+$routes->resource('announcements', ['controller' => '\App\Controllers\Announcements', 'filter' => 'session']);
 service('auth')->routes($routes);
