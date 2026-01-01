@@ -13,6 +13,7 @@ class AcademicYears extends BaseController
     private $title = 'Academic Years';
     public function __construct()
     {
+        $this->title = temp_lang('academic_years.academic_years');
         $this->model = new \App\Models\AcademicYearModel();
     }
 
@@ -108,7 +109,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create academic year')->withInput();
+                return redirect()->back()->with('error', temp_lang('academic_years.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -116,10 +117,10 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('academic_years.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create Academic year')->withInput();
+            return redirect()->back()->with('error', temp_lang('academic_years.create_error'))->withInput();
         }
     }
 
@@ -203,7 +204,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Academic year')->withInput();
+                return redirect()->back()->with('error',  temp_lang('academic_years.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -211,10 +212,10 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('academic_years.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Academic year ')->withInput();
+            return redirect()->back()->with('error', temp_lang('academic_years.update_error'))->withInput();
         }
     }
 
@@ -245,7 +246,7 @@ class AcademicYears extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+                return redirect()->back()->with('error', temp_lang('academic_years.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -253,10 +254,10 @@ class AcademicYears extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Academic year deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('academic_years.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete academic year')->withInput();
+            return redirect()->back()->with('error', temp_lang('academic_years.delete_error'))->withInput();
         }
     }
 
@@ -274,7 +275,7 @@ class AcademicYears extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Academic year activated successfully.')->to($this->link);
+        return redirect()->with('success', temp_lang('academic_years.activate_success'))->to($this->link);
     }
 
     function deactivate($id = null)
@@ -290,6 +291,6 @@ class AcademicYears extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Academic year deactivated successfully.')->to($this->link);
+        return redirect()->with('success', temp_lang('academic_years.deactivate_success'))->to($this->link);
     }
 }

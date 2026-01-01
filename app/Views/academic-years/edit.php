@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Academic year</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('academic_years.academic_year'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,21 +34,21 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <label for="name"><?= temp_lang('academic_years.name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', $academic_year->name); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="start_year">Start Year</label>
+                                <label for="start_year"><?= temp_lang('academic_years.start_year'); ?></label>
                                 <input type="number" class="form-control <?= ($error = validation_show_error('start_year')) ? 'border-danger' : ((old('start_year')) ? 'border-success' : ''); ?>" id="start_year" name="start_year" placeholder="<?= date('Y'); ?>" value="<?= old('start_year', $academic_year->start_year); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('start_year')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="end_year">End Year</label>
+                                <label for="end_year"><?= temp_lang('academic_years.end_year'); ?></label>
                                 <input type="number" class="form-control <?= ($error = validation_show_error('end_year')) ? 'border-danger' : ((old('end_year')) ? 'border-success' : ''); ?>" id="end_year" name="end_year" placeholder="<?= date('Y'); ?>" value="<?= old('end_year', $academic_year->end_year); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -56,7 +56,7 @@
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
                     </div>
