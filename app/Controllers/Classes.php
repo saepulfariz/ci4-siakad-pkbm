@@ -111,11 +111,16 @@ class Classes extends BaseController
 
         try {
             $data = [
-                'parent_id' => htmlspecialchars($this->request->getVar('parent_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'education_id' => htmlspecialchars($this->request->getVar('education_id'), true),
+                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_STRING),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_STRING),
+                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_STRING),
             ];
+
+            if ($input['parent_id']) {
+                $data['parent_id'] = $this->request->getVar('parent_id', FILTER_SANITIZE_STRING);
+            }
+
 
             $class = new ClassRoom();
 
@@ -218,11 +223,15 @@ class Classes extends BaseController
 
 
             $data = [
-                'parent_id' => htmlspecialchars($this->request->getVar('parent_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'education_id' => htmlspecialchars($this->request->getVar('education_id'), true),
+                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_STRING),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_STRING),
+                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_STRING),
             ];
+
+            if ($input['parent_id']) {
+                $data['parent_id'] = $this->request->getVar('parent_id', FILTER_SANITIZE_STRING);
+            }
 
             $class->fill($data);
 

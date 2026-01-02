@@ -52,10 +52,10 @@
                                 foreach ($classes as $class): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $class->class_parent; ?></td>
-                                        <td><?= $class->name; ?></td>
-                                        <td><?= $class->teacher_name; ?></td>
-                                        <td><?= $class->education_name; ?></td>
+                                        <td><?= esc($class->class_parent); ?></td>
+                                        <td><?= esc($class->name); ?></td>
+                                        <td><?= esc($class->teacher_name); ?></td>
+                                        <td><?= esc($class->education_name); ?></td>
                                         <td>
                                             <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $class->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <form class="d-inline" action='<?= base_url($link . '/' . $class->id); ?>' method='post' enctype='multipart/form-data'>
