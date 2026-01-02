@@ -83,7 +83,10 @@ class Users extends BaseController
      */
     public function create()
     {
-        checkPermission('users.create');
+        $redirect = checkPermission('users.create');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
 
         $rules = [
             'name' => 'required',
@@ -146,7 +149,10 @@ class Users extends BaseController
      */
     public function edit($id = null)
     {
-        checkPermission('users.edit');
+        $redirect = checkPermission('users.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
 
         // Get the User Provider (UserModel by default)
         $users = $this->model;
@@ -179,7 +185,10 @@ class Users extends BaseController
      */
     public function update($id = null)
     {
-        checkPermission('users.edit');
+        $redirect = checkPermission('users.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
 
         // Get the User Provider (UserModel by default)
         $users = $this->model;
@@ -263,7 +272,10 @@ class Users extends BaseController
      */
     public function delete($id = null)
     {
-        checkPermission('users.delete');
+        $redirect = checkPermission('users.delete');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
 
         $users = auth()->getProvider();
 

@@ -92,11 +92,15 @@ class Classes extends BaseController
         $rules = [
             // 'parent_id' => 'required',
             'name' => 'required',
-            'teacher_id' => 'required',
-            'education_id' => 'required',
+            'teacher_id' => 'required|is_not_unique[teachers.id]',
+            'education_id' => 'required|is_not_unique[educations.id]',
         ];
 
         $input = $this->request->getVar();
+
+        if ($input['parent_id']) {
+            $rules['parent_id'] = 'required|is_not_unique[classes.id]';
+        }
 
         if (!$this->validateData($input, $rules)) {
             return redirect()->back()->withInput();
@@ -193,11 +197,15 @@ class Classes extends BaseController
         $rules = [
             // 'parent_id' => 'required',
             'name' => 'required',
-            'teacher_id' => 'required',
-            'education_id' => 'required',
+            'teacher_id' => 'required|is_not_unique[teachers.id]',
+            'education_id' => 'required|is_not_unique[educations.id]',
         ];
 
         $input = $this->request->getVar();
+
+        if ($input['parent_id']) {
+            $rules['parent_id'] = 'required|is_not_unique[classes.id]';
+        }
 
         if (!$this->validateData($input, $rules)) {
             return redirect()->back()->withInput();
