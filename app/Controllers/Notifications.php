@@ -30,10 +30,29 @@ class Notifications extends BaseController
             return $redirect;
         }
 
+        $notifications = $this->model->select('notifications.*, users.username as user_name')->join('users', 'users.id = notifications.user_id', 'left')->orderBy('notifications.id', 'desc');
+
+        if (!auth()->user()->can('notifications.access-all')) {
+            $notifications = $notifications->where('user_id', auth()->id());
+        }
+
+        $cache = \Config\Services::cache();
+        if (auth()->user()->can('notifications.access-all')) {
+            $cacheKey = 'notifications';
+        } else {
+            $cacheKey = 'notifications_' . auth()->id();
+        }
+        if (!$cache->get($cacheKey)) {
+            $notifications =  $notifications->findAll();
+            $cache->save($cacheKey, $notifications, CACHE_TTL);
+        } {
+            $notifications = $cache->get($cacheKey);
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'notifications' => $this->model->select('notifications.*, users.username as user_name')->join('users', 'users.id = notifications.user_id', 'left')->orderBy('notifications.id', 'desc')->findAll()
+            'notifications' => $notifications
         ];
 
         return view($this->view . '/index', $data);
@@ -48,7 +67,42 @@ class Notifications extends BaseController
      */
     public function show($id = null)
     {
-        return redirect()->to($this->link);
+        $redirect = checkPermission('notifications.show');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+        $notification = $this->model->find($id);
+
+        if (!$notification) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            // return redirect()->to($this->link);
+        }
+
+        if (!auth()->user()->can('notifications.access-all')) {
+            // return $redirect;
+            if (auth()->id() != $notification->user_id) {
+                return redirect()->with('error', 'Not access this data!')->to('dashboard');
+            }
+        }
+
+        // update status
+        $this->model->update($id, [
+            'status' => 'Read',
+        ]);
+
+        $cache = \Config\Services::cache();
+        $cache->delete($this->model->cacheKey);
+
+        $cache->delete($this->model->cacheKey . '_' . auth()->id());
+
+        $data = [
+            'title' => $this->title,
+            'link' => $this->link,
+            'notification' => $notification,
+        ];
+
+        return view($this->view . '/show', $data);
     }
 
     /**
@@ -116,6 +170,7 @@ class Notifications extends BaseController
 
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
+            $cache->delete($this->model->cacheKey . '_.*');
 
             return redirect()->with('success', 'Notification created successfully.')->to($this->link);
         } catch (\Throwable $th) {
@@ -146,6 +201,14 @@ class Notifications extends BaseController
             // return redirect()->to($this->link);
         }
 
+        if (!auth()->user()->can('notifications.access-all')) {
+            // return $redirect;
+            if (auth()->id() != $notification->user_id) {
+                return redirect()->with('error', 'Not access this data!')->to($this->link);
+            }
+        }
+
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
@@ -174,6 +237,14 @@ class Notifications extends BaseController
 
         if (!$notification) {
             return redirect()->to($this->link);
+        }
+
+
+        if (!auth()->user()->can('notifications.access-all')) {
+            // return $redirect;
+            if (auth()->id() != $notification->user_id) {
+                return redirect()->with('error', 'Not access this data!')->to($this->link);
+            }
         }
 
         $rules = [
@@ -240,6 +311,14 @@ class Notifications extends BaseController
             return redirect()->to($this->link);
         }
 
+        if (!auth()->user()->can('notifications.access-all')) {
+            // return $redirect;
+            if (auth()->id() != $notification->user_id) {
+                return redirect()->with('error', 'Not access this data!')->to($this->link);
+            }
+        }
+
+
         $this->db->transBegin();
 
         try {
@@ -254,6 +333,8 @@ class Notifications extends BaseController
 
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
+
+            $cache->delete($this->model->cacheKey . '_.*');
 
             return redirect()->with('success', 'Notification deleted successfully.')->to($this->link);
         } catch (\Throwable $th) {

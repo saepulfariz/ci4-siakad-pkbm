@@ -17,6 +17,18 @@ class SeedNotifications extends Seeder
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
+                'name' => 'notifications.access-all',
+                'title' => 'Can access the notifications all area',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'name' => 'notifications.show',
+                'title' => 'Can show the notifications area',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
                 'name' => 'notifications.create',
                 'title' => 'Can create sub notifications',
                 'created_at' => '2025-12-25 21:52:00',
@@ -47,6 +59,18 @@ class SeedNotifications extends Seeder
             ],
             [
                 'group_id' => 1,
+                'permission' => 'notifications.access-all',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'notifications.show',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 1,
                 'permission' => 'notifications.create',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
@@ -60,6 +84,19 @@ class SeedNotifications extends Seeder
             [
                 'group_id' => 1,
                 'permission' => 'notifications.delete',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+
+            [
+                'group_id' => 4,
+                'permission' => 'notifications.access',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 4,
+                'permission' => 'notifications.show',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -84,6 +121,12 @@ class SeedNotifications extends Seeder
         $data = [
             [
                 'user_id' => 1,
+                'title' => 'Test Notif',
+                'message' => 'Tes',
+                'status' => 'Unread',
+            ],
+            [
+                'user_id' => 2,
                 'title' => 'Test Notif',
                 'message' => 'Tes',
                 'status' => 'Unread',

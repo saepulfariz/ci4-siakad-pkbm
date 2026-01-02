@@ -37,30 +37,49 @@
 
 
     <!-- Notifications Dropdown Menu -->
+
+    <?php
+
+    $notifications = get_notifications();
+    $count_unread = db_connect()->table('notifications')->where('user_id', auth()->id())->where('status', 'Unread')->countAllResults();
+    // $count_unread = count(array_filter(
+    //   $notifications,
+    //   fn($n) => $n->status === 'Unread'
+    // ));
+
+    ?>
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
         <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge">15</span>
+        <span class="badge badge-warning navbar-badge"><?= $count_unread; ?></span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header">15 Notifications</span>
+        <span class="dropdown-item dropdown-header"><?= count($notifications); ?> Notifications</span>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-envelope mr-2"></i> 4 new messages
-          <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-users mr-2"></i> 8 friend requests
-          <span class="float-right text-muted text-sm">12 hours</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> 3 new reports
-          <span class="float-right text-muted text-sm">2 days</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        <?php foreach ($notifications as $notification): ?>
+          <a href="<?= base_url('notifications/' . $notification->id); ?>" class="dropdown-item">
+            <div class="media">
+              <!-- <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle"> -->
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  <?= $notification->title; ?>
+                  <?php if ($notification->status == 'Unread'): ?>
+
+                    <span class="float-right text-sm text-gray"><i class="fas fa-check-double"></i></span>
+                  <?php else: ?>
+                    <span class="float-right text-sm text-success"><i class="fas fa-check-double"></i></span>
+
+                  <?php endif; ?>
+                </h3>
+                <p class="text-sm"><?= $notification->message; ?></p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> <?= date('Y-m-d H:i:s', strtotime($notification->created_at)); ?></p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+        <?php endforeach; ?>
+        <a href="<?= base_url('notifications'); ?>" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
 

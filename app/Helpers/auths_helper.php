@@ -72,7 +72,7 @@ function isValidToken(string $rawToken): bool
     return true; // Token valid
 }
 
-function checkPermission(string $permission, string $redirect = "")
+function checkPermission(string $permission, string $redirect = "", $send_notif = "")
 {
     $user = auth()->user();
 
@@ -92,7 +92,11 @@ function checkPermission(string $permission, string $redirect = "")
             }
         }
 
-        return redirect()->to($url_redirect)->with('error', lang('Auth.notEnoughPrivilege'))->send();
+        if ($send_notif) {
+            return redirect()->to($url_redirect)->with('error', lang('Auth.notEnoughPrivilege'))->send();
+        } else {
+            return redirect()->to($url_redirect)->send();
+        }
     }
 
     return null;
