@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\ClassRoom;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Classes extends BaseController
@@ -112,7 +113,11 @@ class Classes extends BaseController
                 'education_id' => htmlspecialchars($this->request->getVar('education_id'), true),
             ];
 
-            $this->model->insert($data);
+            $class = new ClassRoom();
+
+            $class->fill($data);
+
+            $this->model->save($class);
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
@@ -211,8 +216,11 @@ class Classes extends BaseController
                 'education_id' => htmlspecialchars($this->request->getVar('education_id'), true),
             ];
 
+            $class->fill($data);
 
-            $this->model->update($id, $data);
+            $this->model->save($class);
+
+            // $this->model->update($id, $data);
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();

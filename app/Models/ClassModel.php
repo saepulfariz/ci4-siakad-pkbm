@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Entities\Education;
+use App\Entities\ClassRoom;
 use App\Traits\LogUserTrait;
 use CodeIgniter\Model;
 
@@ -13,7 +13,7 @@ class ClassModel extends Model
     protected $table            = 'classes';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = Education::class;
+    protected $returnType       = ClassRoom::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
