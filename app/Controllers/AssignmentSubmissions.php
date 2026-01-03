@@ -106,13 +106,13 @@ class AssignmentSubmissions extends BaseController
 
         try {
             $data = [
-                'assignment_id' => htmlspecialchars($this->request->getVar('assignment_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
-                // 'status' => htmlspecialchars($this->request->getVar('status'), true),
-                'description' => htmlspecialchars($this->request->getVar('description'), true),
-                'file' => htmlspecialchars($this->request->getVar('file'), true),
-                'score' => htmlspecialchars($this->request->getVar('score'), true),
-                'feedback' => htmlspecialchars($this->request->getVar('feedback'), true),
+                'assignment_id' => $this->request->getVar('assignment_id', FILTER_SANITIZE_NUMBER_INT),
+                'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
+                // 'status' => $this->request->getVar('status', FILTER_SANITIZE_STRING),
+                'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
+                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                'score' => $this->request->getVar('score', FILTER_SANITIZE_STRING),
+                'feedback' => $this->request->getVar('feedback', FILTER_SANITIZE_STRING),
                 'submitted_at' => date('Y-m-d H:i:s')
             ];
 
@@ -216,13 +216,13 @@ class AssignmentSubmissions extends BaseController
 
 
             $data = [
-                'assignment_id' => htmlspecialchars($this->request->getVar('assignment_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'description' => htmlspecialchars($this->request->getVar('description'), true),
-                'file' => htmlspecialchars($this->request->getVar('file'), true),
-                'score' => htmlspecialchars($this->request->getVar('score'), true),
-                'feedback' => htmlspecialchars($this->request->getVar('feedback'), true),
+                'assignment_id' => $this->request->getVar('assignment_id', FILTER_SANITIZE_NUMBER_INT),
+                'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
+                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                'score' => $this->request->getVar('score', FILTER_SANITIZE_STRING),
+                'feedback' => $this->request->getVar('feedback', FILTER_SANITIZE_STRING),
             ];
 
             if ($data['score'] || $data['feedback']) {

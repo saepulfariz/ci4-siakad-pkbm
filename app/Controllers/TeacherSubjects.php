@@ -103,8 +103,8 @@ class TeacherSubjects extends BaseController
 
         try {
             $data = [
-                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
+                'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
             $this->model->insert($data);
@@ -197,8 +197,8 @@ class TeacherSubjects extends BaseController
 
 
             $data = [
-                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
+                'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
 

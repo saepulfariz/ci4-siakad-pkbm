@@ -99,9 +99,9 @@ class AcademicYears extends BaseController
 
         try {
             $data = [
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
-                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'start_year' => $this->request->getVar('start_year', FILTER_SANITIZE_STRING),
+                'end_year' => $this->request->getVar('end_year', FILTER_SANITIZE_STRING),
                 'is_active' => 0,
             ];
 
@@ -194,9 +194,9 @@ class AcademicYears extends BaseController
 
 
             $data = [
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_year' => htmlspecialchars($this->request->getVar('start_year'), true),
-                'end_year' => htmlspecialchars($this->request->getVar('end_year'), true),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'start_year' => $this->request->getVar('start_year', FILTER_SANITIZE_STRING),
+                'end_year' => $this->request->getVar('end_year', FILTER_SANITIZE_STRING),
             ];
 
 

@@ -102,10 +102,10 @@ class Semesters extends BaseController
 
         try {
             $data = [
-                'academic_year_id' => htmlspecialchars($this->request->getVar('academic_year_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_date' => htmlspecialchars($this->request->getVar('start_date'), true),
-                'end_date' => htmlspecialchars($this->request->getVar('end_date'), true),
+                'academic_year_id' => $this->request->getVar('academic_year_id', FILTER_SANITIZE_NUMBER_INT),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'start_date' => $this->request->getVar('start_date', FILTER_SANITIZE_STRING),
+                'end_date' => $this->request->getVar('end_date', FILTER_SANITIZE_STRING),
                 'is_active' => 0,
             ];
 
@@ -200,10 +200,10 @@ class Semesters extends BaseController
 
 
             $data = [
-                'academic_year_id' => htmlspecialchars($this->request->getVar('academic_year_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'start_date' => htmlspecialchars($this->request->getVar('start_date'), true),
-                'end_date' => htmlspecialchars($this->request->getVar('end_date'), true),
+                'academic_year_id' => $this->request->getVar('academic_year_id', FILTER_SANITIZE_NUMBER_INT),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'start_date' => $this->request->getVar('start_date', FILTER_SANITIZE_STRING),
+                'end_date' => $this->request->getVar('end_date', FILTER_SANITIZE_STRING),
             ];
 
 

@@ -103,8 +103,8 @@ class StudentClasses extends BaseController
 
         try {
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
+                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
             $this->model->insert($data);
@@ -197,8 +197,8 @@ class StudentClasses extends BaseController
 
 
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'student_id' => htmlspecialchars($this->request->getVar('student_id'), true),
+                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
 

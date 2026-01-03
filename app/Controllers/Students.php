@@ -128,16 +128,16 @@ class Students extends BaseController
 
         try {
             $data = [
-                'user_id' => htmlspecialchars($this->request->getVar('user_id'), true),
-                'nis' => htmlspecialchars($this->request->getVar('nis'), true),
-                'nisn' => htmlspecialchars($this->request->getVar('nisn'), true),
-                'full_name' => htmlspecialchars($this->request->getVar('full_name'), true),
-                'gender' => htmlspecialchars($this->request->getVar('gender'), true),
-                'birth_place' => htmlspecialchars($this->request->getVar('birth_place'), true),
-                'birth_date' => htmlspecialchars($this->request->getVar('birth_date'), true),
-                'address' => htmlspecialchars($this->request->getVar('address'), true),
-                'phone' => htmlspecialchars($this->request->getVar('phone'), true),
-                'parent_name' => htmlspecialchars($this->request->getVar('parent_name'), true),
+                'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
+                'nis' => $this->request->getVar('nis', FILTER_SANITIZE_STRING),
+                'nisn' => $this->request->getVar('nisn', FILTER_SANITIZE_STRING),
+                'full_name' => $this->request->getVar('full_name', FILTER_SANITIZE_STRING),
+                'gender' => $this->request->getVar('gender', FILTER_SANITIZE_STRING),
+                'birth_place' => $this->request->getVar('birth_place', FILTER_SANITIZE_STRING),
+                'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
+                'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
+                'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
+                'parent_name' => $this->request->getVar('parent_name', FILTER_SANITIZE_STRING),
             ];
 
             // Jika ada upload file
@@ -271,16 +271,16 @@ class Students extends BaseController
         try {
 
             $data = [
-                'user_id' => htmlspecialchars($this->request->getVar('user_id'), true),
-                'nis' => htmlspecialchars($this->request->getVar('nis'), true),
-                'nisn' => htmlspecialchars($this->request->getVar('nisn'), true),
-                'full_name' => htmlspecialchars($this->request->getVar('full_name'), true),
-                'gender' => htmlspecialchars($this->request->getVar('gender'), true),
-                'birth_place' => htmlspecialchars($this->request->getVar('birth_place'), true),
-                'birth_date' => htmlspecialchars($this->request->getVar('birth_date'), true),
-                'address' => htmlspecialchars($this->request->getVar('address'), true),
-                'phone' => htmlspecialchars($this->request->getVar('phone'), true),
-                'parent_name' => htmlspecialchars($this->request->getVar('parent_name'), true),
+                'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
+                'nis' => $this->request->getVar('nis', FILTER_SANITIZE_STRING),
+                'nisn' => $this->request->getVar('nisn', FILTER_SANITIZE_STRING),
+                'full_name' => $this->request->getVar('full_name', FILTER_SANITIZE_STRING),
+                'gender' => $this->request->getVar('gender', FILTER_SANITIZE_STRING),
+                'birth_place' => $this->request->getVar('birth_place', FILTER_SANITIZE_STRING),
+                'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
+                'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
+                'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
+                'parent_name' => $this->request->getVar('parent_name', FILTER_SANITIZE_STRING),
             ];
 
             // Jika ada upload file

@@ -53,17 +53,17 @@
                                 foreach ($announcements as $announcement): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $announcement->title; ?></td>
-                                        <td><?= $announcement->content; ?></td>
-                                        <td><?= $announcement->created_at; ?></td>
+                                        <td><?= esc($announcement->title); ?></td>
+                                        <td><?= esc($announcement->content); ?></td>
+                                        <td><?= esc($announcement->created_at); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $announcement->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($announcement->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $announcement->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($announcement->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

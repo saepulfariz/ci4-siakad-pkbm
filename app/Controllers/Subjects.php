@@ -97,8 +97,8 @@ class Subjects extends BaseController
 
         try {
             $data = [
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'code' => htmlspecialchars($this->request->getVar('code'), true),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'code' => $this->request->getVar('code', FILTER_SANITIZE_STRING),
             ];
 
             $this->model->insert($data);
@@ -193,8 +193,8 @@ class Subjects extends BaseController
 
 
             $data = [
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'code' => htmlspecialchars($this->request->getVar('code'), true),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'code' => $this->request->getVar('code', FILTER_SANITIZE_STRING),
             ];
 
 

@@ -154,9 +154,9 @@ class Notifications extends BaseController
 
         try {
             $data = [
-                'user_id' => htmlspecialchars($this->request->getVar('user_id'), true),
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'message' => htmlspecialchars($this->request->getVar('message'), true),
+                'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'message' => $this->request->getVar('message', FILTER_SANITIZE_STRING),
             ];
 
             $this->model->insert($data);
@@ -266,9 +266,9 @@ class Notifications extends BaseController
 
 
             $data = [
-                'user_id' => htmlspecialchars($this->request->getVar('user_id'), true),
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'message' => htmlspecialchars($this->request->getVar('message'), true),
+                'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'message' => $this->request->getVar('message', FILTER_SANITIZE_STRING),
             ];
 
 

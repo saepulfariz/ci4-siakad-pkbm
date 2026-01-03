@@ -54,18 +54,18 @@
                                 foreach ($academic_years as $academic): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $academic->name; ?></td>
-                                        <td><?= $academic->start_year; ?></td>
-                                        <td><?= $academic->end_year; ?></td>
+                                        <td><?= esc($academic->name); ?></td>
+                                        <td><?= esc($academic->start_year); ?></td>
+                                        <td><?= esc($academic->end_year); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 
                                                 <?php if ($academic->is_active) : ?>
-                                                    <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . $academic->id . '/deactivate'); ?>">
+                                                    <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . esc($academic->id) . '/deactivate'); ?>">
                                                         <i class="fas fa-check"></i>
                                                     </a>
                                                 <?php else : ?>
-                                                    <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . $academic->id . '/activate'); ?>">
+                                                    <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . esc($academic->id) . '/activate'); ?>">
                                                         <i class="fas fa-times"></i>
                                                     </a>
                                                 <?php endif; ?>
@@ -84,12 +84,12 @@
                                         </td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $academic->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($academic->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
 
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $academic->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($academic->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

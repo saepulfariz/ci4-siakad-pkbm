@@ -101,9 +101,9 @@ class Educations extends BaseController
 
         try {
             $data = [
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'unit' => htmlspecialchars($this->request->getVar('unit'), true),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'unit' => $this->request->getVar('unit', FILTER_SANITIZE_STRING),
             ];
 
             $this->model->insert($data);
@@ -196,9 +196,9 @@ class Educations extends BaseController
 
 
             $data = [
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'name' => htmlspecialchars($this->request->getVar('name'), true),
-                'unit' => htmlspecialchars($this->request->getVar('unit'), true),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
+                'unit' => $this->request->getVar('unit', FILTER_SANITIZE_STRING),
             ];
 
 

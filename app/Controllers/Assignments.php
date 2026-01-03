@@ -108,15 +108,15 @@ class Assignments extends BaseController
         $this->db->transBegin();
 
         try {
-            $subject = $this->request->getVar('subject_id');
+            $subject = $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT);
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'subject_id' => htmlspecialchars($subject, true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'description' => htmlspecialchars($this->request->getVar('description'), true),
-                'file' => htmlspecialchars($this->request->getVar('file'), true),
-                'deadline' => htmlspecialchars($this->request->getVar('deadline'), true),
+                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                'subject_id' => $subject,
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
+                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                'deadline' => $this->request->getVar('deadline', FILTER_SANITIZE_STRING),
             ];
 
             $this->model->insert($data);
@@ -214,13 +214,13 @@ class Assignments extends BaseController
 
 
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
-                'teacher_id' => htmlspecialchars($this->request->getVar('teacher_id'), true),
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'description' => htmlspecialchars($this->request->getVar('description'), true),
-                'file' => htmlspecialchars($this->request->getVar('file'), true),
-                'deadline' => htmlspecialchars($this->request->getVar('deadline'), true),
+                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
+                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                'deadline' => $this->request->getVar('deadline', FILTER_SANITIZE_STRING),
             ];
 
 

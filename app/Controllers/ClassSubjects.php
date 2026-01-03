@@ -101,11 +101,11 @@ class ClassSubjects extends BaseController
         $this->db->transBegin();
 
         try {
-            $subjects = $this->request->getVar('subject_id');
+            $subjects = $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT);
             foreach ($subjects as $subject) {
                 $data = [
-                    'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                    'subject_id' => htmlspecialchars($subject, true),
+                    'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                    'subject_id' => $subject,
                 ];
 
                 $this->model->insert($data);
@@ -199,8 +199,8 @@ class ClassSubjects extends BaseController
 
 
             $data = [
-                'class_id' => htmlspecialchars($this->request->getVar('class_id'), true),
-                'subject_id' => htmlspecialchars($this->request->getVar('subject_id'), true),
+                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
 

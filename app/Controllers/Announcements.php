@@ -96,8 +96,8 @@ class Announcements extends BaseController
 
         try {
             $data = [
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'content' => htmlspecialchars($this->request->getVar('content'), true),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'content' => $this->request->getVar('content', FILTER_SANITIZE_STRING),
             ];
 
             $this->model->insert($data);
@@ -188,8 +188,8 @@ class Announcements extends BaseController
 
 
             $data = [
-                'title' => htmlspecialchars($this->request->getVar('title'), true),
-                'content' => htmlspecialchars($this->request->getVar('content'), true),
+                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                'content' => $this->request->getVar('content', FILTER_SANITIZE_STRING),
             ];
 
 
