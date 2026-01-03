@@ -33,7 +33,9 @@
                 $can_delete = auth()->user()->can('students.delete');
 
                 ?>
-                <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                <?php if ($can_create): ?>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
                         <table class="table" id="table2">
@@ -71,13 +73,17 @@
                                         <td><?= $student->parent_name; ?></td>
                                         <td><?= $student->photo; ?></td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $student->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
-                                            <form class="d-inline" action='<?= base_url($link . '/' . $student->id); ?>' method='post' enctype='multipart/form-data'>
-                                                <?= csrf_field(); ?>
-                                                <input type='hidden' name='_method' value='DELETE' />
-                                                <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <?php if ($can_edit): ?>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $student->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                            <?php endif; ?>
+                                            <?php if ($can_delete): ?>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . $student->id); ?>' method='post' enctype='multipart/form-data'>
+                                                    <?= csrf_field(); ?>
+                                                    <input type='hidden' name='_method' value='DELETE' />
+                                                    <!-- GET, POST, PUT, PATCH, DELETE-->
+                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            <?php endif; ?>
 
                                         </td>
                                     </tr>

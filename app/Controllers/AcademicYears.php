@@ -77,7 +77,7 @@ class AcademicYears extends BaseController
      */
     public function create()
     {
-        $redirect = checkPermission('academic_years.create');
+        $redirect = checkPermission('academic-years.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
         }
@@ -264,6 +264,11 @@ class AcademicYears extends BaseController
 
     function activate($id = null)
     {
+        $redirect = checkPermission('academic-years.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
         $academic_year = $this->model->find($id);
 
         if (!$academic_year) {
@@ -280,6 +285,11 @@ class AcademicYears extends BaseController
 
     function deactivate($id = null)
     {
+        $redirect = checkPermission('academic-years.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
         $academic_year = $this->model->find($id);
 
         if (!$academic_year) {

@@ -33,7 +33,9 @@
                 $can_delete = auth()->user()->can('academic-years.delete');
 
                 ?>
-                <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
+                <?php if ($can_create): ?>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
+                <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
                         <table class="table" id="table2">
@@ -56,24 +58,45 @@
                                         <td><?= $academic->start_year; ?></td>
                                         <td><?= $academic->end_year; ?></td>
                                         <td>
-                                            <?php if ($academic->is_active) : ?>
-                                                <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . $academic->id . '/deactivate'); ?>">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
-                                            <?php else : ?>
-                                                <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . $academic->id . '/activate'); ?>">
-                                                    <i class="fas fa-times"></i>
-                                                </a>
+                                            <?php if ($can_edit): ?>
+
+                                                <?php if ($academic->is_active) : ?>
+                                                    <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . $academic->id . '/deactivate'); ?>">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . $academic->id . '/activate'); ?>">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+
+                                                <?php if ($academic->is_active) : ?>
+                                                    <a class="btn btn-success btn-sm" href="#; ?>">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a class="btn btn-danger btn-sm" href="#">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $academic->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
-                                            <form class="d-inline" action='<?= base_url($link . '/' . $academic->id); ?>' method='post' enctype='multipart/form-data'>
-                                                <?= csrf_field(); ?>
-                                                <input type='hidden' name='_method' value='DELETE' />
-                                                <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                <button type='button' data-ket="<?= temp_lang('academic_years.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <?php if ($can_edit): ?>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $academic->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+
+                                            <?php endif; ?>
+                                            <?php if ($can_delete): ?>
+
+                                                <form class="d-inline" action='<?= base_url($link . '/' . $academic->id); ?>' method='post' enctype='multipart/form-data'>
+                                                    <?= csrf_field(); ?>
+                                                    <input type='hidden' name='_method' value='DELETE' />
+                                                    <!-- GET, POST, PUT, PATCH, DELETE-->
+                                                    <button type='button' data-ket="<?= temp_lang('academic_years.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                </form>
+
+                                            <?php endif; ?>
 
                                         </td>
                                     </tr>

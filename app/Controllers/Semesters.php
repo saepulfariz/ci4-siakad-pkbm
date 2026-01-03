@@ -271,6 +271,11 @@ class Semesters extends BaseController
 
     function activate($id = null)
     {
+        $redirect = checkPermission('semesters.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
         $semester = $this->model->find($id);
 
         if (!$semester) {
@@ -287,6 +292,12 @@ class Semesters extends BaseController
 
     function deactivate($id = null)
     {
+        $redirect = checkPermission('semesters.edit');
+        if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
+            return $redirect;
+        }
+
+
         $semester = $this->model->find($id);
 
         if (!$semester) {
