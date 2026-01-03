@@ -25,7 +25,7 @@ class SeedAuthMenus extends Seeder
                 'route' => '#',
                 'order' => 2,
                 'active' => 1,
-                'permission' => null,
+                'permission' => 'users.access|groups.access|permissions.access|permission-group.access|group-user.access|permission-user.access|menus.access',
             ],
             [
                 'parent_id' => 2,
