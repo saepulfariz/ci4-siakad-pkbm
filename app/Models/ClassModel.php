@@ -38,6 +38,17 @@ class ClassModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
+    // protected $validationRules      = [
+    //     'name' => 'required',
+    //     'teacher_id' => 'required|is_not_unique[teachers.id]',
+    //     'education_id' => 'required|is_not_unique[educations.id]',
+    // ];
+    // protected $validationMessages   = [
+    //     'education_id' => [
+    //         'required' => 'Education wajib dipilih',
+    //         'is_not_unique' => 'Education tidak ditemukan',
+    //     ],
+    // ];
     protected $validationRules      = [];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

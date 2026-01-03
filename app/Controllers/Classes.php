@@ -102,6 +102,10 @@ class Classes extends BaseController
             $rules['parent_id'] = 'required|is_not_unique[classes.id]';
         }
 
+        // if (!$this->validateData($input, $this->model->getValidationRules())) {
+        //     return redirect()->back()->withInput();
+        // }
+
         if (!$this->validateData($input, $rules)) {
             return redirect()->back()->withInput();
         }
@@ -111,10 +115,10 @@ class Classes extends BaseController
 
         try {
             $data = [
-                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_STRING),
+                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_NUMBER_INT),
                 'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
-                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_STRING),
-                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_STRING),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
             if ($input['parent_id']) {
@@ -126,7 +130,14 @@ class Classes extends BaseController
 
             $class->fill($data);
 
-            $this->model->save($class);
+            // $this->model->save($class);
+
+            if (!$this->model->save($class)) {
+                // validation with model send error with errors
+                return redirect()->back()
+                    ->withInput()
+                    ->with('errors', $this->model->errors());
+            }
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
@@ -223,14 +234,14 @@ class Classes extends BaseController
 
 
             $data = [
-                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_STRING),
+                // 'parent_id' => $this->request->getVar('parent_id', FILTER_SANITIZE_NUMBER_INT),
                 'name' => $this->request->getVar('name', FILTER_SANITIZE_STRING),
-                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_STRING),
-                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_STRING),
+                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                'education_id' => $this->request->getVar('education_id', FILTER_SANITIZE_NUMBER_INT),
             ];
 
             if ($input['parent_id']) {
-                $data['parent_id'] = $this->request->getVar('parent_id', FILTER_SANITIZE_STRING);
+                $data['parent_id'] = $this->request->getVar('parent_id', FILTER_SANITIZE_NUMBER_INT);
             }
 
             $class->fill($data);
