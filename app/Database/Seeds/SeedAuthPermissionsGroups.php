@@ -16,33 +16,49 @@ class SeedAuthPermissionsGroups extends Seeder
                 'created_at' => '2025-06-27 17:13:00',
                 'updated_at' => '2025-06-27 17:13:00',
             ],
+
+            // disabled
+            // [
+            //     'name' => 'admin',
+            //     'title' => 'Admin',
+            //     'description' => 'Day to day administrators of the site.',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'name' => 'developer',
+            //     'title' => 'Developer',
+            //     'description' => 'Site programmers.',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'name' => 'user',
+            //     'title' => 'User',
+            //     'description' => 'General users of the site. Often customers.',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'name' => 'beta',
+            //     'title' => 'Beta User',
+            //     'description' => 'Has access to beta-level features.',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
             [
-                'name' => 'admin',
-                'title' => 'Admin',
-                'description' => 'Day to day administrators of the site.',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
+                'name' => 'student',
+                'title' => 'Student',
+                'description' => 'Has access to student features.',
+                'created_at' => '2026-01-04 04:08:00',
+                'updated_at' => '2026-01-04 04:08:00',
             ],
             [
-                'name' => 'developer',
-                'title' => 'Developer',
-                'description' => 'Site programmers.',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'name' => 'user',
-                'title' => 'User',
-                'description' => 'General users of the site. Often customers.',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'name' => 'beta',
-                'title' => 'Beta User',
-                'description' => 'Has access to beta-level features.',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
+                'name' => 'teacher',
+                'title' => 'Teacher',
+                'description' => 'Has access to teacher features.',
+                'created_at' => '2026-01-04 04:08:00',
+                'updated_at' => '2026-01-04 04:08:00',
             ],
         ];
 
@@ -50,24 +66,24 @@ class SeedAuthPermissionsGroups extends Seeder
 
 
         $data = [
-            [
-                'name' => 'admin.access',
-                'title' => 'Can access the sites admin area',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'name' => 'admin.settings',
-                'title' => 'Can access the main site settings',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'name' => 'users.manage-admins',
-                'title' => 'Can manage other admins',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
+            // [
+            //     'name' => 'admin.access',
+            //     'title' => 'Can access the sites admin area',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'name' => 'admin.settings',
+            //     'title' => 'Can access the main site settings',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'name' => 'users.manage-admins',
+            //     'title' => 'Can manage other admins',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
             [
                 'name' => 'users.create',
                 'title' => 'Can create new non-admin users',
@@ -86,12 +102,12 @@ class SeedAuthPermissionsGroups extends Seeder
                 'created_at' => '2025-06-27 17:13:00',
                 'updated_at' => '2025-06-27 17:13:00',
             ],
-            [
-                'name' => 'beta.access',
-                'title' => 'Can access beta-level features',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
+            // [
+            //     'name' => 'beta.access',
+            //     'title' => 'Can access beta-level features',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
             [
                 'name' => 'users.access',
                 'title' => 'Can access the users area',
@@ -273,78 +289,80 @@ class SeedAuthPermissionsGroups extends Seeder
             //     'created_at' => '2025-06-27 17:13:00',
             //     'updated_at' => '2025-06-27 17:13:00',
             // ],
-            [
-                'group_id' => 2,
-                'permission' => 'admin.access',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 2,
-                'permission' => 'users.access',
-                'created_at' => '2025-07-11 18:48:00',
-                'updated_at' => '2025-07-11 18:48:00',
-            ],
-            [
-                'group_id' => 2,
-                'permission' => 'users.create',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 2,
-                'permission' => 'users.edit',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 2,
-                'permission' => 'users.delete',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 2,
-                'permission' => 'beta.access',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 3,
-                'permission' => 'admin.access',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 3,
-                'permission' => 'admin.settings',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 3,
-                'permission' => 'users.create',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 3,
-                'permission' => 'users.edit',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 3,
-                'permission' => 'beta.access',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
-            [
-                'group_id' => 5,
-                'permission' => 'beta.access',
-                'created_at' => '2025-06-27 17:13:00',
-                'updated_at' => '2025-06-27 17:13:00',
-            ],
+
+            // disabled
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'admin.access',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'users.access',
+            //     'created_at' => '2025-07-11 18:48:00',
+            //     'updated_at' => '2025-07-11 18:48:00',
+            // ],
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'users.create',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'users.edit',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'users.delete',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 2,
+            //     'permission' => 'beta.access',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 3,
+            //     'permission' => 'admin.access',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 3,
+            //     'permission' => 'admin.settings',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 3,
+            //     'permission' => 'users.create',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 3,
+            //     'permission' => 'users.edit',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 3,
+            //     'permission' => 'beta.access',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
+            // [
+            //     'group_id' => 5,
+            //     'permission' => 'beta.access',
+            //     'created_at' => '2025-06-27 17:13:00',
+            //     'updated_at' => '2025-06-27 17:13:00',
+            // ],
 
 
             [

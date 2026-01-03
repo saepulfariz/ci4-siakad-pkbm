@@ -37,8 +37,13 @@ http://localhost:8080/login
   - email: super@admin.com
   - password: password
 
-- User
-  - email: admin@mail.com
+- Student
+
+  - email: student@mail.com
+  - password: 123
+
+- Teacher
+  - email: teacher@mail.com
   - password: 123
 
 ## Important Change with index.php

@@ -23,7 +23,9 @@ class AuthGroups extends ShieldAuthGroups
      * --------------------------------------------------------------------
      * The group that a newly registered user is added to.
      */
-    public string $defaultGroup = 'user';
+    // public string $defaultGroup = 'user';
+    public string $defaultGroup = 'student';
+
 
     /**
      * --------------------------------------------------------------------
@@ -60,6 +62,14 @@ class AuthGroups extends ShieldAuthGroups
         'beta' => [
             'title'       => 'Beta User',
             'description' => 'Has access to beta-level features.',
+        ],
+        'student' => [
+            'title'       => 'student User',
+            'description' => 'Has access to student-level features.',
+        ],
+        'teacher' => [
+            'title'       => 'teacher User',
+            'description' => 'Has access to teacher-level features.',
         ],
     ];
 
@@ -110,6 +120,8 @@ class AuthGroups extends ShieldAuthGroups
             'beta.access',
         ],
         'user' => [],
+        'teacher' => [],
+        'student' => [],
         'beta' => [
             'beta.access',
         ],
@@ -120,9 +132,11 @@ class AuthGroups extends ShieldAuthGroups
     public function __construct()
     {
         parent::__construct();
-        $this->setGroups();
-        $this->setPermissions();
-        $this->setMatrix();
+        if (!is_cli()) {
+            $this->setGroups();
+            $this->setPermissions();
+            $this->setMatrix();
+        }
     }
 
     function setGroups()

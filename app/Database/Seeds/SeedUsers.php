@@ -55,15 +55,16 @@ class SeedUsers extends Seeder
             ->where('auth_identities.type', 'email_password') // pastikan jenis identity-nya email
             ->first();
 
-        if ($user instanceof User) {
-            $user->addGroup('admin');
-        }
+        // if ($user instanceof User) {
+        //     $user->addGroup('admin');
+        // }
 
         // Ambil user berdasarkan ID
         $user = $userModel->find($userId); // $userId = id target
 
         if ($user) {
-            $user->addGroup('superadmin', 'beta');
+            // $user->addGroup('superadmin', 'beta');
+            $user->addGroup('superadmin');
         }
 
 
@@ -78,20 +79,20 @@ class SeedUsers extends Seeder
         // }
 
         // Buat user baru
-        $user = new User([
-            'email'    => 'admin@mail.com',
-            'username' => 'admin',
-            'password' => '123', // Shield akan meng-hash ini secara otomatis
-        ]);
+        // $user = new User([
+        //     'email'    => 'admin@mail.com',
+        //     'username' => 'admin',
+        //     'password' => '123', // Shield akan meng-hash ini secara otomatis
+        // ]);
 
-        $users->save($user);
+        // $users->save($user);
 
-        // To get the complete user object with ID, we need to get from the database
-        $user = $users->findById($users->getInsertID());
+        // // To get the complete user object with ID, we need to get from the database
+        // $user = $users->findById($users->getInsertID());
 
-        $model_user_identity->update($users->getInsertID(), ['name' => 'Admin']);
+        // $model_user_identity->update($users->getInsertID(), ['name' => 'Admin']);
 
         // Add to default group
-        $users->addToDefaultGroup($user);
+        // $users->addToDefaultGroup($user);
     }
 }
