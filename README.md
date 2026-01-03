@@ -25,7 +25,7 @@ php spark migrate:refresh --all
 ```
 
 ```bash
-php spark db:seed --all
+php spark db:seed all
 ```
 
 ## Default login
