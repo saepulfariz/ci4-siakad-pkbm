@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $student->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($student->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -39,14 +39,14 @@
                                     <option value="">== NONE ===</option>
                                     <?php foreach ($users as $user): ?>
                                         <?php if (old('user_id')): ?>
-                                            <?php if (old('user_id', $student->user_id) == $user->id): ?>
+                                            <?php if (old('user_id', esc($student->user_id)) == $user->id): ?>
                                                 <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
 
-                                            <?php if ($student->user_id == $user->id): ?>
+                                            <?php if (esc($student->user_id) == $user->id): ?>
                                                 <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
@@ -60,21 +60,21 @@
 
                             <div class="form-group">
                                 <label for="nis">NIS <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('nis')) ? 'border-danger' : ((old('nis')) ? 'border-success' : ''); ?>" id="nis" name="nis" placeholder="" value="<?= old('nis', $student->nis); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('nis')) ? 'border-danger' : ((old('nis')) ? 'border-success' : ''); ?>" id="nis" name="nis" placeholder="" value="<?= old('nis', esc($student->nis)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('nis')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="nisn">NISN <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('nisn')) ? 'border-danger' : ((old('nisn')) ? 'border-success' : ''); ?>" id="nisn" name="nisn" placeholder="" value="<?= old('nisn', $student->nisn); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('nisn')) ? 'border-danger' : ((old('nisn')) ? 'border-success' : ''); ?>" id="nisn" name="nisn" placeholder="" value="<?= old('nisn', esc($student->nisn)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('nisn')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="full_name">Full Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('full_name')) ? 'border-danger' : ((old('full_name')) ? 'border-success' : ''); ?>" id="full_name" name="full_name" placeholder="" value="<?= old('full_name', $student->full_name); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('full_name')) ? 'border-danger' : ((old('full_name')) ? 'border-success' : ''); ?>" id="full_name" name="full_name" placeholder="" value="<?= old('full_name', esc($student->full_name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('full_name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -83,8 +83,8 @@
                             <div class="form-group">
                                 <label for="gender">Gender <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <select name="gender" id="gender" class="form-control <?= ($error = validation_show_error('gender')) ? 'border-danger' : ((old('gender')) ? 'border-success' : ''); ?>">
-                                    <option value="L" <?= (old('gender', $student->gender) == 'L') ? 'selected' : ''; ?>>LAKI-LAKI</option>
-                                    <option value="P" <?= (old('gender', $student->gender) == 'P') ? 'selected' : ''; ?>>PEREMPUAN</option>
+                                    <option value="L" <?= (old('gender', esc($student->gender)) == 'L') ? 'selected' : ''; ?>>LAKI-LAKI</option>
+                                    <option value="P" <?= (old('gender', esc($student->gender)) == 'P') ? 'selected' : ''; ?>>PEREMPUAN</option>
                                 </select>
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -92,14 +92,14 @@
 
                             <div class="form-group">
                                 <label for="birth_place">Birth Place <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('birth_place')) ? 'border-danger' : ((old('birth_place')) ? 'border-success' : ''); ?>" id="birth_place" name="birth_place" placeholder="" value="<?= old('birth_place', $student->birth_place); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('birth_place')) ? 'border-danger' : ((old('birth_place')) ? 'border-success' : ''); ?>" id="birth_place" name="birth_place" placeholder="" value="<?= old('birth_place', esc($student->birth_place)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('birth_place')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="birth_date">Birth Date</label>
-                                <input type="date" class="form-control <?= ($error = validation_show_error('birth_date')) ? 'border-danger' : ((old('birth_date')) ? 'border-success' : ''); ?>" id="birth_date" name="birth_date" placeholder="<?= date('Y'); ?>" value="<?= old('birth_date', $student->birth_date); ?>">
+                                <input type="date" class="form-control <?= ($error = validation_show_error('birth_date')) ? 'border-danger' : ((old('birth_date')) ? 'border-success' : ''); ?>" id="birth_date" name="birth_date" placeholder="<?= date('Y'); ?>" value="<?= old('birth_date', esc($student->birth_date)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('birth_date')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -114,7 +114,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('address')) ? 'border-danger' : ((old('address')) ? 'border-success' : ''); ?>" id="address" name="address"><?= old('address', $student->address); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('address')) ? 'border-danger' : ((old('address')) ? 'border-success' : ''); ?>" id="address" name="address"><?= old('address', esc($student->address)); ?></textarea>
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('address')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -122,14 +122,14 @@
 
                             <div class="form-group">
                                 <label for="phone">Phone <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('phone')) ? 'border-danger' : ((old('phone')) ? 'border-success' : ''); ?>" id="phone" name="phone" placeholder="" value="<?= old('phone', $student->phone); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('phone')) ? 'border-danger' : ((old('phone')) ? 'border-success' : ''); ?>" id="phone" name="phone" placeholder="" value="<?= old('phone', esc($student->phone)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('phone')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="parent_name">Parent Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('parent_name')) ? 'border-danger' : ((old('parent_name')) ? 'border-success' : ''); ?>" id="parent_name" name="parent_name" placeholder="Parent Name" value="<?= old('parent_name', $student->parent_name); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('parent_name')) ? 'border-danger' : ((old('parent_name')) ? 'border-success' : ''); ?>" id="parent_name" name="parent_name" placeholder="Parent Name" value="<?= old('parent_name', esc($student->parent_name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('parent_name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>

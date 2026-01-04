@@ -58,23 +58,23 @@
                                 foreach ($notifications as $notification): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $notification->user_name; ?></td>
-                                        <td><?= $notification->title; ?></td>
-                                        <td><?= $notification->message; ?></td>
-                                        <td><?= $notification->status; ?></td>
-                                        <td><?= $notification->created_at; ?></td>
+                                        <td><?= esc($notification->user_name); ?></td>
+                                        <td><?= esc($notification->title); ?></td>
+                                        <td><?= esc($notification->message); ?></td>
+                                        <td><?= esc($notification->status); ?></td>
+                                        <td><?= esc($notification->created_at); ?></td>
                                         <td>
                                             <?php if ($can_show): ?>
 
-                                                <a class="btn btn-info btn-sm mb-2" href="<?= base_url($link . '/' . $notification->id . ''); ?>"><i class="fas fa-eye"></i></a>
+                                                <a class="btn btn-info btn-sm mb-2" href="<?= base_url($link . '/' . esc($notification->id) . ''); ?>"><i class="fas fa-eye"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_edit): ?>
 
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $notification->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($notification->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $notification->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($notification->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $assignment_submission->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($assignment_submission->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -44,7 +44,7 @@
                                                 <option value="<?= $assignment->id; ?>"><?= $assignment->title; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($assignment_submission->assignment_id == $assignment->id): ?>
+                                            <?php if (esc($assignment_submission->assignment_id) == $assignment->id): ?>
                                                 <option selected value="<?= $assignment->id; ?>"><?= $assignment->title; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $assignment->id; ?>"><?= $assignment->title; ?></option>
@@ -67,7 +67,7 @@
                                                 <option value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($assignment_submission->student_id == $student->id): ?>
+                                            <?php if (esc($assignment_submission->student_id) == $student->id): ?>
                                                 <option selected value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
@@ -92,7 +92,7 @@
 
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description', $assignment_submission->description); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description', esc($assignment_submission->description)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -102,7 +102,7 @@
 
                             <div class="form-group">
                                 <label for="file">File</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file', $assignment_submission->file); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file', esc($assignment_submission->file)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -120,7 +120,7 @@
                                                 <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($assignment_submission->status == $st['id']): ?>
+                                            <?php if (esc($assignment_submission->status) == $st['id']): ?>
                                                 <option selected value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
@@ -134,7 +134,7 @@
 
                             <div class="form-group">
                                 <label for="score">Score</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="Score" value="<?= old('score', $assignment_submission->score); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="Score" value="<?= old('score', esc($assignment_submission->score)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -142,7 +142,7 @@
 
                             <div class="form-group">
                                 <label for="feedback">Feedback</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback', $assignment_submission->feedback); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback', esc($assignment_submission->feedback)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>

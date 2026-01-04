@@ -57,23 +57,23 @@
                                 foreach ($semesters as $semester): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $semester->academic_name; ?></td>
-                                        <td><?= $semester->name; ?></td>
-                                        <td><?= $semester->start_date; ?></td>
-                                        <td><?= $semester->end_date; ?></td>
+                                        <td><?= esc($semester->academic_name); ?></td>
+                                        <td><?= esc($semester->name); ?></td>
+                                        <td><?= esc($semester->start_date); ?></td>
+                                        <td><?= esc($semester->end_date); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <?php if ($semester->is_active) : ?>
-                                                    <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . $semester->id . '/deactivate'); ?>">
+                                                <?php if (esc($semester->is_active)) : ?>
+                                                    <a class="btn btn-success btn-sm" href="<?= base_url($link . '/' . esc($semester->id) . '/deactivate'); ?>">
                                                         <i class="fas fa-check"></i>
                                                     </a>
                                                 <?php else : ?>
-                                                    <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . $semester->id . '/activate'); ?>">
+                                                    <a class="btn btn-danger btn-sm" href="<?= base_url($link . '/' . esc($semester->id) . '/activate'); ?>">
                                                         <i class="fas fa-times"></i>
                                                     </a>
                                                 <?php endif; ?>
                                             <?php else: ?>
-                                                <?php if ($semester->is_active) : ?>
+                                                <?php if (esc($semester->is_active)) : ?>
                                                     <a class="btn btn-success btn-sm" href="#">
                                                         <i class="fas fa-check"></i>
                                                     </a>
@@ -86,12 +86,12 @@
                                         </td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $semester->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($semester->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
 
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $semester->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($semester->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

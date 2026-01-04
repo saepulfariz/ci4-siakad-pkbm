@@ -53,19 +53,19 @@
                                 foreach ($educations as $education): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $education->name; ?></td>
-                                        <td><?= $education->unit; ?></td>
-                                        <td><?= $education->teacher_name; ?></td>
+                                        <td><?= esc($education->name); ?></td>
+                                        <td><?= esc($education->unit); ?></td>
+                                        <td><?= esc($education->teacher_name); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $education->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($education->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
 
 
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $education->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($education->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

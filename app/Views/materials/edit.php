@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $material->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($material->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -44,7 +44,7 @@
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($material->class_id == $dt_class->id): ?>
+                                            <?php if (esc($material->class_id) == $dt_class->id): ?>
                                                 <option selected value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
@@ -69,7 +69,7 @@
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($material->subject_id == $subject->id): ?>
+                                            <?php if (esc($material->subject_id) == $subject->id): ?>
                                                 <option selected value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
@@ -92,7 +92,7 @@
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($material->teacher_id == $teacher->id): ?>
+                                            <?php if (esc($material->teacher_id) == $teacher->id): ?>
                                                 <option selected value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
@@ -116,7 +116,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', $material->title); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', esc($material->title)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('title')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -124,7 +124,7 @@
 
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description', $material->description); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description', esc($material->description)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -134,7 +134,7 @@
 
                             <div class="form-group">
                                 <label for="file">File</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file', $material->file); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file', esc($material->file)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>

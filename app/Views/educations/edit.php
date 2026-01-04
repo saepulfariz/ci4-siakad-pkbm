@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $education->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($education->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -38,14 +38,14 @@
 
                             <div class="form-group">
                                 <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="SMK/SMA" value="<?= old('name', $education->name); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="SMK/SMA" value="<?= old('name', esc($education->name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="unit">Unit</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('unit')) ? 'border-danger' : ((old('unit')) ? 'border-success' : ''); ?>" id="unit" name="unit" placeholder="Unit A/B" value="<?= old('unit', $education->unit); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('unit')) ? 'border-danger' : ((old('unit')) ? 'border-success' : ''); ?>" id="unit" name="unit" placeholder="Unit A/B" value="<?= old('unit', esc($education->unit)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('unit')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -61,7 +61,7 @@
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($education->teacher_id == $teacher->id): ?>
+                                            <?php if (esc($education->teacher_id) == $teacher->id): ?>
                                                 <option selected value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>

@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $subject->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($subject->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -35,14 +35,14 @@
 
                             <div class="form-group">
                                 <label for="code">Code</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('code')) ? 'border-danger' : ((old('code')) ? 'border-success' : ''); ?>" id="code" name="code" placeholder="MTK-X" value="<?= old('code', $subject->code); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('code')) ? 'border-danger' : ((old('code')) ? 'border-success' : ''); ?>" id="code" name="code" placeholder="MTK-X" value="<?= old('code', esc($subject->code)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('code') && !$error) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', $subject->name); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', esc($subject->name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>

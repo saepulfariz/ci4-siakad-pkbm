@@ -61,23 +61,23 @@
                                 foreach ($students as $student): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $student->user_name; ?></td>
-                                        <td><?= $student->nis; ?></td>
-                                        <td><?= $student->nisn; ?></td>
-                                        <td><?= $student->full_name; ?></td>
-                                        <td><?= $student->gender; ?></td>
-                                        <td><?= $student->birth_place; ?></td>
-                                        <td><?= $student->birth_date; ?></td>
-                                        <td><?= $student->address; ?></td>
-                                        <td><?= $student->phone; ?></td>
-                                        <td><?= $student->parent_name; ?></td>
-                                        <td><?= $student->photo; ?></td>
+                                        <td><?= esc($student->user_name); ?></td>
+                                        <td><?= esc($student->nis); ?></td>
+                                        <td><?= esc($student->nisn); ?></td>
+                                        <td><?= esc($student->full_name); ?></td>
+                                        <td><?= esc($student->gender); ?></td>
+                                        <td><?= esc($student->birth_place); ?></td>
+                                        <td><?= esc($student->birth_date); ?></td>
+                                        <td><?= esc($student->address); ?></td>
+                                        <td><?= esc($student->phone); ?></td>
+                                        <td><?= esc($student->parent_name); ?></td>
+                                        <td><?= esc($student->photo); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $student->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($student->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $student->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($student->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

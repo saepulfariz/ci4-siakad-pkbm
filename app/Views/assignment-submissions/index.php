@@ -57,19 +57,19 @@
                                 foreach ($assignment_submissions as $submission): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $submission->assignment_title; ?></td>
-                                        <td><?= $submission->student_name; ?></td>
-                                        <td><?= $submission->description; ?></td>
-                                        <td><?= $submission->file; ?></td>
-                                        <td><?= $submission->status; ?></td>
-                                        <td><?= $submission->score; ?></td>
-                                        <td><?= $submission->feedback; ?></td>
+                                        <td><?= esc($submission->assignment_title); ?></td>
+                                        <td><?= esc($submission->student_name); ?></td>
+                                        <td><?= esc($submission->description); ?></td>
+                                        <td><?= esc($submission->file); ?></td>
+                                        <td><?= esc($submission->status); ?></td>
+                                        <td><?= esc($submission->score); ?></td>
+                                        <td><?= esc($submission->feedback); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $submission->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($submission->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $submission->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($submission->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

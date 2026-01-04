@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $class_subject->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($class_subject->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -44,7 +44,7 @@
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($class_subject->class_id == $dt_class->id): ?>
+                                            <?php if (esc($class_subject->class_id) == $dt_class->id): ?>
                                                 <option selected value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
@@ -69,7 +69,7 @@
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($class_subject->subject_id == $subject->id): ?>
+                                            <?php if (esc($class_subject->subject_id) == $subject->id): ?>
                                                 <option selected value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>

@@ -33,7 +33,11 @@
                 $can_delete = auth()->user()->can('teacher.delete');
 
                 ?>
-                <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                <?php if ($can_create): ?>
+
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+
+                <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
                         <table class="table" id="table2">
@@ -58,24 +62,32 @@
                                 foreach ($teachers as $teacher): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $teacher->user_name; ?></td>
-                                        <td><?= $teacher->nip; ?></td>
-                                        <td><?= $teacher->full_name; ?></td>
-                                        <td><?= $teacher->gender; ?></td>
-                                        <td><?= $teacher->birth_place; ?></td>
-                                        <td><?= $teacher->birth_date; ?></td>
-                                        <td><?= $teacher->address; ?></td>
-                                        <td><?= $teacher->phone; ?></td>
-                                        <td><?= $teacher->education; ?></td>
-                                        <td><?= $teacher->photo; ?></td>
+                                        <td><?= esc($teacher->user_name); ?></td>
+                                        <td><?= esc($teacher->nip); ?></td>
+                                        <td><?= esc($teacher->full_name); ?></td>
+                                        <td><?= esc($teacher->gender); ?></td>
+                                        <td><?= esc($teacher->birth_place); ?></td>
+                                        <td><?= esc($teacher->birth_date); ?></td>
+                                        <td><?= esc($teacher->address); ?></td>
+                                        <td><?= esc($teacher->phone); ?></td>
+                                        <td><?= esc($teacher->education); ?></td>
+                                        <td><?= esc($teacher->photo); ?></td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $teacher->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
-                                            <form class="d-inline" action='<?= base_url($link . '/' . $teacher->id); ?>' method='post' enctype='multipart/form-data'>
-                                                <?= csrf_field(); ?>
-                                                <input type='hidden' name='_method' value='DELETE' />
-                                                <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <?php if ($can_edit): ?>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($teacher->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+
+
+                                            <?php endif; ?>
+                                            <?php if ($can_delete): ?>
+
+
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($teacher->id)); ?>' method='post' enctype='multipart/form-data'>
+                                                    <?= csrf_field(); ?>
+                                                    <input type='hidden' name='_method' value='DELETE' />
+                                                    <!-- GET, POST, PUT, PATCH, DELETE-->
+                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            <?php endif; ?>
 
                                         </td>
                                     </tr>

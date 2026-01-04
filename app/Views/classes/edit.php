@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $class->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($class->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -45,7 +45,7 @@
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($class->parent_id == $dt_class->id): ?>
+                                            <?php if (esc($class->parent_id) == $dt_class->id): ?>
                                                 <option selected value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', $class->name); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', esc($class->name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name') && !$error) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -77,7 +77,7 @@
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($teacher->teacher_id == $teacher->id): ?>
+                                            <?php if (esc($class->teacher_id) == $teacher->id): ?>
                                                 <option selected value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
@@ -101,7 +101,7 @@
                                                 <option value="<?= $education->id; ?>"><?= $education->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($education->education_id == $education->id): ?>
+                                            <?php if (esc($class->education_id) == $education->id): ?>
                                                 <option selected value="<?= $education->id; ?>"><?= $education->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $education->id; ?>"><?= $education->name; ?></option>

@@ -52,16 +52,16 @@
                                 foreach ($class_subjects as $subject): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $subject->class_name; ?></td>
-                                        <td><?= $subject->subject_name; ?></td>
+                                        <td><?= esc($subject->class_name); ?></td>
+                                        <td><?= esc($subject->subject_name); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $subject->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($subject->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
 
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $subject->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($subject->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

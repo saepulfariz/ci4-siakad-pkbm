@@ -57,19 +57,19 @@
                                 foreach ($assignments as $assignment): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $assignment->class_name; ?></td>
-                                        <td><?= $assignment->subject_name; ?></td>
-                                        <td><?= $assignment->teacher_name; ?></td>
-                                        <td><?= $assignment->title; ?></td>
-                                        <td><?= $assignment->description; ?></td>
-                                        <td><?= $assignment->file; ?></td>
-                                        <td><?= $assignment->deadline; ?></td>
+                                        <td><?= esc($assignment->class_name); ?></td>
+                                        <td><?= esc($assignment->subject_name); ?></td>
+                                        <td><?= esc($assignment->teacher_name); ?></td>
+                                        <td><?= esc($assignment->title); ?></td>
+                                        <td><?= esc($assignment->description); ?></td>
+                                        <td><?= esc($assignment->file); ?></td>
+                                        <td><?= esc($assignment->deadline); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $assignment->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($assignment->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $assignment->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($assignment->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

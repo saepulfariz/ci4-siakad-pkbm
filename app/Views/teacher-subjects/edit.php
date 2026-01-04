@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $teacher_subject->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($teacher_subject->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -44,7 +44,7 @@
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($teacher_subject->teacher_id == $teacher->id): ?>
+                                            <?php if (esc($teacher_subject->teacher_id) == $teacher->id): ?>
                                                 <option selected value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $teacher->id; ?>"><?= $teacher->full_name; ?></option>
@@ -69,7 +69,7 @@
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($teacher_subject->subject_id == $subject->id): ?>
+                                            <?php if (esc($teacher_subject->subject_id) == $subject->id): ?>
                                                 <option selected value="<?= $subject->id; ?>"><?= $subject->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $subject->id; ?>"><?= $subject->name; ?></option>

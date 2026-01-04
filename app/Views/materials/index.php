@@ -56,22 +56,22 @@
                                 foreach ($materials as $material): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
-                                        <td><?= $material->class_name; ?></td>
-                                        <td><?= $material->subject_name; ?></td>
-                                        <td><?= $material->teacher_name; ?></td>
-                                        <td><?= $material->title; ?></td>
-                                        <td><?= $material->description; ?></td>
-                                        <td><?= $material->file; ?></td>
+                                        <td><?= esc($material->class_name); ?></td>
+                                        <td><?= esc($material->subject_name); ?></td>
+                                        <td><?= esc($material->teacher_name); ?></td>
+                                        <td><?= esc($material->title); ?></td>
+                                        <td><?= esc($material->description); ?></td>
+                                        <td><?= esc($material->file); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 
-                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . $material->id . '/edit'); ?>"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($material->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>
 
                                             <?php endif; ?>
                                             <?php if ($can_delete): ?>
 
 
-                                                <form class="d-inline" action='<?= base_url($link . '/' . $material->id); ?>' method='post' enctype='multipart/form-data'>
+                                                <form class="d-inline" action='<?= base_url($link . '/' . esc($material->id)); ?>' method='post' enctype='multipart/form-data'>
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->

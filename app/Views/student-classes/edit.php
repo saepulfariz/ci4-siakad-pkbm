@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $student_class->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($student_class->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -44,7 +44,7 @@
                                                 <option value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($student_class->student_id == $student->id): ?>
+                                            <?php if (esc($student_class->student_id) == $student->id): ?>
                                                 <option selected value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $student->id; ?>"><?= $student->full_name; ?></option>
@@ -69,7 +69,7 @@
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($student_class->class_id == $dt_class->id): ?>
+                                            <?php if (esc($student_class->class_id) == $dt_class->id): ?>
                                                 <option selected value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $dt_class->id; ?>"><?= $dt_class->name; ?></option>

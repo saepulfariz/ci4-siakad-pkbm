@@ -25,7 +25,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="<?= base_url($link . '/' . $notification->id); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= base_url($link . '/' . esc($notification->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <input type='hidden' name='_method' value='PUT' />
             <div class="row">
@@ -45,7 +45,7 @@
                                                 <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <?php if ($notification->user_id == $user->id): ?>
+                                            <?php if (esc($notification->user_id) == $user->id): ?>
                                                 <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
@@ -59,7 +59,7 @@
 
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', $notification->title); ?>">
+                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', esc($notification->title)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('title')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -67,7 +67,7 @@
 
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="message" placeholder="Message"><?= old('message', $notification->message); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="message" placeholder="Message"><?= old('message', esc($notification->message)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
