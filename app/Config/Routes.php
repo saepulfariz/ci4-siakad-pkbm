@@ -30,6 +30,9 @@ $routes->group('/superadmin', ['filter' => 'session'], function ($routes) {
     $routes->resource('auth-menus', ['controller' => '\App\Controllers\Superadmin\AuthMenus']);
 });
 
+$routes->get('change-password', '\App\Controllers\Superadmin\Profile::changePassword', ['filter' => 'session']);
+$routes->put('change-password', '\App\Controllers\Superadmin\Profile::updatePassword', ['filter' => 'session']);
+
 $routes->get('academic-years/(:any)/activate', '\App\Controllers\AcademicYears::activate/$1');
 $routes->get('academic-years/(:any)/deactivate', '\App\Controllers\AcademicYears::deactivate/$1');
 $routes->resource('academic-years', ['controller' => '\App\Controllers\AcademicYears', 'filter' => 'session']);
