@@ -14,6 +14,7 @@ class Semesters extends BaseController
     private $title = 'Semesters';
     public function __construct()
     {
+        $this->title = temp_lang('semesters.semesters');
         $this->model = new \App\Models\SemesterModel();
         $this->model_academic = new \App\Models\AcademicYearModel();
     }
@@ -113,7 +114,7 @@ class Semesters extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create semester')->withInput();
+                return redirect()->back()->with('error', temp_lang('semesters.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -121,10 +122,10 @@ class Semesters extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Semester created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('semesters.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create Semester')->withInput();
+            return redirect()->back()->with('error', temp_lang('semesters.create_error'))->withInput();
         }
     }
 
@@ -211,7 +212,7 @@ class Semesters extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Semester')->withInput();
+                return redirect()->back()->with('error',  temp_lang('semesters.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -219,10 +220,10 @@ class Semesters extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Semester updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('semesters.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Semester ')->withInput();
+            return redirect()->back()->with('error', temp_lang('semesters.update_error'))->withInput();
         }
     }
 
@@ -253,7 +254,7 @@ class Semesters extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete semester')->withInput();
+                return redirect()->back()->with('error', temp_lang('semesters.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -261,10 +262,10 @@ class Semesters extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Semester deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('semesters.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete semester')->withInput();
+            return redirect()->back()->with('error', temp_lang('semesters.delete_error'))->withInput();
         }
     }
 
@@ -287,7 +288,7 @@ class Semesters extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Semester activated successfully.')->to($this->link);
+        return redirect()->with('success', temp_lang('semesters.activate_success'))->to($this->link);
     }
 
     function deactivate($id = null)
@@ -309,6 +310,6 @@ class Semesters extends BaseController
         $cache = \Config\Services::cache();
         $cache->delete($this->model->cacheKey);
 
-        return redirect()->with('success', 'Semester deactivated successfully.')->to($this->link);
+        return redirect()->with('success', temp_lang('semesters.deactivate_success'))->to($this->link);
     }
 }

@@ -35,7 +35,7 @@
                 ?>
                 <?php if ($can_create): ?>
 
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
 
                 <?php endif; ?>
                 <div class="card">
@@ -44,12 +44,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Academic</th>
-                                    <th>Name</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Active</th>
-                                    <th>Action</th>
+                                    <th><?= temp_lang('academic_years.academic_year'); ?></th>
+                                    <th><?= temp_lang('semesters.name'); ?></th>
+                                    <th><?= temp_lang('semesters.start_date'); ?></th>
+                                    <th><?= temp_lang('semesters.end_date'); ?></th>
+                                    <th><?= temp_lang('semesters.active'); ?></th>
+                                    <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>

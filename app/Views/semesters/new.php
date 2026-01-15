@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Semester</h1>
+                <h1 class="m-0"><?= temp_lang('app.new'); ?> <?= temp_lang('semesters.semester'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.new'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,7 +34,7 @@
 
 
                             <div class="form-group">
-                                <label for="academic_year_id">Academic</label>
+                                <label for="academic_year_id"><?= temp_lang('academic_years.academic_year'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('academic_year_id')) ? 'border-danger' : ((old('academic_year_id')) ? 'border-success' : ''); ?> " value="<?= old('academic_year_id'); ?>" id="academic_year_id" name="academic_year_id">
                                     <?php foreach ($academic_years as $academic): ?>
                                         <?php if (old('academic_year_id')): ?>
@@ -54,21 +54,21 @@
 
 
                             <div class="form-group">
-                                <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <label for="name"><?= temp_lang('semesters.name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="Ganjil/Genap" value="<?= old('name'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="start_date">Start Date</label>
+                                <label for="start_date"><?= temp_lang('semesters.start_date'); ?></label>
                                 <input type="date" class="form-control <?= ($error = validation_show_error('start_date')) ? 'border-danger' : ((old('start_date')) ? 'border-success' : ''); ?>" id="start_date" name="start_date" placeholder="<?= date('Y'); ?>" value="<?= old('start_date'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('start_date')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="end_date">End Date</label>
+                                <label for="end_date"><?= temp_lang('semesters.end_date'); ?></label>
                                 <input type="date" class="form-control <?= ($error = validation_show_error('end_date')) ? 'border-danger' : ((old('end_date')) ? 'border-success' : ''); ?>" id="end_date" name="end_date" placeholder="<?= date('Y', strtotime('+1 Dates')); ?>" value="<?= old('end_date'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -76,7 +76,7 @@
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
 
                         </div>
