@@ -463,10 +463,13 @@ class Auth extends ShieldAuth
      */
     public function logoutRedirect(): string
     {
+        $lang = session()->get('lang') ?? 'en';
         $cache = \Config\Services::cache();
         $cache->clean();
 
         $url = setting('Auth.redirects')['logout'];
+
+        service('request')->setLocale($lang);
 
         return $this->getUrl($url);
     }
