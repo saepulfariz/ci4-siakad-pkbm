@@ -95,7 +95,7 @@
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                    <button type='button' data-ket="<?= temp_lang('semesters.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
                                                 </form>
 
                                             <?php endif; ?>
