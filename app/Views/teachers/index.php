@@ -28,9 +28,9 @@
             <div class="col-12">
                 <?php
 
-                $can_create = auth()->user()->can('teacher.create');
-                $can_edit = auth()->user()->can('teacher.edit');
-                $can_delete = auth()->user()->can('teacher.delete');
+                $can_create = auth()->user()->can('teachers.create');
+                $can_edit = auth()->user()->can('teachers.edit');
+                $can_delete = auth()->user()->can('teachers.delete');
 
                 ?>
                 <?php if ($can_create): ?>
