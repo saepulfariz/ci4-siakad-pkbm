@@ -17,6 +17,12 @@ class SeedAssignmentSubmissions extends Seeder
                 'updated_at' => '2025-12-25 21:52:00',
             ],
             [
+                'name' => 'assignment-submissions.access-all',
+                'title' => 'Can access the assignment-submissions all area',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
                 'name' => 'assignment-submissions.create',
                 'title' => 'Can create sub assignment-submissions',
                 'created_at' => '2025-12-25 21:52:00',
@@ -47,6 +53,12 @@ class SeedAssignmentSubmissions extends Seeder
             ],
             [
                 'group_id' => 1,
+                'permission' => 'assignment-submissions.access-all',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 1,
                 'permission' => 'assignment-submissions.create',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
@@ -59,6 +71,57 @@ class SeedAssignmentSubmissions extends Seeder
             ],
             [
                 'group_id' => 1,
+                'permission' => 'assignment-submissions.delete',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+
+            [
+                'group_id' => 2,
+                'permission' => 'assignment-submissions.access',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 2,
+                'permission' => 'assignment-submissions.create',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 2,
+                'permission' => 'assignment-submissions.edit',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 2,
+                'permission' => 'assignment-submissions.delete',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+
+
+            [
+                'group_id' => 3,
+                'permission' => 'assignment-submissions.access',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
+                'permission' => 'assignment-submissions.create',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
+                'permission' => 'assignment-submissions.edit',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
                 'permission' => 'assignment-submissions.delete',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',

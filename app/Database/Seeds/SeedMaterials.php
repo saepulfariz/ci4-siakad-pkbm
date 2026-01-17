@@ -12,7 +12,13 @@ class SeedMaterials extends Seeder
 
             [
                 'name' => 'materials.access',
-                'title' => 'Can access the materials area',
+                'title' => 'Can access the materials',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'name' => 'materials.access-all',
+                'title' => 'Can access the materials all',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
@@ -47,6 +53,12 @@ class SeedMaterials extends Seeder
             ],
             [
                 'group_id' => 1,
+                'permission' => 'materials.access-all',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 1,
                 'permission' => 'materials.create',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
@@ -59,6 +71,39 @@ class SeedMaterials extends Seeder
             ],
             [
                 'group_id' => 1,
+                'permission' => 'materials.delete',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+
+
+            [
+                'group_id' => 2,
+                'permission' => 'materials.access',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+
+            [
+                'group_id' => 3,
+                'permission' => 'materials.access',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
+                'permission' => 'materials.create',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
+                'permission' => 'materials.edit',
+                'created_at' => '2025-12-25 21:52:00',
+                'updated_at' => '2025-12-25 21:52:00',
+            ],
+            [
+                'group_id' => 3,
                 'permission' => 'materials.delete',
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',

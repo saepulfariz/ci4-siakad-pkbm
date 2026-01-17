@@ -34,10 +34,17 @@ class Materials extends BaseController
             return $redirect;
         }
 
+        $materials = $this->model->select('materials.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = materials.subject_id', 'left')->join('classes', 'classes.id = materials.class_id', 'left')->join('teachers', 'teachers.id = materials.teacher_id', 'left')->orderBy('materials.id', 'desc');
+
+        if (!auth()->user()->can('materials.access-all')) {
+            $materials->where('teachers.user_id', auth()->id());
+        }
+
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'materials' => $this->model->select('materials.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = materials.subject_id', 'left')->join('classes', 'classes.id = materials.class_id', 'left')->join('teachers', 'teachers.id = materials.teacher_id', 'left')->orderBy('materials.id', 'desc')->findAll()
+            'materials' => $materials->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -67,10 +74,14 @@ class Materials extends BaseController
             return $redirect;
         }
 
+        if (!auth()->user()->can('materials.access-all')) {
+            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'teachers' => $this->model_teacher->findAll(),
+            'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
             'subjects' => $this->model_subject->findAll(),
         ];
@@ -151,7 +162,14 @@ class Materials extends BaseController
             return $redirect;
         }
 
-        $material = $this->model->find($id);
+        $material = $this->model;
+
+        if (!auth()->user()->can('materials.access-all')) {
+            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $material = $material->join('teachers', 'teachers.id = materials.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $material = $material->find($id);
 
         if (!$material) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -162,7 +180,7 @@ class Materials extends BaseController
             'title' => $this->title,
             'link' => $this->link,
             'material' => $material,
-            'teachers' => $this->model_teacher->findAll(),
+            'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
             'subjects' => $this->model_subject->findAll(),
         ];
@@ -184,7 +202,13 @@ class Materials extends BaseController
             return $redirect;
         }
 
-        $material = $this->model->find($id);
+        $material = $this->model;
+
+        if (!auth()->user()->can('materials.access-all')) {
+            $material = $material->join('teachers', 'teachers.id = materials.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $material = $material->find($id);
 
         if (!$material) {
             return redirect()->to($this->link);
@@ -253,7 +277,13 @@ class Materials extends BaseController
             return $redirect;
         }
 
-        $material = $this->model->find($id);
+        $material = $this->model;
+
+        if (!auth()->user()->can('materials.access-all')) {
+            $material = $material->join('teachers', 'teachers.id = materials.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $material = $material->find($id);
 
         if (!$material) {
             return redirect()->to($this->link);
