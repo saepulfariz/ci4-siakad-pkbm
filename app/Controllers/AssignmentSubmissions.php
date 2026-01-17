@@ -32,10 +32,25 @@ class AssignmentSubmissions extends BaseController
             return $redirect;
         }
 
+        $assignment_submissions = $this->model->select('assignment_submissions.*, assignments.title as assignment_title, students.full_name as student_name')->join('assignments', 'assignments.id = assignment_submissions.assignment_id', 'left')->join('students', 'students.id = assignment_submissions.student_id', 'left')->orderBy('assignment_submissions.id', 'desc');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignment_submissions->join('teachers', 'teachers.id  = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $assignment_submissions->where('students.user_id', auth()->id());
+            }
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'assignment_submissions' => $this->model->select('assignment_submissions.*, assignments.title as assignment_title, students.full_name as student_name')->join('assignments', 'assignments.id = assignment_submissions.assignment_id', 'left')->join('students', 'students.id = assignment_submissions.student_id', 'left')->orderBy('assignment_submissions.id', 'desc')->findAll()
+            'assignment_submissions' => $assignment_submissions->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -65,11 +80,29 @@ class AssignmentSubmissions extends BaseController
             return $redirect;
         }
 
+        $students = $this->model_student;
+        $assignments = $this->model_assignment->select('assignments.*')->join('assignment_submissions', 'assignment_submissions.assignment_id = assignments.id', 'left')->where('assignment_submissions.id IS NULL');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignments->join('teachers', 'teachers.id  = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $students->where('students.user_id', auth()->id());
+                $assignments->join('student_classes', 'student_classes.class_id = assignments.class_id')->join('students', 'students.id = student_classes.student_id')->where('students.user_id', auth()->id());
+            }
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'students' => $this->model_student->findAll(),
-            'assignments' => $this->model_assignment->findAll(),
+            'students' => $students->findAll(),
+            'assignments' => $assignments->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -157,11 +190,45 @@ class AssignmentSubmissions extends BaseController
             return $redirect;
         }
 
-        $assignment_submission = $this->model->find($id);
+        $assignment_submission = $this->model->select('assignment_submissions.*');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignment_submission->join('assignments', 'assignments.id = assignment_submissions.assignment_id')->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $assignment_submission->join('students', 'students.id = assignment_submissions.student_id')->where('students.user_id', auth()->id());
+            }
+        }
+
+
+        $assignment_submission = $assignment_submission->find($id);
 
         if (!$assignment_submission) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             // return redirect()->to($this->link);
+        }
+
+        $students = $this->model_student;
+        $assignments = $this->model_assignment->select('assignments.*')->join('assignment_submissions', 'assignment_submissions.assignment_id = assignments.id', 'left');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignments->join('teachers', 'teachers.id  = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $students->where('students.user_id', auth()->id());
+                $assignments->join('student_classes', 'student_classes.class_id = assignments.class_id')->join('students', 'students.id = student_classes.student_id')->where('students.user_id', auth()->id());
+            }
         }
 
         $data = [
@@ -169,8 +236,8 @@ class AssignmentSubmissions extends BaseController
             'link' => $this->link,
             'status' => $this->model->status,
             'assignment_submission' => $assignment_submission,
-            'students' => $this->model_student->findAll(),
-            'assignments' => $this->model_assignment->findAll(),
+            'students' => $students->findAll(),
+            'assignments' => $assignments->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -190,7 +257,24 @@ class AssignmentSubmissions extends BaseController
             return $redirect;
         }
 
-        $assignment_submission = $this->model->find($id);
+        $assignment_submission = $this->model->select('assignment_submissions.*');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignment_submission->join('assignments', 'assignments.id = assignment_submissions.assignment_id')->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+
+            if ($check_student) {
+                $assignment_submission->join('students', 'students.id = assignment_submissions.student_id')->where('students.user_id', auth()->id());
+            }
+        }
+
+
+        $assignment_submission = $assignment_submission->find($id);
 
         if (!$assignment_submission) {
             return redirect()->to($this->link);
@@ -228,6 +312,7 @@ class AssignmentSubmissions extends BaseController
             if ($data['score'] || $data['feedback']) {
                 $data['review_at'] = date('Y-m-d H:i:s');
                 $data['review_id'] = auth()->id();
+                $data['status'] = $this->request->getVar('status', FILTER_SANITIZE_STRING);
             }
 
 
@@ -264,7 +349,24 @@ class AssignmentSubmissions extends BaseController
             return $redirect;
         }
 
-        $assignment_submission = $this->model->find($id);
+        $assignment_submission = $this->model->select('assignment_submissions.*');
+
+        if (!auth()->user()->can('assignment-submissions.access-all')) {
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignment_submission->join('assignments', 'assignments.id = assignment_submissions.assignment_id')->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+            }
+
+
+            if ($check_student) {
+                $assignment_submission->join('students', 'students.id = assignment_submissions.student_id')->where('students.user_id', auth()->id());
+            }
+        }
+
+
+        $assignment_submission = $assignment_submission->find($id);
 
         if (!$assignment_submission) {
             return redirect()->to($this->link);

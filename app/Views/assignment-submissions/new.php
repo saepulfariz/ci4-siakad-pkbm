@@ -24,6 +24,12 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
+        <?php
+
+        $check_teacher = auth()->user()->inGroup('teacher');
+        $check_superadmin = auth()->user()->inGroup('superadmin');
+
+        ?>
         <!-- Small boxes (Stat box) -->
         <form action="<?= base_url($link); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
@@ -104,21 +110,23 @@
                             <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
+                            <?php if ($check_teacher || $check_superadmin): ?>
+                                <div class="form-group">
+                                    <label for="score">Score</label>
+                                    <input type="number" step="0.01" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="score" value="<?= old('score'); ?>">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
-                            <div class="form-group">
-                                <label for="score">Score</label>
-                                <input type="number" step="0.01" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="score" value="<?= old('score'); ?>">
-                            </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                                <div class="form-group">
+                                    <label for="feedback">Feedback</label>
+                                    <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback'); ?></textarea>
 
-                            <div class="form-group">
-                                <label for="feedback">Feedback</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback'); ?></textarea>
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('feedback')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
-                            </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('feedback')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            <?php endif; ?>
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>

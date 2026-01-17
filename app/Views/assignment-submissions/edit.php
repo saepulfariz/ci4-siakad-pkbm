@@ -24,6 +24,12 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
+        <?php
+
+        $check_teacher = auth()->user()->inGroup('teacher');
+        $check_superadmin = auth()->user()->inGroup('superadmin');
+
+        ?>
         <!-- Small boxes (Stat box) -->
         <form action="<?= base_url($link . '/' . esc($assignment_submission->id)); ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field(); ?>
@@ -108,45 +114,48 @@
                             <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-
-                            <!-- <div class="form-group">
-                                <label for="status">Status</label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('status')) ? 'border-danger' : ((old('status')) ? 'border-success' : ''); ?> " value="<?= old('status'); ?>" id="status" name="status">
-                                    <?php foreach ($status as $st): ?>
-                                        <?php if (old('status')): ?>
-                                            <?php if (old('status') == $st['id']): ?>
-                                                <option selected value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                            <?php if ($check_teacher || $check_superadmin): ?>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select type="text" class="form-control <?= ($error = validation_show_error('status')) ? 'border-danger' : ((old('status')) ? 'border-success' : ''); ?> " value="<?= old('status'); ?>" id="status" name="status">
+                                        <?php foreach ($status as $st): ?>
+                                            <?php if (old('status')): ?>
+                                                <?php if (old('status') == $st['id']): ?>
+                                                    <option selected value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                                                <?php endif; ?>
                                             <?php else: ?>
-                                                <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                                                <?php if (esc($assignment_submission->status) == $st['id']): ?>
+                                                    <option selected value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
+                                                <?php endif; ?>
                                             <?php endif; ?>
-                                        <?php else: ?>
-                                            <?php if (esc($assignment_submission->status) == $st['id']): ?>
-                                                <option selected value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
-                                            <?php else: ?>
-                                                <option value="<?= $st['id']; ?>"><?= $st['name']; ?></option>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div> -->
-                            <!-- <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?> -->
-                            <!-- <?= (old('student_id')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?> -->
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('status')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
-                            <div class="form-group">
-                                <label for="score">Score</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="Score" value="<?= old('score', esc($assignment_submission->score)); ?>">
-                            </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                                <div class="form-group">
+                                    <label for="score">Score</label>
+                                    <input type="text" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="Score" value="<?= old('score', esc($assignment_submission->score)); ?>">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-                            <div class="form-group">
-                                <label for="feedback">Feedback</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback', esc($assignment_submission->feedback)); ?></textarea>
+                                <div class="form-group">
+                                    <label for="feedback">Feedback</label>
+                                    <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback', esc($assignment_submission->feedback)); ?></textarea>
 
-                            </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('feedback')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('feedback')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+
+                            <?php endif; ?>
 
 
 

@@ -94,12 +94,6 @@ class SeedAssignmentSubmissions extends Seeder
                 'created_at' => '2025-12-25 21:52:00',
                 'updated_at' => '2025-12-25 21:52:00',
             ],
-            [
-                'group_id' => 2,
-                'permission' => 'assignment-submissions.delete',
-                'created_at' => '2025-12-25 21:52:00',
-                'updated_at' => '2025-12-25 21:52:00',
-            ],
 
 
             [
