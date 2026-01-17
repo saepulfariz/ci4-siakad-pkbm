@@ -61,7 +61,13 @@
                                         <td><?= esc($material->teacher_name); ?></td>
                                         <td><?= esc($material->title); ?></td>
                                         <td><?= esc($material->description); ?></td>
-                                        <td><?= esc($material->file); ?></td>
+                                        <td>
+                                            <?php if (esc($material->file)): ?>
+
+                                                <a href="<?= esc($material->file); ?>" target="_blank">Download</a>
+
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <?php if ($can_edit): ?>
 

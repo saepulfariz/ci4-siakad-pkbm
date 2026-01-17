@@ -37,7 +37,16 @@ class Materials extends BaseController
         $materials = $this->model->select('materials.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = materials.subject_id', 'left')->join('classes', 'classes.id = materials.class_id', 'left')->join('teachers', 'teachers.id = materials.teacher_id', 'left')->orderBy('materials.id', 'desc');
 
         if (!auth()->user()->can('materials.access-all')) {
-            $materials->where('teachers.user_id', auth()->id());
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $materials->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $materials->join('student_classes', 'student_classes.class_id = materials.class_id')->join('students', 'students.id = student_classes.student_id')->where('students.user_id', auth()->id());
+            }
         }
 
 
@@ -76,6 +85,7 @@ class Materials extends BaseController
 
         if (!auth()->user()->can('materials.access-all')) {
             $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
         }
 
         $data = [
@@ -83,7 +93,7 @@ class Materials extends BaseController
             'link' => $this->link,
             'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
-            'subjects' => $this->model_subject->findAll(),
+            'subjects' => $subjects,
         ];
 
         return view($this->view . '/new', $data);
@@ -166,6 +176,7 @@ class Materials extends BaseController
 
         if (!auth()->user()->can('materials.access-all')) {
             $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
             $material = $material->join('teachers', 'teachers.id = materials.teacher_id')->where('teachers.user_id', auth()->id());
         }
 
@@ -182,7 +193,7 @@ class Materials extends BaseController
             'material' => $material,
             'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
-            'subjects' => $this->model_subject->findAll(),
+            'subjects' => $subjects,
         ];
 
         return view($this->view . '/edit', $data);
