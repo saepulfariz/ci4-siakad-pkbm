@@ -5,13 +5,13 @@ namespace App\Filters;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use App\Models\Superadmin\authMenuModel;
+use App\Models\Superadmin\AuthMenuModel;
 
 class MenuFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        $authMenuModel = new authMenuModel();
+        $authMenuModel = new AuthMenuModel();
         $user = service('auth')->user();
 
         $cache = \Config\Services::cache();
