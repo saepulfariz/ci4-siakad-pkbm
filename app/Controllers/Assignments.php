@@ -34,10 +34,25 @@ class Assignments extends BaseController
             return $redirect;
         }
 
+        $assignments = $this->model->select('assignments.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = assignments.subject_id', 'left')->join('classes', 'classes.id = assignments.class_id', 'left')->join('teachers', 'teachers.id = assignments.teacher_id', 'left')->orderBy('assignments.id', 'desc');
+
+        if (!auth()->user()->can('assignments.access-all')) {
+            $check_student = auth()->user()->inGroup('student');
+            $check_teacher = auth()->user()->inGroup('teacher');
+
+            if ($check_teacher) {
+                $assignments->where('teachers.user_id', auth()->id());
+            }
+
+            if ($check_student) {
+                $assignments->join('student_classes', 'student_classes.class_id = assignments.class_id')->join('students', 'students.id = student_classes.student_id')->where('students.user_id', auth()->id());
+            }
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'assignments' => $this->model->select('assignments.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = assignments.subject_id', 'left')->join('classes', 'classes.id = assignments.class_id', 'left')->join('teachers', 'teachers.id = assignments.teacher_id', 'left')->orderBy('assignments.id', 'desc')->findAll()
+            'assignments' => $assignments->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -67,12 +82,17 @@ class Assignments extends BaseController
             return $redirect;
         }
 
+        if (!auth()->user()->can('materials.access-all')) {
+            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'teachers' => $this->model_teacher->findAll(),
+            'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
-            'subjects' => $this->model_subject->findAll(),
+            'subjects' => $subjects,
         ];
 
         return view($this->view . '/new', $data);
@@ -153,7 +173,15 @@ class Assignments extends BaseController
             return $redirect;
         }
 
-        $assignment = $this->model->find($id);
+        $assignment = $this->model;
+
+        if (!auth()->user()->can('assignments.access-all')) {
+            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
+            $assignment = $assignment->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $assignment = $assignment->find($id);
 
         if (!$assignment) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -164,9 +192,9 @@ class Assignments extends BaseController
             'title' => $this->title,
             'link' => $this->link,
             'assignment' => $assignment,
-            'teachers' => $this->model_teacher->findAll(),
+            'teachers' => $teachers,
             'classes' => $this->model_class->findAll(),
-            'subjects' => $this->model_subject->findAll(),
+            'subjects' => $subjects,
         ];
 
         return view($this->view . '/edit', $data);
@@ -186,7 +214,13 @@ class Assignments extends BaseController
             return $redirect;
         }
 
-        $assignment = $this->model->find($id);
+        $assignment = $this->model;
+
+        if (!auth()->user()->can('assignments.access-all')) {
+            $assignment = $assignment->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $assignment = $assignment->find($id);
 
         if (!$assignment) {
             return redirect()->to($this->link);
@@ -257,7 +291,13 @@ class Assignments extends BaseController
             return $redirect;
         }
 
-        $assignment = $this->model->find($id);
+        $assignment = $this->model;
+
+        if (!auth()->user()->can('assignments.access-all')) {
+            $assignment = $assignment->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
+        }
+
+        $assignment = $assignment->find($id);
 
         if (!$assignment) {
             return redirect()->to($this->link);

@@ -62,7 +62,13 @@
                                         <td><?= esc($assignment->teacher_name); ?></td>
                                         <td><?= esc($assignment->title); ?></td>
                                         <td><?= esc($assignment->description); ?></td>
-                                        <td><?= esc($assignment->file); ?></td>
+                                        <td>
+                                            <?php if (esc($assignment->file)): ?>
+
+                                                <a href="<?= esc($assignment->file); ?>" target="_blank">Download</a>
+
+                                            <?php endif; ?>
+                                        </td>
                                         <td><?= esc($assignment->deadline); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
