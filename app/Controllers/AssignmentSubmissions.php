@@ -205,8 +205,17 @@ class AssignmentSubmissions extends BaseController
             }
         }
 
-
         $assignment_submission = $assignment_submission->find($id);
+
+        $assignment = $this->model_assignment->find($assignment_submission->assignment_id);
+
+        if (time() > strtotime($assignment->deadline)) {
+            $check_student = auth()->user()->inGroup('student');
+
+            if ($check_student) {
+                return redirect()->back()->with('error', 'Time up dateline');
+            }
+        }
 
         if (!$assignment_submission) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -275,6 +284,16 @@ class AssignmentSubmissions extends BaseController
 
 
         $assignment_submission = $assignment_submission->find($id);
+
+        $assignment = $this->model_assignment->find($assignment_submission->assignment_id);
+
+        if (time() > strtotime($assignment->deadline)) {
+            $check_student = auth()->user()->inGroup('student');
+
+            if ($check_student) {
+                return redirect()->back()->with('error', 'Time up dateline');
+            }
+        }
 
         if (!$assignment_submission) {
             return redirect()->to($this->link);

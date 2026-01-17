@@ -60,7 +60,13 @@
                                         <td><?= esc($submission->assignment_title); ?></td>
                                         <td><?= esc($submission->student_name); ?></td>
                                         <td><?= esc($submission->description); ?></td>
-                                        <td><?= esc($submission->file); ?></td>
+                                        <td>
+                                            <?php if (esc($submission->file)): ?>
+
+                                                <a href="<?= esc($submission->file); ?>" target="_blank">Download</a>
+
+                                            <?php endif; ?>
+                                        </td>
                                         <td><?= esc($submission->status); ?></td>
                                         <td><?= esc($submission->score); ?></td>
                                         <td><?= esc($submission->feedback); ?></td>
