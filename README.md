@@ -28,6 +28,25 @@ php spark migrate:refresh --all
 php spark db:seed all
 ```
 
+## Symlink storage
+
+### Windows
+
+- CMD (run as administrator)
+
+```bash
+cd public
+mklink /D uploads ..\writable\uploads
+```
+
+### Cpanel
+
+```bash
+cd ~/public_html/ci4
+ln -s ../../ci4/writable/uploads uploads
+ls -l
+```
+
 ## Default login
 
 http://localhost:8080/login

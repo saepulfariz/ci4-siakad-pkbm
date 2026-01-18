@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Material</h1>
+                <h1 class="m-0"><?= temp_lang('app.new'); ?> <?= temp_lang('materials.material'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.new'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -105,7 +105,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title"><?= temp_lang('materials.title'); ?></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -113,7 +113,7 @@
 
 
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description"><?= temp_lang('materials.description'); ?></label>
                                 <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description'); ?></textarea>
 
                             </div>
@@ -121,16 +121,35 @@
                             <?= (old('description')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-
                             <div class="form-group">
-                                <label for="file">File</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file'); ?>">
+                                <label><?= temp_lang('materials.choose_file_or_link'); ?></label>
+                                <select id="mode" class="form-control">
+                                    <option value="upload"><?= temp_lang('materials.upload_file'); ?></option>
+                                    <option value="link">Link</option>
+                                </select>
                             </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+                            <div id="upload_file">
+                                <div class="form-group">
+                                    <label><?= temp_lang('materials.upload_file'); ?></label>
+                                    <input type="file" name="file_upload" class="form-control <?= ($error = validation_show_error('file_upload')) ? 'border-danger' : ((old('file_upload')) ? 'border-success' : ''); ?>"
+                                        accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('file_upload')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            </div>
+
+                            <div id="link_field">
+                                <div class="form-group d-none">
+                                    <label>Link File</label>
+                                    <input type="text" name="file_link" class="form-control <?= ($error = validation_show_error('file_link')) ? 'border-danger' : ((old('file_link')) ? 'border-success' : ''); ?>">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('file_link')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
 
@@ -143,3 +162,18 @@
     </div>
 </section>
 <?= $this->endSection('content') ?>
+
+
+<?= $this->section('script') ?>
+<script>
+    $('#mode').change(function() {
+        if ($(this).val() === 'upload') {
+            $('#upload_field').removeClass('d-none');
+            $('#link_field').addClass('d-none');
+        } else {
+            $('#upload_field').addClass('d-none');
+            $('#link_field').removeClass('d-none');
+        }
+    });
+</script>
+<?= $this->endSection('script') ?>

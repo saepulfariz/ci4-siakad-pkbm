@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Material</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('materials.material'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -115,7 +115,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title"><?= temp_lang('materials.title'); ?></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', esc($material->title)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -123,7 +123,7 @@
 
 
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description"><?= temp_lang('materials.description'); ?></label>
                                 <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description', esc($material->description)); ?></textarea>
 
                             </div>
@@ -131,16 +131,29 @@
                             <?= (old('description')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
+                            <div class="alert alert-info">
+                                <?= temp_lang('materials.file_current'); ?>
+                                <?php if (filter_var($material->file, FILTER_VALIDATE_URL)): ?>
+                                    <a href="<?= $material->file ?>" target="_blank">Link</a>
+                                <?php else: ?>
+                                    <a href="<?= asset_url(); ?>uploads/materials/<?= $material->file ?>" target="_blank">File</a>
+                                <?php endif; ?>
+                            </div>
 
                             <div class="form-group">
-                                <label for="file">File</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file', esc($material->file)); ?>">
+                                <label><?= temp_lang('materials.change_file_optional'); ?></label>
+                                <input type="file" name="file_upload" class="form-control"
+                                    accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
                             </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+                            <div class="form-group">
+                                <label><?= temp_lang('materials.change_link_optional'); ?></label>
+                                <input type="text" name="file_link" class="form-control">
+                            </div>
+
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
 

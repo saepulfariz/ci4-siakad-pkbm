@@ -34,7 +34,7 @@
 
                 ?>
                 <?php if ($can_create): ?>
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
@@ -45,10 +45,10 @@
                                     <th>Class</th>
                                     <th>Subject</th>
                                     <th>Teacher</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>File</th>
-                                    <th>Action</th>
+                                    <th><?= temp_lang('materials.title'); ?></th>
+                                    <th><?= temp_lang('materials.description'); ?></th>
+                                    <th><?= temp_lang('materials.file'); ?></th>
+                                    <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,7 +64,12 @@
                                         <td>
                                             <?php if (esc($material->file)): ?>
 
-                                                <a href="<?= esc($material->file); ?>" target="_blank">Download</a>
+                                                <?php if (filter_var($material->file, FILTER_VALIDATE_URL)): ?>
+                                                    <a href="<?= esc($material->file); ?>" target="_blank">Download</a>
+                                                <?php else: ?>
+                                                    <a href="<?= asset_url(); ?>uploads/materials/<?= esc($material->file); ?>" target="_blank">Download</a>
+                                                <?php endif; ?>
+
 
                                             <?php endif; ?>
                                         </td>
@@ -81,7 +86,7 @@
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                    <button type='button' data-ket="<?= temp_lang('materials.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
                                                 </form>
 
                                             <?php endif; ?>

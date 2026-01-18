@@ -35,7 +35,7 @@ class ClassSubjects extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'class_subjects' => $this->model->select('class_subjects.*, classes.name as class_name, subjects.name as subject_name')->join('subjects', 'subjects.id = class_subjects.subject_id', 'left')->join('classes', 'Classes.id = class_subjects.class_id', 'left')->orderBy('class_subjects.id', 'desc')->findAll()
+            'class_subjects' => $this->model->select('class_subjects.*, classes.name as class_name, subjects.name as subject_name')->join('subjects', 'subjects.id = class_subjects.subject_id', 'left')->join('classes', 'classes.id = class_subjects.class_id', 'left')->orderBy('class_subjects.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);

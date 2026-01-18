@@ -127,3 +127,6 @@ _modules/*
 
 
 composer.lock
+
+/public/uploads
+/writable/uploads/*
