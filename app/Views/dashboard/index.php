@@ -24,70 +24,79 @@
   <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
+      <div class="col-lg-4 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>150</h3>
-
-            <p>New Orders</p>
+            <h3><?= $total_teachers; ?></h3>
+            <p><?= temp_lang('dashboard.total_teachers'); ?></p>
           </div>
           <div class="icon">
-            <i class="ion ion-bag"></i>
+            <i class="fas fa-chalkboard-teacher"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
+
+      <div class="col-lg-4 col-6">
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-            <p>Bounce Rate</p>
+            <h3><?= $total_students; ?></h3>
+            <p><?= temp_lang('dashboard.total_students'); ?></p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fas fa-user-graduate"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
+
+      <div class="col-lg-4 col-6">
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>44</h3>
-
-            <p>User Registrations</p>
+            <h3><?= $total_classes; ?></h3>
+            <p><?= temp_lang('dashboard.total_classes'); ?></p>
           </div>
           <div class="icon">
-            <i class="ion ion-person-add"></i>
+            <i class="fas fa-school"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
+
+      <div class="col-lg-4 col-6">
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>65</h3>
-
-            <p>Unique Visitors</p>
+            <h3><?= $total_subjects; ?></h3>
+            <p><?= temp_lang('dashboard.total_subjects'); ?></p>
           </div>
           <div class="icon">
-            <i class="ion ion-pie-graph"></i>
+            <i class="fas fa-book"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
-      <!-- ./col -->
-    </div>
-    <!-- /.row -->
 
-  </div><!-- /.container-fluid -->
+      <div class="col-lg-4 col-6">
+        <div class="small-box bg-primary">
+          <div class="inner">
+            <h3><?= $total_assignments; ?></h3>
+            <p><?= temp_lang('dashboard.active_assignments'); ?></p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-tasks"></i>s
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-6">
+        <div class="small-box bg-secondary">
+          <div class="inner">
+            <h3><?= $total_materials; ?></h3>
+            <p><?= temp_lang('dashboard.total_materials'); ?></p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- /.content -->
 <?= $this->endSection('content') ?>

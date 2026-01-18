@@ -139,8 +139,8 @@
                                 <?= (old('file_upload')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
                             </div>
 
-                            <div id="link_field">
-                                <div class="form-group d-none">
+                            <div class="d-none" id="link_field">
+                                <div class="form-group">
                                     <label>Link File</label>
                                     <input type="text" name="file_link" class="form-control <?= ($error = validation_show_error('file_link')) ? 'border-danger' : ((old('file_link')) ? 'border-success' : ''); ?>">
                                 </div>
