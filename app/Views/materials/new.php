@@ -129,7 +129,7 @@
                                 </select>
                             </div>
 
-                            <div id="upload_file">
+                            <div id="upload_field">
                                 <div class="form-group">
                                     <label><?= temp_lang('materials.upload_file'); ?></label>
                                     <input type="file" name="file_upload" class="form-control <?= ($error = validation_show_error('file_upload')) ? 'border-danger' : ((old('file_upload')) ? 'border-success' : ''); ?>"
