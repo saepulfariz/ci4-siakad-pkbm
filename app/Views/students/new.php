@@ -35,17 +35,17 @@
 
                             <div class="form-group">
                                 <label for="user_id"><?= temp_lang('students.user'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " value="<?= old('user_id'); ?>" id="user_id" name="user_id">
+                                <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " id="user_id" name="user_id">
                                     <option value="">== NONE ===</option>
                                     <?php foreach ($users as $user): ?>
                                         <?php if (old('user_id')): ?>
                                             <?php if (old('user_id') == $user->id): ?>
-                                                <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option selected value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php else: ?>
-                                                <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php endif; ?>
                                         <?php else: ?>
-                                            <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                            <option value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
@@ -125,15 +125,28 @@
                             <?= (old('phone')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="parent_name"><?= temp_lang('students.parent_name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('parent_name')) ? 'border-danger' : ((old('parent_name')) ? 'border-success' : ''); ?>" id="parent_name" name="parent_name" placeholder="Parent Name" value="<?= old('parent_name'); ?>">
+                                <label for="parent_father"><?= temp_lang('students.parent_father'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('parent_father')) ? 'border-danger' : ((old('parent_father')) ? 'border-success' : ''); ?>" id="parent_father" name="parent_father" placeholder="Parent father" value="<?= old('parent_father'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('parent_name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            <?= (old('parent_father')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+
+                            <div class="form-group">
+                                <label for="parent_mother"><?= temp_lang('students.parent_mother'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('parent_mother')) ? 'border-danger' : ((old('parent_mother')) ? 'border-success' : ''); ?>" id="parent_mother" name="parent_mother" placeholder="Parent mother" value="<?= old('parent_mother'); ?>">
+                            </div>
+                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                            <?= (old('parent_mother')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
 
                             <div class="form-group">
                                 <label for="photo"><?= temp_lang('students.photo'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="file" class="form-control <?= ($error = validation_show_error('photo')) ? 'border-danger' : ((old('photo')) ? 'border-success' : ''); ?>" id="photo" name="photo">
+                                <div id="imagePreview">
+                                    <img class="img-thumbnail d-block mb-2" width="100" src="<?= asset_url(); ?>assets/dist/img/user.png" alt="">
+
+                                </div>
+                                <input type="file" onchange="previewImage(this, '#imagePreview')" class="form-control <?= ($error = validation_show_error('photo')) ? 'border-danger' : ((old('photo')) ? 'border-success' : ''); ?>" id="photo" name="photo">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('photo')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -151,3 +164,28 @@
     </div>
 </section>
 <?= $this->endSection('content') ?>
+
+
+<?= $this->section('script') ?>
+<script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     document.getElementById('user_id').addEventListener('change', function() {
+    //         const selectedOption = this.options[this.selectedIndex];
+    //         const name = selectedOption.getAttribute('data-name');
+
+    //         console.log(name); // jajang / ujang
+    //         $('#full_name').val(name);
+    //     });
+
+    // })
+
+
+    $(document).ready(function() {
+        $('#user_id').on('change', function() {
+            const name = $(this).find('option:selected').data('name');
+            $('#full_name').val(name);
+        });
+    });
+</script>
+
+<?= $this->endSection('script') ?>

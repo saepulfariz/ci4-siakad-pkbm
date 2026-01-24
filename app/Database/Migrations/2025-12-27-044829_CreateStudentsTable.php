@@ -53,7 +53,11 @@ class CreateStudentsTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '20',
             ],
-            'parent_name' => [
+            'parent_father' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'parent_mother' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

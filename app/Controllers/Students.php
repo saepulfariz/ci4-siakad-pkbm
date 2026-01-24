@@ -9,6 +9,10 @@ class Students extends BaseController
 {
     private $model;
     private $model_user;
+
+    protected $uploadPath;
+    protected $defaultPhoto;
+
     private $link = 'students';
     private $view = 'students';
     private $title = 'Students';
@@ -17,6 +21,16 @@ class Students extends BaseController
         $this->title = temp_lang('students.students');
         $this->model = new \App\Models\StudentModel();
         $this->model_user = auth()->getProvider();
+        $this->uploadPath = WRITEPATH . 'uploads/students/';
+
+        $defaultPhoto = FCPATH . 'assets/dist/img/user.png';
+
+        // $newName = 'user_' . time() . '.png';
+        $this->defaultPhoto =  'student.png';
+
+        if (!file_exists($this->uploadPath . $this->defaultPhoto)) {
+            copy($defaultPhoto, $this->uploadPath . $this->defaultPhoto);
+        }
     }
 
     /**
@@ -67,7 +81,7 @@ class Students extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'users' => $this->model_user->findAll(),
+            'users' => $this->model_user->select('users.*, students.full_name, auth_identities.name as name')->join('auth_groups_users', "auth_groups_users.user_id = users.id AND auth_groups_users.group = 'student'")->join('students', 'students.user_id = users.id', 'LEFT')->join('auth_identities', "auth_identities.user_id = users.id AND auth_identities.type = 'email_password'")->where('students.full_name IS NULL')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -97,7 +111,8 @@ class Students extends BaseController
             'birth_date' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'parent_name' => 'required',
+            'parent_father' => 'required',
+            'parent_mother' => 'required',
             // 'photo' => 'required',
         ];
 
@@ -138,7 +153,9 @@ class Students extends BaseController
                 'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
                 'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
                 'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
-                'parent_name' => $this->request->getVar('parent_name', FILTER_SANITIZE_STRING),
+                'parent_father' => $this->request->getVar('parent_father', FILTER_SANITIZE_STRING),
+                'parent_mother' => $this->request->getVar('parent_mother', FILTER_SANITIZE_STRING),
+
             ];
 
             // Jika ada upload file
@@ -148,10 +165,12 @@ class Students extends BaseController
                 $photoName = $photo->getRandomName();
 
                 // Simpan ke folder writable/uploads
-                $photo->move(WRITEPATH . 'uploads', $photoName);
+                $photo->move($this->uploadPath, $photoName);
 
                 // Simpan nama file ke database
                 $data['photo'] = $photoName;
+            } else {
+                $data['photo'] = $this->defaultPhoto;
             }
 
 
@@ -200,7 +219,7 @@ class Students extends BaseController
             'title' => $this->title,
             'link' => $this->link,
             'student' => $student,
-            'users' => $this->model_user->findAll()
+            'users' => $this->model_user->select('users.*, students.full_name, auth_identities.name as name')->join('auth_groups_users', "auth_groups_users.user_id = users.id AND auth_groups_users.group = 'student'")->join('students', 'students.user_id = users.id', 'LEFT')->join('auth_identities', "auth_identities.user_id = users.id AND auth_identities.type = 'email_password'")->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -238,7 +257,8 @@ class Students extends BaseController
             'birth_date' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'parent_name' => 'required',
+            'parent_father' => 'required',
+            'parent_mother' => 'required',
             // 'photo' => 'required',
         ];
 
@@ -281,17 +301,25 @@ class Students extends BaseController
                 'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
                 'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
                 'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
-                'parent_name' => $this->request->getVar('parent_name', FILTER_SANITIZE_STRING),
+                'parent_father' => $this->request->getVar('parent_father', FILTER_SANITIZE_STRING),
+                'parent_mother' => $this->request->getVar('parent_mother', FILTER_SANITIZE_STRING),
+
             ];
 
             // Jika ada upload file
             if ($photo && $photo->isValid() && !$photo->hasMoved()) {
 
+                $oldPhoto = $student->photo;
+
+                if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
+                    unlink(WRITEPATH . 'upload/students' . $oldPhoto);
+                }
+
                 // Generate nama random
                 $photoName = $photo->getRandomName();
 
                 // Simpan ke folder writable/uploads
-                $photo->move(WRITEPATH . 'uploads', $photoName);
+                $photo->move($this->uploadPath, $photoName);
 
                 // Simpan nama file ke database
                 $data['photo'] = $photoName;
@@ -349,8 +377,8 @@ class Students extends BaseController
             $this->db->transCommit();
 
             $oldPhoto = $student->photo;
-            if (!empty($oldPhoto) && file_exists(WRITEPATH . 'uploads' . $oldPhoto)) {
-                unlink(WRITEPATH . 'uploads' . $oldPhoto);
+            if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
+                unlink(WRITEPATH . 'upload/students' . $oldPhoto);
             }
 
             $cache = \Config\Services::cache();

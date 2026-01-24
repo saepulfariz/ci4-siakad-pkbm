@@ -26,7 +26,8 @@ class StudentModel extends Model
         'birth_date',
         'address',
         'phone',
-        'parent_name',
+        'parent_father',
+        'parent_mother',
         'photo',
     ];
     protected $cacheKey = 'students';

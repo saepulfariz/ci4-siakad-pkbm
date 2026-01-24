@@ -142,7 +142,8 @@ class SeedStudents extends Seeder
                 'birth_date' => '2025-12-20',
                 'address' => 'Subang',
                 'phone' => '08XXXXXXXXXX',
-                'parent_name' => 'Kang Ibing',
+                'parent_father' => 'Kang Ibing',
+                'parent_mother' => 'Ibu siti',
                 'photo' => 'student.png',
             ],
         ];

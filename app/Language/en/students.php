@@ -13,7 +13,8 @@ return [
     'birth_date' => 'Birth Date',
     'address' => 'Address',
     'phone' => 'Phone',
-    'parent_name' => 'Parent Name',
+    'parent_father' => 'Father',
+    'parent_mother' => 'Mother',
     'photo' => 'Photo',
 
     'create_error' => 'Failed to create student',

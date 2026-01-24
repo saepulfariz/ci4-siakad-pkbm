@@ -51,7 +51,8 @@
                                     <th><?= temp_lang('students.birth_date'); ?></th>
                                     <th><?= temp_lang('students.address'); ?></th>
                                     <th><?= temp_lang('students.phone'); ?></th>
-                                    <th><?= temp_lang('students.parent_name'); ?></th>
+                                    <th><?= temp_lang('students.parent_father'); ?></th>
+                                    <th><?= temp_lang('students.parent_mother'); ?></th>
                                     <th><?= temp_lang('students.photo'); ?></th>
                                     <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
@@ -70,8 +71,11 @@
                                         <td><?= esc($student->birth_date); ?></td>
                                         <td><?= esc($student->address); ?></td>
                                         <td><?= esc($student->phone); ?></td>
-                                        <td><?= esc($student->parent_name); ?></td>
-                                        <td><?= esc($student->photo); ?></td>
+                                        <td><?= esc($student->parent_father); ?></td>
+                                        <td><?= esc($student->parent_mother); ?></td>
+                                        <td>
+                                            <img width="100px" src="<?= asset_url(); ?>uploads/students/<?= esc($student->photo); ?>" alt="" srcset="">
+                                        </td>
                                         <td>
                                             <?php if ($can_edit): ?>
                                                 <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($student->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>

@@ -13,7 +13,8 @@ return [
     'birth_date' => 'Tanggal Lahir',
     'address' => 'Alamat',
     'phone' => 'No HP',
-    'parent_name' => 'Nama Orang Tua',
+    'parent_father' => 'Ayah',
+    'parent_mother' => 'Ibu',
     'photo' => 'Gambar',
 
     'create_error'   => 'Gagal membuat Siswa',
