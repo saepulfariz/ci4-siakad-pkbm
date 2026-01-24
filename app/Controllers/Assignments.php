@@ -82,17 +82,20 @@ class Assignments extends BaseController
             return $redirect;
         }
 
+        $teachers = $this->model_teacher;
+        $subjects = $this->model_subject;
+
         if (!auth()->user()->can('materials.access-all')) {
-            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
-            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
+            $teachers = $this->model_teacher->where('user_id', auth()->id());
+            $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id());
         }
 
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'teachers' => $teachers,
+            'teachers' => $teachers->findAll(),
             'classes' => $this->model_class->findAll(),
-            'subjects' => $subjects,
+            'subjects' => $subjects->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -174,9 +177,11 @@ class Assignments extends BaseController
         }
 
         $assignment = $this->model;
+        $teachers = $this->model_teacher;
+        $subjects = $this->model_subject;
 
         if (!auth()->user()->can('assignments.access-all')) {
-            $teachers = $this->model_teacher->where('user_id', auth()->id())->findAll();
+            $teachers = $this->model_teacher->where('user_id', auth()->id());
             $subjects =  $this->model_subject->join('teacher_subjects', 'teacher_subjects.subject_id = subjects.id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->findAll();
             $assignment = $assignment->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id());
         }
@@ -192,9 +197,9 @@ class Assignments extends BaseController
             'title' => $this->title,
             'link' => $this->link,
             'assignment' => $assignment,
-            'teachers' => $teachers,
+            'teachers' => $teachers->findAll(),
             'classes' => $this->model_class->findAll(),
-            'subjects' => $subjects,
+            'subjects' => $subjects->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
