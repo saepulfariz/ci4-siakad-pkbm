@@ -123,7 +123,7 @@ class Materials extends BaseController
             'description' => 'required',
             'file_upload' => [
                 'rules' => [
-                    'uploaded[file_upload]',
+                    // 'uploaded[file_upload]',
                     'max_size[file_upload,5120]',
                     'ext_in[file_upload,pdf,doc,docx,ppt,pptx,jpg,jpeg,png]',
                     'mime_in[file_upload,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpg,image/jpeg,image/png]'
