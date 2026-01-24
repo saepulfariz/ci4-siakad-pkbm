@@ -67,17 +67,31 @@ class SeedTeacherSubjects extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Teacher Subjects',
-                'icon' => 'fas fa-list',
-                'route' => 'teacher-subjects',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'teacher-subjects.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Teacher Subjects',
+                    'icon' => 'fas fa-chalkboard',
+                    'route' => 'teacher-subjects',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'teacher-subjects.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Mapel Tutor',
+                    'icon' => 'fas fa-chalkboard',
+                    'route' => 'teacher-subjects',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'teacher-subjects.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

@@ -26,7 +26,7 @@ defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
 
 
-defined('APP_NAME') || define('APP_NAME', 'CI4 Shiled Adminlte');
+defined('APP_NAME') || define('APP_NAME', 'SIPENA');
 
 $explodeFolder = explode('/index.php', $_SERVER['SCRIPT_NAME'])[0];
 $checkPublicFolder = explode('/public', $explodeFolder);

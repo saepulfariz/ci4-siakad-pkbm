@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <?php if ($title_section = $this->renderSection('title')): ?>
-    <title><?= $title_section; ?> - CI4 Shield Adminlte</title>
+    <title><?= $title_section; ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php else: ?>
     <title><?= (isset($statusCode)) ? ($statusCode) : ((isset($title)) ? $title : 'Home'); ?> - CI4 Shield Adminlte</title>
   <?php endif; ?>

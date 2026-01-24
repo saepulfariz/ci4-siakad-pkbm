@@ -67,17 +67,31 @@ class SeedEducations extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Educations',
-                'icon' => 'fas fa-list',
-                'route' => 'educations',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'educations.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Educations',
+                    'icon' => 'fas fa-university',
+                    'route' => 'educations',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'educations.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Jenjang Pendidikan',
+                    'icon' => 'fas fa-university',
+                    'route' => 'educations',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'educations.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

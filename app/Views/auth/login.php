@@ -7,9 +7,10 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <a href=""><b>Admin</b>LTE</a>
+        <div class="login-logo mb-0">
+            <a href="" class="font-weight-bold"><b>SIPENA</b></a>
         </div>
+        <h3 class="text-center" style='font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"'>Belajar Tertata, Nilai Terdata</h3>
         <!-- /.login-logo -->
 
         <?php if (session('error') !== null) : ?>

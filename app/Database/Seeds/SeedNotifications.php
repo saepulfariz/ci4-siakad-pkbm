@@ -116,17 +116,31 @@ class SeedNotifications extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Notifications',
-                'icon' => 'fas fa-list',
-                'route' => 'notifications',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'notifications.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Notifications',
+                    'icon' => 'fas fa-bell',
+                    'route' => 'notifications',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'notifications.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Notifikasi',
+                    'icon' => 'fas fa-bell',
+                    'route' => 'notifications',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'notifications.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

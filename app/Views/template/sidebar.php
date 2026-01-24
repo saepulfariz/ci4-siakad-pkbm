@@ -10,7 +10,7 @@
   <a href="<?= base_url('dashboard'); ?>" class="brand-link">
     <!-- change img to font fas fa-warehouse -->
     <!-- <i class="nav-icon fas fa-warehouse img-circle elevation-3" style="margin-left: 1rem;margin-right: .5rem;max-height: 33px;width:auto;"></i> -->
-    <img src="<?= asset_url(); ?>assets/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjPZsGn5j_amemJB29prRMzCEZofearpQMoZmPSXYHHTkApJdia_7iErvu03J2sR8nsVkjCwoTSSM0wg12o18V65P269bhI82VgryKCN15vIOoYi8xhSgjR2f2EPqRhoNZSxERCKIskQ3GOXoDfED0TwV9DMMS5Bgaz5AUGrpCl9lgpmrJGnQUN7LQ9QI/w1684-h1069-p-k-no-nu/Desain%20tanpa%20judul%20(1).png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light"><?= APP_NAME; ?></span>
   </a>
 

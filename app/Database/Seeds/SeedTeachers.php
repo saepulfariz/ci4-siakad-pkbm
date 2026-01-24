@@ -103,17 +103,31 @@ class SeedTeachers extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Teachers',
-                'icon' => 'fas fa-list',
-                'route' => 'teachers',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'teachers.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Teachers',
+                    'icon' => 'fas fa-chalkboard-teacher',
+                    'route' => 'teachers',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'teachers.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Tutor',
+                    'icon' => 'fas fa-chalkboard-teacher',
+                    'route' => 'teachers',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'teachers.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

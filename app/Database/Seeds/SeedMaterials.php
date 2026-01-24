@@ -112,17 +112,31 @@ class SeedMaterials extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Materials',
-                'icon' => 'fas fa-list',
-                'route' => 'materials',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'materials.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Materials',
+                    'icon' => 'fas fa-file-alt',
+                    'route' => 'materials',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'materials.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Materi Mapel',
+                    'icon' => 'fas fa-file-alt',
+                    'route' => 'materials',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'materials.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

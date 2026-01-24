@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKBM HAYATI NUSANTARA</title>
+    <title>PKBM HAYATI NUSANTARA - SIPENA - Belajar Tertata, Nilai Terdata</title>
 
     <meta name="description" content="">
     <meta name="author" content="">

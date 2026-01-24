@@ -67,17 +67,31 @@ class SeedSemesters extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Semesters',
-                'icon' => 'fas fa-list',
-                'route' => 'semesters',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'semesters.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Semesters',
+                    'icon' => 'fas fa-calendar-week',
+                    'route' => 'semesters',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'semesters.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Semester',
+                    'icon' => 'fas fa-calendar-week',
+                    'route' => 'semesters',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'semesters.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

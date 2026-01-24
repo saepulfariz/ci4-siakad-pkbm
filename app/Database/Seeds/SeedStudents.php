@@ -103,17 +103,31 @@ class SeedStudents extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Students',
-                'icon' => 'fas fa-list',
-                'route' => 'students',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'students.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Students',
+                    'icon' => 'fas fa-user-graduate',
+                    'route' => 'students',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'students.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Siswa',
+                    'icon' => 'fas fa-user-graduate',
+                    'route' => 'students',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'students.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

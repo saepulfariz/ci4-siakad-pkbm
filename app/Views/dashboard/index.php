@@ -79,7 +79,7 @@
             <p><?= temp_lang('dashboard.active_assignments'); ?></p>
           </div>
           <div class="icon">
-            <i class="fas fa-tasks"></i>s
+            <i class="fas fa-tasks"></i>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ class SeedAuthMenus extends Seeder
             [
                 'parent_id' => NULL,
                 'title' => 'Superadmin',
-                'icon' => 'fas fa-list',
+                'icon' => 'fas fa-user-shield',
                 'route' => '#',
                 'order' => 2,
                 'active' => 1,

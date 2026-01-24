@@ -124,17 +124,31 @@ class SeedAssignmentSubmissions extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Assignment Submissions',
-                'icon' => 'fas fa-list',
-                'route' => 'assignment-submissions',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'assignment-submissions.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Assignment Submissions',
+                    'icon' => 'fas fa-upload',
+                    'route' => 'assignment-submissions',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'assignment-submissions.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Pengumpulan Tugas',
+                    'icon' => 'fas fa-upload',
+                    'route' => 'assignment-submissions',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'assignment-submissions.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

@@ -79,17 +79,31 @@ class SeedAnnouncements extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Announcements',
-                'icon' => 'fas fa-list',
-                'route' => 'announcements',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'announcements.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Announcements',
+                    'icon' => 'fas fa-bullhorn',
+                    'route' => 'announcements',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'announcements.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Pengumuman',
+                    'icon' => 'fas fa-bullhorn',
+                    'route' => 'announcements',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'announcements.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 

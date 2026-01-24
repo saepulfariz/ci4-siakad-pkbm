@@ -67,17 +67,32 @@ class SeedAcademicYears extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Academic Years',
-                'icon' => 'fas fa-list',
-                'route' => 'academic-years',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'academic-years.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            // mode dev
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Academic Years',
+                    'icon' => 'fas fa-calendar-alt',
+                    'route' => 'academic-years',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'academic-years.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Tahun Pelajaran',
+                    'icon' => 'fas fa-calendar-alt',
+                    'route' => 'academic-years',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'academic-years.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 
