@@ -17,4 +17,18 @@ return [
     'current_class' => 'Current Class',
     'total_class_subjects' => 'Total Subjects',
     'avg_score' => 'Average Score',
+
+    'login_activity' => 'Login Activity',
+    'login_teacher' => 'Login Teacher',
+    'login_student' => 'Login Student',
+
+    'monday' => 'Monday',
+    'tuesday' => 'Tuesday',
+    'wednesday' => 'Wednesday',
+    'thursday' => 'Thursday',
+    'friday' => 'Friday',
+    'saturday' => 'Saturday',
+    'sunday' => 'Sunday',
+
+
 ];

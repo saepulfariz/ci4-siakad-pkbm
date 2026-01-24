@@ -96,7 +96,104 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <?= temp_lang('dashboard.login_activity'); ?>
+          </div>
+          <div class="card-body">
+            <canvas id="login-activity" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- /.content -->
 <?= $this->endSection('content') ?>
+
+
+<?= $this->section('script') ?>
+<script>
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode = 'index'
+  var intersect = true
+
+  const studentData = <?= json_encode($chart_login['student']) ?>;
+  const teacherData = <?= json_encode($chart_login['teacher']) ?>;
+
+
+  var $loginActivity = $('#login-activity')
+  // eslint-disable-next-line no-unused-vars
+  var loginActivity = new Chart($loginActivity, {
+    type: 'bar',
+    data: {
+      labels: ['<?= temp_lang('dashboard.monday'); ?>', '<?= temp_lang('dashboard.tuesday'); ?>', '<?= temp_lang('dashboard.wednesday'); ?>', '<?= temp_lang('dashboard.thursday'); ?>', '<?= temp_lang('dashboard.friday'); ?>', '<?= temp_lang('dashboard.saturday'); ?>', '<?= temp_lang('dashboard.sunday'); ?>'],
+      datasets: [{
+          label: '<?= temp_lang('dashboard.login_teacher'); ?>',
+          backgroundColor: '#3B82F6',
+          borderColor: '#3B82F6',
+          data: teacherData,
+        },
+        {
+          label: '<?= temp_lang('dashboard.login_student'); ?>',
+          backgroundColor: '#10B981',
+          borderColor: '#10B981',
+          data: studentData,
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function(value) {
+              if (value >= 1000) {
+                value /= 1000
+                value += 'k'
+              }
+
+              return '$' + value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+</script>
+<?= $this->endSection('script') ?>

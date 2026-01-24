@@ -38,9 +38,82 @@ class Dashboard extends BaseController
         $check_superadmin = auth()->user()->inGroup('superadmin');
 
         if ($check_superadmin) {
+            $login_student = db_connect()->query("SELECT 
+                                                    d.day_number,
+                                                    COALESCE(COUNT(l.id), 0) AS total
+                                                FROM (
+                                                    SELECT 1 AS day_number UNION ALL
+                                                    SELECT 2 UNION ALL
+                                                    SELECT 3 UNION ALL
+                                                    SELECT 4 UNION ALL
+                                                    SELECT 5 UNION ALL
+                                                    SELECT 6 UNION ALL
+                                                    SELECT 7
+                                                ) d
+                                                LEFT JOIN auth_logins l
+                                                    ON DAYOFWEEK(l.date) = d.day_number
+                                                    AND l.success = 1
+                                                    AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                LEFT JOIN auth_groups_users agu
+                                                    ON l.user_id = agu.user_id
+                                                    AND agu.group = 'student'
+                                                GROUP BY d.day_number
+                                                ORDER BY d.day_number;")->getResultArray();
+
+            $login_teacher = db_connect()->query("SELECT 
+                                                    d.day_number,
+                                                    COALESCE(COUNT(l.id), 0) AS total
+                                                FROM (
+                                                    SELECT 1 AS day_number UNION ALL
+                                                    SELECT 2 UNION ALL
+                                                    SELECT 3 UNION ALL
+                                                    SELECT 4 UNION ALL
+                                                    SELECT 5 UNION ALL
+                                                    SELECT 6 UNION ALL
+                                                    SELECT 7
+                                                ) d
+                                                LEFT JOIN auth_logins l
+                                                    ON DAYOFWEEK(l.date) = d.day_number
+                                                    AND l.success = 1
+                                                    AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                LEFT JOIN auth_groups_users agu
+                                                    ON l.user_id = agu.user_id
+                                                    AND agu.group = 'teacher'
+                                                GROUP BY d.day_number
+                                                ORDER BY d.day_number;")->getResultArray();
+
+            // helper mapping day_number → index (Senin = 0)
+            $dayMap = [
+                2 => 0, // Senin
+                3 => 1, // Selasa
+                4 => 2, // Rabu
+                5 => 3, // Kamis
+                6 => 4, // Jumat
+                7 => 5, // Sabtu
+                1 => 6, // Minggu
+            ];
+
+            // default 0 semua
+            $studentData = array_fill(0, 7, 0);
+            $teacherData = array_fill(0, 7, 0);
+
+            // isi student
+            foreach ($login_student as $row) {
+                $studentData[$dayMap[$row['day_number']]] = (int) $row['total'];
+            }
+
+            // isi teacher
+            foreach ($login_teacher as $row) {
+                $teacherData[$dayMap[$row['day_number']]] = (int) $row['total'];
+            }
+
             $data = [
                 'title' => $this->title,
                 'link' => $this->link,
+                'chart_login' => [
+                    'student' => $studentData,
+                    'teacher' => $teacherData,
+                ],
                 'total_teachers' => $this->model_teacher->countAllResults(),
                 'total_students' => $this->model_student->countAllResults(),
                 'total_classes' => $this->model_class->countAllResults(),

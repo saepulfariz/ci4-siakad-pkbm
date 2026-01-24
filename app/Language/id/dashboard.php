@@ -17,4 +17,16 @@ return [
     'current_class' => 'kelas Aktif',
     'total_class_subjects' => 'Jumlah Mapel',
     'avg_score' => 'Nilai Rata-rata',
+
+    'login_activity' => 'Aktivitas Login',
+    'login_teacher' => 'Login Guru',
+    'login_student' => 'Login Siswa',
+
+    'monday' => 'Senin',
+    'tuesday' => 'Selasa',
+    'wednesday' => 'Rabu',
+    'thursday' => 'Kamis',
+    'friday' => 'Jumat',
+    'saturday' => 'Sabtu',
+    'sunday' => 'Minggu',
 ];
