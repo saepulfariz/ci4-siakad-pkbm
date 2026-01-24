@@ -39,48 +39,48 @@ class Dashboard extends BaseController
 
         if ($check_superadmin) {
             $login_student = db_connect()->query("SELECT 
-                                                    d.day_number,
-                                                    COALESCE(COUNT(l.id), 0) AS total
-                                                FROM (
-                                                    SELECT 1 AS day_number UNION ALL
-                                                    SELECT 2 UNION ALL
-                                                    SELECT 3 UNION ALL
-                                                    SELECT 4 UNION ALL
-                                                    SELECT 5 UNION ALL
-                                                    SELECT 6 UNION ALL
-                                                    SELECT 7
-                                                ) d
-                                                LEFT JOIN auth_logins l
-                                                    ON DAYOFWEEK(l.date) = d.day_number
-                                                    AND l.success = 1
-                                                    AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
-                                                LEFT JOIN auth_groups_users agu
-                                                    ON l.user_id = agu.user_id
-                                                    AND agu.group = 'student'
-                                                GROUP BY d.day_number
-                                                ORDER BY d.day_number;")->getResultArray();
+                                                        d.day_number,
+                                                        COALESCE(COUNT(agu.user_id), 0) AS total
+                                                    FROM (
+                                                        SELECT 1 AS day_number UNION ALL
+                                                        SELECT 2 UNION ALL
+                                                        SELECT 3 UNION ALL
+                                                        SELECT 4 UNION ALL
+                                                        SELECT 5 UNION ALL
+                                                        SELECT 6 UNION ALL
+                                                        SELECT 7
+                                                    ) d
+                                                    LEFT JOIN auth_logins l
+                                                        ON DAYOFWEEK(l.date) = d.day_number
+                                                        AND l.success = 1
+                                                        AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                    LEFT JOIN auth_groups_users agu
+                                                        ON l.user_id = agu.user_id
+                                                        AND agu.group = 'student'
+                                                    GROUP BY d.day_number
+                                                    ORDER BY d.day_number;")->getResultArray();
 
             $login_teacher = db_connect()->query("SELECT 
-                                                    d.day_number,
-                                                    COALESCE(COUNT(l.id), 0) AS total
-                                                FROM (
-                                                    SELECT 1 AS day_number UNION ALL
-                                                    SELECT 2 UNION ALL
-                                                    SELECT 3 UNION ALL
-                                                    SELECT 4 UNION ALL
-                                                    SELECT 5 UNION ALL
-                                                    SELECT 6 UNION ALL
-                                                    SELECT 7
-                                                ) d
-                                                LEFT JOIN auth_logins l
-                                                    ON DAYOFWEEK(l.date) = d.day_number
-                                                    AND l.success = 1
-                                                    AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
-                                                LEFT JOIN auth_groups_users agu
-                                                    ON l.user_id = agu.user_id
-                                                    AND agu.group = 'teacher'
-                                                GROUP BY d.day_number
-                                                ORDER BY d.day_number;")->getResultArray();
+                                                        d.day_number,
+                                                        COALESCE(COUNT(agu.user_id), 0) AS total
+                                                    FROM (
+                                                        SELECT 1 AS day_number UNION ALL
+                                                        SELECT 2 UNION ALL
+                                                        SELECT 3 UNION ALL
+                                                        SELECT 4 UNION ALL
+                                                        SELECT 5 UNION ALL
+                                                        SELECT 6 UNION ALL
+                                                        SELECT 7
+                                                    ) d
+                                                    LEFT JOIN auth_logins l
+                                                        ON DAYOFWEEK(l.date) = d.day_number
+                                                        AND l.success = 1
+                                                        AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                    LEFT JOIN auth_groups_users agu
+                                                        ON l.user_id = agu.user_id
+                                                        AND agu.group = 'teacher'
+                                                    GROUP BY d.day_number
+                                                    ORDER BY d.day_number;")->getResultArray();
 
             // helper mapping day_number → index (Senin = 0)
             $dayMap = [

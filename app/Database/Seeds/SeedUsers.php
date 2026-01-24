@@ -34,7 +34,7 @@ class SeedUsers extends Seeder
         $user = $users->findById($userId);
 
         // Add to default group
-        $users->addToDefaultGroup($user);
+        // $users->addToDefaultGroup($user);
 
         $userModel = model(UserModel::class);
 
