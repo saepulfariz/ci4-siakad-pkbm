@@ -65,11 +65,12 @@
                         </div>
                     </div>
                     <div class="mb-3 text-danger"><?= validation_show_error('email'); ?></div>
-                    <div class="input-group">
+                    <!-- Password input dengan show/hide -->
+                    <div class="input-group mb-3">
                         <input type="password" class="form-control" name="password" id="password" placeholder="<?= lang('Auth.password') ?>">
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                            <div class="input-group-text" style="cursor: pointer;" id="togglePassword">
+                                <span class="fas fa-eye"></span>
                             </div>
                         </div>
                     </div>
@@ -102,3 +103,23 @@
     </div>
     <!-- /.login-box -->
     <?= $this->endSection('content') ?>
+
+
+    <?= $this->section('script') ?>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const password = document.getElementById('password');
+            const icon = this.querySelector('span');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                password.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+    <?= $this->endSection('script') ?>

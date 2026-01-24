@@ -67,17 +67,31 @@ class SeedClassSubjects extends Seeder
 
         $this->db->table('auth_permissions_groups')->insertBatch($data);
 
-        $data = [
-            [
-                'parent_id' => NULL,
-                'title' => 'Class Subjects',
-                'icon' => 'fas fa-list',
-                'route' => 'class-subjects',
-                'order' => 5,
-                'active' => 1,
-                'permission' => 'class-subjects.access',
-            ],
-        ];
+        if (ENVIRONMENT === 'development') {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Class Subjects',
+                    'icon' => 'fas fa-book-open',
+                    'route' => 'class-subjects',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'class-subjects.access',
+                ],
+            ];
+        } else {
+            $data = [
+                [
+                    'parent_id' => NULL,
+                    'title' => 'Mapel Kelas',
+                    'icon' => 'fas fa-book-open',
+                    'route' => 'class-subjects',
+                    'order' => 5,
+                    'active' => 1,
+                    'permission' => 'class-subjects.access',
+                ],
+            ];
+        }
 
         $this->db->table('auth_menus')->insertBatch($data);
 
