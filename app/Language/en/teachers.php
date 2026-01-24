@@ -12,7 +12,9 @@ return [
     'birth_date' => 'Birth Date',
     'address' => 'Address',
     'phone' => 'Phone',
-    'education' => 'Education',
+    'education_level' => 'Education Level',
+    'education_name' => 'Education Name',
+    'education_major' => 'Education Major',
     'photo' => 'Photo',
 
     'create_error' => 'Failed to create teacher',

@@ -34,22 +34,22 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <label for="user_id"><?= temp_lang('teachers.user'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " value="<?= old('user_id'); ?>" id="user_id" name="user_id">
+                                <label for="user_id"><?= temp_lang('students.user'); ?></label>
+                                <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " id="user_id" name="user_id">
                                     <option value="">== NONE ===</option>
                                     <?php foreach ($users as $user): ?>
                                         <?php if (old('user_id')): ?>
                                             <?php if (old('user_id', esc($teacher->user_id)) == $user->id): ?>
-                                                <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option selected value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php else: ?>
-                                                <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php endif; ?>
                                         <?php else: ?>
 
                                             <?php if (esc($teacher->user_id) == $user->id): ?>
-                                                <option selected value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option selected value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php else: ?>
-                                                <option value="<?= $user->id; ?>"><?= $user->username; ?></option>
+                                                <option value="<?= $user->id; ?>" data-name="<?= $user->name; ?>"><?= $user->name; ?> (<?= $user->full_name; ?>)</option>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -122,15 +122,50 @@
                             <?= (old('phone')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="education"><?= temp_lang('teachers.education'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('education')) ? 'border-danger' : ((old('education')) ? 'border-success' : ''); ?>" id="education" name="education" placeholder="Education" value="<?= old('education', esc($teacher->education)); ?>">
+                                <label for="education_level"><?= temp_lang('teachers.education_level'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <select class="form-control <?= ($error = validation_show_error('education_level')) ? 'border-danger' : ((old('education_level')) ? 'border-success' : ''); ?>" name="education_level" id="education_level">
+                                    <?php foreach ($educations as $education): ?>
+                                        <?php if (old('education_level')): ?>
+                                            <?php if (old('education_level') == $education['id']): ?>
+                                                <option selected value="<?= $education['id']; ?>"><?= $education['name']; ?></option>
+                                            <?php else: ?>
+                                                <option value="<?= $education['id']; ?>"><?= $education['name']; ?></option>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <?php if ($education['id'] == $teacher->education_level): ?>
+                                                <option selected value="<?= $education['id']; ?>"><?= $education['name']; ?></option>
+                                            <?php else: ?>
+                                                <option value="<?= $education['id']; ?>"><?= $education['name']; ?></option>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('education')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            <?= (old('education_level')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+
+                            <div class="form-group">
+                                <label for="education_name"><?= temp_lang('teachers.education_name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('education_name')) ? 'border-danger' : ((old('education_name')) ? 'border-success' : ''); ?>" id="education_name" name="education_name" placeholder="Education_name" value="<?= old('education_name', esc($teacher->education_name)); ?>">
+                            </div>
+                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                            <?= (old('education_name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+                            <div class="form-group">
+                                <label for="education_major"><?= temp_lang('teachers.education_major'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('education_major')) ? 'border-danger' : ((old('education_major')) ? 'border-success' : ''); ?>" id="education_major" name="education_major" placeholder="Education_major" value="<?= old('education_major', esc($teacher->education_major)); ?>">
+                            </div>
+                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                            <?= (old('education_major')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
                                 <label for="photo"><?= temp_lang('teachers.photo'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="file" class="form-control <?= ($error = validation_show_error('photo')) ? 'border-danger' : ((old('photo')) ? 'border-success' : ''); ?>" id="photo" name="photo">
+                                <div id="imagePreview">
+                                    <img class="img-thumbnail d-block mb-2" width="100" src="<?= asset_url(); ?>uploads/teachers/<?= esc($teacher->photo); ?>" alt="">
+
+                                </div>
+                                <input type="file" onchange="previewImage(this, '#imagePreview')" class="form-control <?= ($error = validation_show_error('photo')) ? 'border-danger' : ((old('photo')) ? 'border-success' : ''); ?>" id="photo" name="photo">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('photo')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
@@ -148,3 +183,15 @@
     </div>
 </section>
 <?= $this->endSection('content') ?>
+
+<?= $this->section('script') ?>
+<script>
+    $(document).ready(function() {
+        $('#user_id').on('change', function() {
+            const name = $(this).find('option:selected').data('name');
+            $('#full_name').val(name);
+        });
+    });
+</script>
+
+<?= $this->endSection('script') ?>

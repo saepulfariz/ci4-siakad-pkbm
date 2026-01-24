@@ -52,7 +52,9 @@
                                     <th><?= temp_lang('teachers.birth_date'); ?></th>
                                     <th><?= temp_lang('teachers.address'); ?></th>
                                     <th><?= temp_lang('teachers.phone'); ?></th>
-                                    <th><?= temp_lang('teachers.education'); ?></th>
+                                    <th><?= temp_lang('teachers.education_level'); ?></th>
+                                    <th><?= temp_lang('teachers.education_name'); ?></th>
+                                    <th><?= temp_lang('teachers.education_major'); ?></th>
                                     <th><?= temp_lang('teachers.photo'); ?></th>
                                     <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
@@ -70,8 +72,12 @@
                                         <td><?= esc($teacher->birth_date); ?></td>
                                         <td><?= esc($teacher->address); ?></td>
                                         <td><?= esc($teacher->phone); ?></td>
-                                        <td><?= esc($teacher->education); ?></td>
-                                        <td><?= esc($teacher->photo); ?></td>
+                                        <td><?= esc($teacher->education_level); ?></td>
+                                        <td><?= esc($teacher->education_name); ?></td>
+                                        <td><?= esc($teacher->education_major); ?></td>
+                                        <td>
+                                            <img width="100px" src="<?= asset_url(); ?>uploads/teachers/<?= esc($teacher->photo); ?>" alt="" srcset="">
+                                        </td>
                                         <td>
                                             <?php if ($can_edit): ?>
                                                 <a class="btn btn-warning btn-sm mb-2" href="<?= base_url($link . '/' . esc($teacher->id) . '/edit'); ?>"><i class="fas fa-edit"></i></a>

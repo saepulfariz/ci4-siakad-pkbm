@@ -12,8 +12,10 @@ return [
     'birth_date' => 'Tanggal Lahir',
     'address' => 'Alamat',
     'phone' => 'No HP',
-    'education' => 'Pendidikan',
-    'photo' => 'Gambar',
+    'education_level' => 'Pendidikan',
+    'education_name' => 'Nama Sekolah/Universitas',
+    'education_major' => 'Jurusan/Bidang Studi',
+    'photo' => 'Pas Foto',
 
     'create_error'   => 'Gagal membuat Guru',
     'create_success' => 'Berhasil membuat Guru',

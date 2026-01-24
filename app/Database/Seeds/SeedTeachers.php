@@ -141,7 +141,9 @@ class SeedTeachers extends Seeder
                 'birth_date' => '2025-12-20',
                 'address' => 'Subang',
                 'phone' => '08XXXXXXXXXX',
-                'education' => 'SMK BISA',
+                'education_level' => 'S1',
+                'education_name' => 'Universitas Subang',
+                'education_major' => 'Fakultas Ilmu Komputer - Sistem Informasi',
                 'photo' => 'teacher.png',
             ],
         ];

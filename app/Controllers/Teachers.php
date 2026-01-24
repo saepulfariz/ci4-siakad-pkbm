@@ -9,6 +9,10 @@ class Teachers extends BaseController
 {
     private $model;
     private $model_user;
+
+    protected $uploadPath;
+    protected $defaultPhoto;
+
     private $link = 'teachers';
     private $view = 'teachers';
     private $title = 'Teachers';
@@ -17,6 +21,20 @@ class Teachers extends BaseController
         $this->title = temp_lang('teachers.teachers');
         $this->model = new \App\Models\TeacherModel();
         $this->model_user = auth()->getProvider();
+
+        $this->uploadPath = WRITEPATH . 'uploads/teachers/';
+
+        $defaultPhoto = FCPATH . 'assets/dist/img/user.png';
+
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0775, true);
+        }
+
+        $this->defaultPhoto =  'teacher.png';
+
+        if (!file_exists($this->uploadPath . $this->defaultPhoto)) {
+            copy($defaultPhoto, $this->uploadPath . $this->defaultPhoto);
+        }
     }
 
     /**
@@ -67,7 +85,8 @@ class Teachers extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'users' => $this->model_user->findAll(),
+            'educations' => $this->model->educations,
+            'users' => $this->model_user->select('users.*, teachers.full_name, auth_identities.name as name')->join('auth_groups_users', "auth_groups_users.user_id = users.id AND auth_groups_users.group = 'teacher'")->join('teachers', 'teachers.user_id = users.id', 'LEFT')->join('auth_identities', "auth_identities.user_id = users.id AND auth_identities.type = 'email_password'")->where('teachers.full_name IS NULL')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -96,7 +115,9 @@ class Teachers extends BaseController
             'birth_date' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'education' => 'required',
+            'education_level' => 'required',
+            'education_name' => 'required',
+            'education_major' => 'required',
             // 'photo' => 'required',
         ];
 
@@ -136,7 +157,9 @@ class Teachers extends BaseController
                 'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
                 'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
                 'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
-                'education' => $this->request->getVar('education', FILTER_SANITIZE_STRING),
+                'education_level' => $this->request->getVar('education_level', FILTER_SANITIZE_STRING),
+                'education_name' => $this->request->getVar('education_name', FILTER_SANITIZE_STRING),
+                'education_major' => $this->request->getVar('education_major', FILTER_SANITIZE_STRING),
             ];
 
             // Jika ada upload file
@@ -146,10 +169,12 @@ class Teachers extends BaseController
                 $photoName = $photo->getRandomName();
 
                 // Simpan ke folder writable/uploads
-                $photo->move(WRITEPATH . 'uploads', $photoName);
+                $photo->move($this->uploadPath, $photoName);
 
                 // Simpan nama file ke database
                 $data['photo'] = $photoName;
+            } else {
+                $data['photo'] = $this->defaultPhoto;
             }
 
 
@@ -197,8 +222,9 @@ class Teachers extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
+            'educations' => $this->model->educations,
             'teacher' => $teacher,
-            'users' => $this->model_user->findAll()
+            'users' => $this->model_user->select('users.*, teachers.full_name, auth_identities.name as name')->join('auth_groups_users', "auth_groups_users.user_id = users.id AND auth_groups_users.group = 'teacher'")->join('teachers', 'teachers.user_id = users.id', 'LEFT')->join('auth_identities', "auth_identities.user_id = users.id AND auth_identities.type = 'email_password'")->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -235,7 +261,9 @@ class Teachers extends BaseController
             'birth_date' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'education' => 'required',
+            'education_level' => 'required',
+            'education_name' => 'required',
+            'education_major' => 'required',
             // 'photo' => 'required',
         ];
 
@@ -277,17 +305,25 @@ class Teachers extends BaseController
                 'birth_date' => $this->request->getVar('birth_date', FILTER_SANITIZE_STRING),
                 'address' => $this->request->getVar('address', FILTER_SANITIZE_STRING),
                 'phone' => $this->request->getVar('phone', FILTER_SANITIZE_STRING),
-                'education' => $this->request->getVar('education', FILTER_SANITIZE_STRING),
+                'education_level' => $this->request->getVar('education_level', FILTER_SANITIZE_STRING),
+                'education_name' => $this->request->getVar('education_name', FILTER_SANITIZE_STRING),
+                'education_major' => $this->request->getVar('education_major', FILTER_SANITIZE_STRING),
             ];
 
             // Jika ada upload file
             if ($photo && $photo->isValid() && !$photo->hasMoved()) {
 
+                $oldPhoto = $teacher->photo;
+
+                if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
+                    unlink($this->uploadPath . $oldPhoto);
+                }
+
                 // Generate nama random
                 $photoName = $photo->getRandomName();
 
                 // Simpan ke folder writable/uploads
-                $photo->move(WRITEPATH . 'uploads', $photoName);
+                $photo->move($this->uploadPath, $photoName);
 
                 // Simpan nama file ke database
                 $data['photo'] = $photoName;
@@ -345,8 +381,8 @@ class Teachers extends BaseController
             $this->db->transCommit();
 
             $oldPhoto = $teacher->photo;
-            if (!empty($oldPhoto) && file_exists(WRITEPATH . 'uploads' . $oldPhoto)) {
-                unlink(WRITEPATH . 'uploads' . $oldPhoto);
+            if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
+                unlink($this->uploadPath . $oldPhoto);
             }
 
             $cache = \Config\Services::cache();

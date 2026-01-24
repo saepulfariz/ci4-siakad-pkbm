@@ -28,6 +28,10 @@ class Students extends BaseController
         // $newName = 'user_' . time() . '.png';
         $this->defaultPhoto =  'student.png';
 
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0775, true);
+        }
+
         if (!file_exists($this->uploadPath . $this->defaultPhoto)) {
             copy($defaultPhoto, $this->uploadPath . $this->defaultPhoto);
         }
@@ -312,7 +316,7 @@ class Students extends BaseController
                 $oldPhoto = $student->photo;
 
                 if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
-                    unlink(WRITEPATH . 'upload/students' . $oldPhoto);
+                    unlink($this->uploadPath . $oldPhoto);
                 }
 
                 // Generate nama random
@@ -378,7 +382,7 @@ class Students extends BaseController
 
             $oldPhoto = $student->photo;
             if (!empty($oldPhoto) && $oldPhoto != $this->defaultPhoto && file_exists($this->uploadPath . $oldPhoto)) {
-                unlink(WRITEPATH . 'upload/students' . $oldPhoto);
+                unlink($this->uploadPath . $oldPhoto);
             }
 
             $cache = \Config\Services::cache();

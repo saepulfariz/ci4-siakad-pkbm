@@ -49,7 +49,15 @@ class CreateTeachersTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '20',
             ],
-            'education' => [
+            'education_level' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'education_name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'education_major' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

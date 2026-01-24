@@ -143,7 +143,7 @@
                             <div class="form-group">
                                 <label for="photo"><?= temp_lang('students.photo'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <div id="imagePreview">
-                                    <img class="img-thumbnail d-block mb-2" width="100" src="<?= asset_url(); ?>assets/dist/img/user.png" alt="">
+                                    <img class="img-thumbnail d-block mb-2" width="100" src="<?= asset_url(); ?>uploads/students/student.png" alt="">
 
                                 </div>
                                 <input type="file" onchange="previewImage(this, '#imagePreview')" class="form-control <?= ($error = validation_show_error('photo')) ? 'border-danger' : ((old('photo')) ? 'border-success' : ''); ?>" id="photo" name="photo">

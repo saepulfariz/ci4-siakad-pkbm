@@ -25,7 +25,9 @@ class TeacherModel extends Model
         'birth_date',
         'address',
         'phone',
-        'education',
+        'education_level',
+        'education_name',
+        'education_major',
         'photo',
     ];
     protected $cacheKey = 'teachers';
@@ -62,4 +64,28 @@ class TeacherModel extends Model
 
     // public $logName = false;
     public $logId = true;
+
+
+    public $educations = [
+        [
+            'id' => 'SLTA/Sederajat',
+            'name' => 'SLTA/Sederajat',
+        ],
+        [
+            'id' => 'D3',
+            'name' => 'D3',
+        ],
+        [
+            'id' => 'D4',
+            'name' => 'D4',
+        ],
+        [
+            'id' => 'S1',
+            'name' => 'S1',
+        ],
+        [
+            'id' => 'S2',
+            'name' => 'S2',
+        ],
+    ];
 }
