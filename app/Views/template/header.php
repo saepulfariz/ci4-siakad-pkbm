@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <?php if ($title_section = $this->renderSection('title')): ?>
+  <?php if ($title_section = $this->renderSection('title')): ?> 
     <title><?= $title_section; ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php else: ?>
-    <title><?= (isset($statusCode)) ? ($statusCode) : ((isset($title)) ? $title : 'Home'); ?> - CI4 Shield Adminlte</title>
+    <title><?= (isset($statusCode)) ? ($statusCode) : ((isset($title)) ? $title : 'Home'); ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php endif; ?>
 
   <!-- Google Font: Source Sans Pro -->
