@@ -11,6 +11,8 @@ return [
     'action'    => 'Aksi',
     'cancel'    => 'Batal',
     'submit'    => 'Submit',
+    'save'    => 'Simpan',
+    'update'    => 'Ubah',
 
     'confirm_title' => 'Apa kamu yakin?',
     'confirm_btn' => 'Ya, hapus saja!'

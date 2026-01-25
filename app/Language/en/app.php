@@ -11,6 +11,8 @@ return [
     'action'    => 'Action',
     'cancel'    => 'Cancel',
     'submit'    => 'Submit',
+    'save'    => 'Save',
+    'update'    => 'Update',
 
     'confirm_title' => 'Are you sure?',
     'confirm_btn' => 'Yes, delete it!'

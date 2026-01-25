@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Education</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('educations.education'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -37,21 +37,21 @@
 
 
                             <div class="form-group">
-                                <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <label for="name"><?= temp_lang('educations.name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="SMK/SMA" value="<?= old('name', esc($education->name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="unit">Unit</label>
+                                <label for="unit"><?= temp_lang('educations.unit'); ?></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('unit')) ? 'border-danger' : ((old('unit')) ? 'border-success' : ''); ?>" id="unit" name="unit" placeholder="Unit A/B" value="<?= old('unit', esc($education->unit)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('unit')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="teacher_id">Teacher Head</label>
+                                <label for="teacher_id"><?= temp_lang('educations.teacher_id'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('teacher_id')) ? 'border-danger' : ((old('teacher_id')) ? 'border-success' : ''); ?> " value="<?= old('teacher_id'); ?>" id="teacher_id" name="teacher_id">
                                     <?php foreach ($teachers as $teacher): ?>
                                         <?php if (old('teacher_id')): ?>
@@ -75,8 +75,8 @@
 
 
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.update'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
                     </div>
