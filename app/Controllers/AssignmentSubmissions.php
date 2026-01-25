@@ -10,14 +10,25 @@ class AssignmentSubmissions extends BaseController
     private $model;
     private $model_assignment;
     private $model_student;
+
+    protected $uploadPath;
+
     private $link = 'assignment-submissions';
     private $view = 'assignment-submissions';
     private $title = 'Assignment Submissions';
     public function __construct()
     {
+        $this->title = temp_lang('assignment_submissions.assignment_submissions');
+
         $this->model = new \App\Models\AssignmentSubmissionModel();
         $this->model_assignment = new \App\Models\AssignmentModel();
         $this->model_student = new \App\Models\StudentModel();
+
+        $this->uploadPath = WRITEPATH . 'uploads/assignment_submissions/';
+
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0775, true);
+        }
     }
 
     /**
@@ -125,14 +136,43 @@ class AssignmentSubmissions extends BaseController
             'student_id' => 'required',
             // 'status' => 'required',
             'description' => 'required',
-            'file' => 'required',
             // 'score' => 'required'
+            'file_upload' => [
+                'rules' => [
+                    // 'uploaded[file_upload]',
+                    'max_size[file_upload,5120]',
+                    'ext_in[file_upload,pdf,doc,docx,ppt,pptx,jpg,jpeg,png]',
+                    'mime_in[file_upload,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpg,image/jpeg,image/png]'
+                ]
+            ],
+            'file_link' => 'permit_empty|valid_url'
         ];
 
         $input = $this->request->getVar();
 
         if (!$this->validateData($input, $rules)) {
             return redirect()->back()->withInput();
+        }
+
+
+        $fileUpload = $this->request->getFile('file_upload');
+        $fileLink   = $this->request->getPost('file_link', FILTER_SANITIZE_URL);
+
+        if ($fileUpload && $fileUpload->isValid()) {
+
+            $allowedMime = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'image/jpeg',
+                'image/png'
+            ];
+
+            if (!in_array($fileUpload->getMimeType(), $allowedMime)) {
+                return redirect()->back()->withInput()->with('error', 'Tipe file tidak diizinkan');
+            }
         }
 
         $this->db->transBegin();
@@ -143,11 +183,20 @@ class AssignmentSubmissions extends BaseController
                 'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
                 // 'status' => $this->request->getVar('status', FILTER_SANITIZE_STRING),
                 'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
-                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                // 'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
                 'score' => $this->request->getVar('score', FILTER_SANITIZE_STRING),
                 'feedback' => $this->request->getVar('feedback', FILTER_SANITIZE_STRING),
                 'submitted_at' => date('Y-m-d H:i:s')
             ];
+
+            if ($fileUpload && $fileUpload->isValid()) {
+
+                $nameFile = $fileUpload->getRandomName();
+                $fileUpload->move($this->uploadPath, $nameFile);
+                $data['file'] = $nameFile;
+            } else {
+                $data['file'] = $fileLink;
+            }
 
 
             $assignment = $this->model_assignment->find($data['assignment_id']);
@@ -160,7 +209,7 @@ class AssignmentSubmissions extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create assignment submission')->withInput();
+                return redirect()->back()->with('error', temp_lang('assignment_submissions.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -168,10 +217,10 @@ class AssignmentSubmissions extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Assignment Submission created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('assignment_submissions.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create assignment submission')->withInput();
+            return redirect()->back()->with('error', temp_lang('assignment_submissions.create_error'))->withInput();
         }
     }
 
@@ -302,8 +351,17 @@ class AssignmentSubmissions extends BaseController
         $rules = [
             'assignment_id' => 'required',
             'student_id' => 'required',
-            'file' => 'required',
+            // 'file' => 'required',
             'description' => 'required',
+            'file_upload' => [
+                'rules' => [
+                    'if_exist',
+                    'max_size[file_upload,5120]',
+                    'ext_in[file_upload,pdf,doc,docx,ppt,pptx,jpg,jpeg,png]',
+                    'mime_in[file_upload,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpg,image/jpeg,image/png]'
+                ]
+            ],
+            'file_link' => 'permit_empty|valid_url'
         ];
 
         $input = $this->request->getVar();
@@ -312,6 +370,25 @@ class AssignmentSubmissions extends BaseController
             return redirect()->back()->withInput();
         }
 
+        $fileUpload = $this->request->getFile('file_upload');
+        $fileLink   = $this->request->getPost('file_link', FILTER_SANITIZE_URL);
+
+        if ($fileUpload && $fileUpload->isValid()) {
+
+            $allowedMime = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'image/jpeg',
+                'image/png'
+            ];
+
+            if (!in_array($fileUpload->getMimeType(), $allowedMime)) {
+                return redirect()->back()->withInput()->with('error', 'Tipe file tidak diizinkan');
+            }
+        }
 
         $this->db->transBegin();
 
@@ -323,7 +400,7 @@ class AssignmentSubmissions extends BaseController
                 'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
                 'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
                 'description' => $this->request->getVar('description', FILTER_SANITIZE_STRING),
-                'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
+                // 'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
                 'score' => $this->request->getVar('score', FILTER_SANITIZE_STRING),
                 'feedback' => $this->request->getVar('feedback', FILTER_SANITIZE_STRING),
             ];
@@ -334,12 +411,28 @@ class AssignmentSubmissions extends BaseController
                 $data['status'] = $this->request->getVar('status', FILTER_SANITIZE_STRING);
             }
 
+            // jika upload file baru
+            if ($fileUpload && $fileUpload->isValid() && !$fileUpload->hasMoved()) {
+
+                // hapus file lama jika bukan link
+                if ($assignment->file && !filter_var($assignment->file, FILTER_VALIDATE_URL)) {
+                    @unlink($this->uploadPath . $assignment->file);
+                }
+
+                $nameFile = $fileUpload->getRandomName();
+                $fileUpload->move($this->uploadPath, $nameFile);
+                $data['file'] = $nameFile;
+            }
+            // jika pakai link
+            elseif (!empty($fileLink)) {
+                $data['file'] = $fileLink;
+            }
 
             $this->model->update($id, $data);
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update assignment submission')->withInput();
+                return redirect()->back()->with('error',  temp_lang('assignment_submissions.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -347,10 +440,10 @@ class AssignmentSubmissions extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Assignment Submission updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('assignment_submissions.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update assignment submission ')->withInput();
+            return redirect()->back()->with('error', temp_lang('assignment_submissions.update_error'))->withInput();
         }
     }
 
@@ -396,9 +489,14 @@ class AssignmentSubmissions extends BaseController
         try {
             $this->model->delete($id);
 
+            if ($assignment_submission && $assignment_submission->file && !filter_var($assignment_submission->file, FILTER_VALIDATE_URL)) {
+                @unlink($this->uploadPath . $assignment_submission->file);
+            }
+
+
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete assignment submission')->withInput();
+                return redirect()->back()->with('error', temp_lang('assignment_submissions.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -406,10 +504,10 @@ class AssignmentSubmissions extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Assignment Submission deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('assignment_submissions.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete assignment submission')->withInput();
+            return redirect()->back()->with('error', temp_lang('assignment_submissions.delete_error'))->withInput();
         }
     }
 }

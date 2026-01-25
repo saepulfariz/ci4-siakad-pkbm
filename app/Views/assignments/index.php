@@ -34,7 +34,7 @@
 
                 ?>
                 <?php if ($can_create): ?>
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">

@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Assignment Submission</h1>
+                <h1 class="m-0"><?= temp_lang('app.new'); ?> <?= temp_lang('assignment_submissions.assignment_submission'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.new'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -40,7 +40,7 @@
 
 
                             <div class="form-group">
-                                <label for="assignment_id">Assignment</label>
+                                <label for="assignment_id"><?= temp_lang('assignments.assignment'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('assignment_id')) ? 'border-danger' : ((old('assignment_id')) ? 'border-success' : ''); ?> " value="<?= old('assignment_id'); ?>" id="assignment_id" name="assignment_id">
                                     <?php foreach ($assignments as $assignment): ?>
                                         <?php if (old('assignment_id')): ?>
@@ -60,7 +60,7 @@
 
 
                             <div class="form-group">
-                                <label for="student_id">Student</label>
+                                <label for="student_id"><?= temp_lang('students.student'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('student_id')) ? 'border-danger' : ((old('student_id')) ? 'border-success' : ''); ?> " value="<?= old('student_id'); ?>" id="student_id" name="student_id">
                                     <?php foreach ($students as $student): ?>
                                         <?php if (old('student_id')): ?>
@@ -93,8 +93,8 @@
 
 
                             <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="Description"><?= old('description'); ?></textarea>
+                                <label for="description"><?= temp_lang('assignment_submissions.description'); ?></label>
+                                <textarea class="form-control <?= ($error = validation_show_error('description')) ? 'border-danger' : ((old('description')) ? 'border-success' : ''); ?>" id="description" name="description" placeholder="<?= temp_lang('assignment_submissions.description'); ?>"><?= old('description'); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -103,24 +103,43 @@
 
 
                             <div class="form-group">
-                                <label for="file">File</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('file')) ? 'border-danger' : ((old('file')) ? 'border-success' : ''); ?>" id="file" name="file" placeholder="file" value="<?= old('file'); ?>">
+                                <label><?= temp_lang('assignment_submissions.choose_file_or_link'); ?></label>
+                                <select id="mode" class="form-control">
+                                    <option value="upload"><?= temp_lang('assignment_submissions.upload_file'); ?></option>
+                                    <option value="link">Link</option>
+                                </select>
                             </div>
-                            <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('file')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
+                            <div id="upload_field">
+                                <div class="form-group">
+                                    <label><?= temp_lang('assignment_submissions.upload_file'); ?></label>
+                                    <input type="file" name="file_upload" class="form-control <?= ($error = validation_show_error('file_upload')) ? 'border-danger' : ((old('file_upload')) ? 'border-success' : ''); ?>"
+                                        accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('file_upload')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            </div>
+
+                            <div class="d-none" id="link_field">
+                                <div class="form-group">
+                                    <label>Link File</label>
+                                    <input type="text" name="file_link" class="form-control <?= ($error = validation_show_error('file_link')) ? 'border-danger' : ((old('file_link')) ? 'border-success' : ''); ?>">
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('file_link')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            </div>
 
                             <?php if ($check_teacher || $check_superadmin): ?>
                                 <div class="form-group">
-                                    <label for="score">Score</label>
-                                    <input type="number" step="0.01" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="score" value="<?= old('score'); ?>">
+                                    <label for="score"><?= temp_lang('assignment_submissions.score'); ?></label>
+                                    <input type="number" step="0.01" class="form-control <?= ($error = validation_show_error('score')) ? 'border-danger' : ((old('score')) ? 'border-success' : ''); ?>" id="score" name="score" placeholder="<?= temp_lang('assignment_submissions.score'); ?>" value="<?= old('score'); ?>">
                                 </div>
                                 <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                                 <?= (old('score')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                                 <div class="form-group">
-                                    <label for="feedback">Feedback</label>
-                                    <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="Feedback"><?= old('feedback'); ?></textarea>
+                                    <label for="feedback"><?= temp_lang('assignment_submissions.feedback'); ?></label>
+                                    <textarea class="form-control <?= ($error = validation_show_error('feedback')) ? 'border-danger' : ((old('feedback')) ? 'border-success' : ''); ?>" id="feedback" name="feedback" placeholder="<?= temp_lang('assignment_submissions.feedback'); ?>"><?= old('feedback'); ?></textarea>
 
                                 </div>
                                 <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -130,7 +149,7 @@
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
 
@@ -143,3 +162,19 @@
     </div>
 </section>
 <?= $this->endSection('content') ?>
+
+
+
+<?= $this->section('script') ?>
+<script>
+    $('#mode').change(function() {
+        if ($(this).val() === 'upload') {
+            $('#upload_field').removeClass('d-none');
+            $('#link_field').addClass('d-none');
+        } else {
+            $('#upload_field').addClass('d-none');
+            $('#link_field').removeClass('d-none');
+        }
+    });
+</script>
+<?= $this->endSection('script') ?>

@@ -34,7 +34,7 @@
 
                 ?>
                 <?php if ($can_create): ?>
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
@@ -42,14 +42,14 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Assignment</th>
-                                    <th>Student</th>
-                                    <th>Description</th>
-                                    <th>File</th>
-                                    <th>Status</th>
-                                    <th>Score</th>
-                                    <th>Feedback</th>
-                                    <th>Action</th>
+                                    <th><?= temp_lang('assignments.assignment'); ?></th>
+                                    <th><?= temp_lang('students.student'); ?></th>
+                                    <th><?= temp_lang('assignment_submissions.description'); ?></th>
+                                    <th><?= temp_lang('assignment_submissions.file'); ?></th>
+                                    <th><?= temp_lang('assignment_submissions.status'); ?></th>
+                                    <th><?= temp_lang('assignment_submissions.score'); ?></th>
+                                    <th><?= temp_lang('assignment_submissions.feedback'); ?></th>
+                                    <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,11 +63,16 @@
                                         <td>
                                             <?php if (esc($submission->file)): ?>
 
-                                                <a href="<?= esc($submission->file); ?>" target="_blank">Download</a>
+                                                <?php if (filter_var($submission->file, FILTER_VALIDATE_URL)): ?>
+                                                    <a href="<?= esc($submission->file); ?>" target="_blank">Download</a>
+                                                <?php else: ?>
+                                                    <a href="<?= asset_url(); ?>uploads/submissions/<?= esc($submission->file); ?>" target="_blank">Download</a>
+                                                <?php endif; ?>
+
 
                                             <?php endif; ?>
                                         </td>
-                                        <td><?= esc($submission->status); ?></td>
+                                        <td><?= temp_lang('assignment_submissions.status_' . strtolower(esc($submission->status))); ?></td>
                                         <td><?= esc($submission->score); ?></td>
                                         <td><?= esc($submission->feedback); ?></td>
                                         <td>
@@ -79,7 +84,7 @@
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                    <button type='button' data-ket="<?= temp_lang('assignment_submissions.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
                                                 </form>
                                             <?php endif; ?>
 
