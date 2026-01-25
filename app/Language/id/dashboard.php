@@ -22,6 +22,9 @@ return [
     'login_teacher' => 'Login Guru',
     'login_student' => 'Login Siswa',
 
+    'new_notifications' => 'Notifikasi Terbaru',
+    'new_annoucements' => 'Pengumuman Terbaru',
+
     'monday' => 'Senin',
     'tuesday' => 'Selasa',
     'wednesday' => 'Rabu',

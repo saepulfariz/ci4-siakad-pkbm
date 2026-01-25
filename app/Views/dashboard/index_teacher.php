@@ -73,6 +73,47 @@
       </div>
     </div>
 
+
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <?= temp_lang('dashboard.new_notifications'); ?>
+          </div>
+          <div class="card-body">
+            <?php foreach ($notifications as $notification): ?>
+              <p class="mb-0">
+                <a href="<?= base_url('notificatons/' . $notification->id); ?>">
+                  <?= $notification->title; ?>
+                </a>
+              </p>
+              <small><?= $notification->created_at->humanize(); ?></small>
+              <hr>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <?= temp_lang('dashboard.new_annoucements'); ?>
+          </div>
+          <div class="card-body">
+            <?php foreach ($annoucements as $annoucement): ?>
+              <p class="mb-0">
+                <a href="<?= base_url('notificatons/' . $annoucement->id); ?>">
+                  <?= $annoucement->title; ?>
+                </a>
+              </p>
+              <small><?= $annoucement->created_at ? $annoucement->created_at->humanize() : ''; ?></small>
+              <hr>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 <!-- /.content -->

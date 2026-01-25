@@ -14,6 +14,8 @@ class Dashboard extends BaseController
     private $model_assignment_submission;
     private $model_material;
     private $model_teacher_subject;
+    private $model_notification;
+    private $model_annoucement;
     private $link = 'dashboard';
     private $view = 'dashboard';
     private $title = 'Dashboard';
@@ -29,6 +31,8 @@ class Dashboard extends BaseController
         $this->model_assignment_submission = new \App\Models\AssignmentSubmissionModel();
         $this->model_material = new \App\Models\MaterialModel();
         $this->model_teacher_subject = new \App\Models\TeacherSubjectModel();
+        $this->model_notification = new \App\Models\NotificationModel();
+        $this->model_annoucement = new \App\Models\AnnouncementModel();
     }
     public function index()
     {
@@ -126,6 +130,8 @@ class Dashboard extends BaseController
             $data = [
                 'title' => $this->title,
                 'link' => $this->link,
+                'notifications' => $this->model_notification->where('user_id', auth()->id())->orderBy('id', 'DESC')->limit(5)->findAll(),
+                'annoucements' => $this->model_annoucement->limit(5)->orderBy('id', 'DESC')->findAll(),
                 'total_teacher_subjects' => $this->model_teacher_subject->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->where('teachers.user_id', auth()->id())->countAllResults(),
                 'total_teacher_subject_classes' => $this->model_teacher_subject->join('teachers', 'teachers.id = teacher_subjects.teacher_id')->join('class_subjects', 'class_subjects.subject_id = teacher_subjects.subject_id')->where('teachers.user_id', auth()->id())->countAllResults(),
                 'total_assignments' => $this->model_assignment->where('deadline >=', date('Y-m-d H:i:s'))->join('teachers', 'teachers.id = assignments.teacher_id')->where('teachers.user_id', auth()->id())->countAllResults(),

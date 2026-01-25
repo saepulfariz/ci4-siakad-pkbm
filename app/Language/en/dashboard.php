@@ -22,6 +22,9 @@ return [
     'login_teacher' => 'Login Teacher',
     'login_student' => 'Login Student',
 
+    'new_notifications' => 'New Notifications',
+    'new_annoucements' => 'New Annoucements',
+
     'monday' => 'Monday',
     'tuesday' => 'Tuesday',
     'wednesday' => 'Wednesday',
