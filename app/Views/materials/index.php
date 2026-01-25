@@ -42,9 +42,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Class</th>
-                                    <th>Subject</th>
-                                    <th>Teacher</th>
+                                    <th><?= temp_lang('classes.class'); ?></th>
+                                    <th><?= temp_lang('subjects.subject'); ?></th>
+                                    <th><?= temp_lang('teachers.teacher'); ?></th>
                                     <th><?= temp_lang('materials.title'); ?></th>
                                     <th><?= temp_lang('materials.description'); ?></th>
                                     <th><?= temp_lang('materials.file'); ?></th>

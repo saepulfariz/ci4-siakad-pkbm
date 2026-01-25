@@ -15,7 +15,7 @@ return [
     'phone' => 'No HP',
     'parent_father' => 'Ayah',
     'parent_mother' => 'Ibu',
-    'photo' => 'Gambar',
+    'photo' => 'Pas Foto',
 
     'create_error'   => 'Gagal membuat Siswa',
     'create_success' => 'Berhasil membuat Siswa',

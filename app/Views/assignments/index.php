@@ -38,18 +38,18 @@
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table" id="table2">
+                        <table class="table w-100" id="table2">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Class</th>
-                                    <th>Subject</th>
-                                    <th>Teacher</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>File</th>
-                                    <th>Deadline</th>
-                                    <th>Action</th>
+                                    <th><?= temp_lang('classes.class'); ?></th>
+                                    <th><?= temp_lang('subjects.subject'); ?></th>
+                                    <th><?= temp_lang('teachers.teacher'); ?></th>
+                                    <th><?= temp_lang('assignments.title'); ?></th>
+                                    <th><?= temp_lang('assignments.description'); ?></th>
+                                    <th><?= temp_lang('assignments.file'); ?></th>
+                                    <th><?= temp_lang('assignments.deadline'); ?></th>
+                                    <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,12 @@
                                         <td>
                                             <?php if (esc($assignment->file)): ?>
 
-                                                <a href="<?= esc($assignment->file); ?>" target="_blank">Download</a>
+                                                <?php if (filter_var($assignment->file, FILTER_VALIDATE_URL)): ?>
+                                                    <a href="<?= esc($assignment->file); ?>" target="_blank">Download</a>
+                                                <?php else: ?>
+                                                    <a href="<?= asset_url(); ?>uploads/assignments/<?= esc($assignment->file); ?>" target="_blank">Download</a>
+                                                <?php endif; ?>
+
 
                                             <?php endif; ?>
                                         </td>
@@ -79,7 +84,7 @@
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                    <button type='button' data-ket="<?= temp_lang('assignments.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
                                                 </form>
                                             <?php endif; ?>
 

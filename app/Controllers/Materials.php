@@ -11,6 +11,10 @@ class Materials extends BaseController
     private $model_class;
     private $model_subject;
     private $model_teacher;
+
+    protected $uploadPath;
+
+
     private $link = 'materials';
     private $view = 'materials';
     private $title = 'Materials';
@@ -21,6 +25,12 @@ class Materials extends BaseController
         $this->model_class = new \App\Models\ClassModel();
         $this->model_subject = new \App\Models\SubjectModel();
         $this->model_teacher = new \App\Models\TeacherModel();
+
+        $this->uploadPath = WRITEPATH . 'uploads/materials/';
+
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0775, true);
+        }
     }
 
     /**
@@ -173,9 +183,9 @@ class Materials extends BaseController
 
             if ($fileUpload && $fileUpload->isValid()) {
 
-                $namaFile = $fileUpload->getRandomName();
-                $fileUpload->move(WRITEPATH . 'uploads/materials', $namaFile);
-                $data['file'] = $namaFile;
+                $nameFile = $fileUpload->getRandomName();
+                $fileUpload->move($this->uploadPath, $nameFile);
+                $data['file'] = $nameFile;
             } else {
                 $data['file'] = $fileLink;
             }
@@ -334,12 +344,12 @@ class Materials extends BaseController
 
                 // hapus file lama jika bukan link
                 if ($material->file && !filter_var($material->file, FILTER_VALIDATE_URL)) {
-                    @unlink(WRITEPATH . 'uploads/materials/' . $material->file);
+                    @unlink($this->uploadPath . $material->file);
                 }
 
-                $namaFile = $fileUpload->getRandomName();
-                $fileUpload->move(WRITEPATH . 'uploads/materials', $namaFile);
-                $data['file'] = $namaFile;
+                $nameFile = $fileUpload->getRandomName();
+                $fileUpload->move($this->uploadPath, $nameFile);
+                $data['file'] = $nameFile;
             }
             // jika pakai link
             elseif (!empty($fileLink)) {
@@ -397,7 +407,7 @@ class Materials extends BaseController
             $this->model->delete($id);
 
             if ($material && $material->file && !filter_var($material->file, FILTER_VALIDATE_URL)) {
-                @unlink(WRITEPATH . 'uploads/materials/' . $material->file);
+                @unlink($this->uploadPath . $material->file);
             }
 
             if ($this->db->transStatus() === false) {
