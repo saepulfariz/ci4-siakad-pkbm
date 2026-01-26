@@ -25,6 +25,10 @@ return [
     'new_notifications' => 'Notifikasi Terbaru',
     'new_annoucements' => 'Pengumuman Terbaru',
 
+    'new_materials' => 'Materi Terbaru',
+    'status_already_submit' => 'Sudah Dikumpulkan',
+    'status_not_submit' => 'Belum Dikumpulkan',
+
     'monday' => 'Senin',
     'tuesday' => 'Selasa',
     'wednesday' => 'Rabu',

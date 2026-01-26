@@ -25,6 +25,11 @@ return [
     'new_notifications' => 'New Notifications',
     'new_annoucements' => 'New Annoucements',
 
+    'new_materials' => 'New Materials',
+
+    'status_already_submit' => 'Already Submitted',
+    'status_not_submit' => 'Not Submitted',
+
     'monday' => 'Monday',
     'tuesday' => 'Tuesday',
     'wednesday' => 'Wednesday',
