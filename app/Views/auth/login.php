@@ -3,123 +3,173 @@
 
 <?= $this->section('title') ?><?= lang('Auth.login') ?> <?= $this->endSection() ?>
 
+
+<?= $this->section('head') ?>
+<style>
+    body {
+        height: 100vh;
+    }
+
+    .login-container {
+        height: 100vh;
+    }
+
+    .left-side {
+        background: url('<?= asset_url(); ?>assets/images/pkbm.webp') center center no-repeat;
+        background-size: cover;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .brand img {
+        width: 70px;
+        margin-right: 10px;
+    }
+
+    .brand-text h1 {
+        margin: 0;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    .brand-text small {
+        font-size: 14px;
+        color: #666;
+    }
+</style>
+
+<style>
+    /* Toggle Switch */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: #007bff;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(22px);
+    }
+</style>
+<?= $this->endSection('head') ?>
+
 <?= $this->section('content') ?>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo mb-0">
-            <a href="" class="font-weight-bold"><b>SIPENA</b></a>
-        </div>
-        <h3 class="text-center" style='font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"'>Belajar Tertata, Nilai Terdata</h3>
-        <!-- /.login-logo -->
+<body class="">
+    <div class="container-fluid login-container">
+        <div class="row h-100">
 
-        <?php if (session('error') !== null) : ?>
-            <!-- <div class="alert alert-danger" role="alert"><?= session('error') ?></div> -->
-
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <?= session('error') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <!-- KIRI (FOTO) -->
+            <div class="col-md-8 left-side d-none d-md-block">
             </div>
-        <?php elseif (session('errors') !== null) : ?>
-            <!-- <div class="alert alert-danger" role="alert"> -->
 
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <?php if (is_array(session('errors'))) : ?>
-                    <?php foreach (session('errors') as $error) : ?>
-                        <?= $error ?>
-                        <br>
-                    <?php endforeach ?>
-                <?php else : ?>
-                    <?= session('errors') ?>
-                <?php endif ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <?php endif ?>
+            <!-- KANAN (FORM LOGIN) -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <div class="w-75">
 
-        <?php if (session('message') !== null) : ?>
-
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?= session('message') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- <div class="alert alert-success" role="alert"><?= session('message') ?></div> -->
-        <?php endif ?>
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg"><?= lang('Auth.login') ?></p>
-
-                <form action="<?= base_url('login'); ?>" method="post">
-                    <?= csrf_field(); ?>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="email" id="email" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email'); ?>">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                    <!-- LOGO + SIPENA -->
+                    <div class="brand">
+                        <img src="<?= asset_url(); ?>assets/images/logo.png" alt="Logo SIPENA">
+                        <div class="brand-text">
+                            <h1>SIPENA</h1>
+                            <p class="m-0 p-0">Belajar Tertata, Nilai Terdata</p>
                         </div>
                     </div>
-                    <div class="mb-3 text-danger"><?= validation_show_error('email'); ?></div>
-                    <!-- Password input dengan show/hide -->
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="<?= lang('Auth.password') ?>">
-                        <div class="input-group-append">
-                            <div class="input-group-text" style="cursor: pointer;" id="togglePassword">
-                                <span class="fas fa-eye"></span>
+
+                    <h4 class="mb-4" style="font-weight: 600;">Selamat Datang</h4>
+
+                    <!-- FORM LOGIN -->
+                    <form action="<?= base_url('login'); ?>" method="post">
+                        <?= csrf_field(); ?>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email'); ?>">
+                        </div>
+                        <div class="mb-3 text-danger"><?= validation_show_error('email'); ?></div>
+
+                        <div class="form-group">
+                            <label for="password"><?= lang('Auth.password') ?></label>
+                            <div class="input-group">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="<?= lang('Auth.password') ?>">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                                        👁
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3 text-danger"><?= validation_show_error('password'); ?></div>
-                    <div class="row">
-                        <div class="col-7">
-                            <div class="icheck-primary">
-                                <input type="checkbox" <?php if (old('remember')): ?> checked<?php endif ?> name="remember" id="remember">
-                                <label for="remember">
-                                    <?= lang('Auth.rememberMe') ?>
+                        <div class="mb-3 text-danger"><?= validation_show_error('password'); ?></div>
+
+                        <div class="form-group d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <label class="switch mb-0">
+                                    <input type="checkbox" <?php if (old('remember')): ?> checked<?php endif ?> name="remember" id="remember">
+                                    <span class="slider"></span>
                                 </label>
+                                <span class="ml-2"> <?= lang('Auth.rememberMe') ?></span>
                             </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-5 text-right">
-                            <button type="submit" class="btn btn-primary"><?= lang('Auth.login') ?></button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
 
-                <?php if (setting('Auth.allowRegistration')) : ?>
-                    <p class="mb-0">
-                        <a href="<?= url_to('register') ?>" class="text-center"><?= lang('Auth.needAccount') ?> - <?= lang('Auth.register') ?></a>
-                    </p>
-                <?php endif ?>
+                            <a href="#" class="text-sm">Lupa Kata Sandi?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <?= lang('Auth.login') ?>
+                        </button>
+                    </form>
+
+                </div>
             </div>
-            <!-- /.login-card-body -->
+
         </div>
     </div>
-    <!-- /.login-box -->
     <?= $this->endSection('content') ?>
-
 
     <?= $this->section('script') ?>
     <script>
         document.getElementById('togglePassword').addEventListener('click', function() {
             const password = document.getElementById('password');
-            const icon = this.querySelector('span');
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
 
-            if (password.type === 'password') {
-                password.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                password.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
+            this.textContent = type === 'password' ? '👁' : '🙈';
         });
     </script>
     <?= $this->endSection('script') ?>
