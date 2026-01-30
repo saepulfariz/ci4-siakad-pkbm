@@ -31,6 +31,11 @@
             background: linear-gradient(135deg, rgba(23, 43, 85, 0.95), rgba(245, 183, 59, 0.85));
         }
 
+        .background-img {
+            background: url('<?= asset_url(); ?>assets/images/pkbm.webp') center center no-repeat;
+            background-size: cover;
+        }
+
         .section-padding {
             padding: 60px 0;
         }
@@ -69,7 +74,7 @@
             <div
                 style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
                 <div style="display: flex; align-items: center; gap: 16px;"><img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjPZsGn5j_amemJB29prRMzCEZofearpQMoZmPSXYHHTkApJdia_7iErvu03J2sR8nsVkjCwoTSSM0wg12o18V65P269bhI82VgryKCN15vIOoYi8xhSgjR2f2EPqRhoNZSxERCKIskQ3GOXoDfED0TwV9DMMS5Bgaz5AUGrpCl9lgpmrJGnQUN7LQ9QI/w1684-h1069-p-k-no-nu/Desain%20tanpa%20judul%20(1).png"
+                        src="<?= asset_url(); ?>assets/images/logo.png"
                         alt="Logo PKBM Hayati Nusantara" style="height: 50px; width: auto;"
                         onerror="this.src=''; this.alt='Logo PKBM Hayati Nusantara'; this.style.display='none';">
                     <div>
@@ -77,7 +82,7 @@
                             PKBM Hayati Nusantara
                         </div>
                         <div style="font-size: 12px; color: #F5B73B;">
-                            Pendidikan Berkualitas
+                            NPSN : P9999412
                         </div>
                     </div>
                 </div>
@@ -119,7 +124,7 @@
                     onerror="this.src=''; this.alt='Gedung Sekolah'; this.style.display='none';" style="display: none;">
             </div>
         </div> -->
-        <div class="gradient-overlay"
+        <div class="background-img"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
             <div style="text-align: center; color: #FAFFFE; padding: 24px; max-width: 900px;">
                 <h1 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" id="hero-title" class="fade-in"
@@ -161,9 +166,7 @@
                         style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
                         <h3 id="vision-title"
                             style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Visi</h3>
-                        <p style="line-height: 1.8; color: #2C3E50;">Menjadi pusat kegiatan belajar masyarakat yang unggul,
-                            inovatif, dan berkarakter, serta memberikan layanan pendidikan kesetaraan yang berkualitas untuk
-                            membentuk generasi yang cerdas, terampil, dan berakhlak mulia.</p>
+                        <p style="line-height: 1.8; color: #2C3E50;">Mewujudkan masyarakat yang cerdas dan mandiri melalui pendidikan sepanjang hayat.</p>
                     </div>
                 </div>
                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">
@@ -173,10 +176,13 @@
                         <h3 id="mission-title"
                             style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Misi</h3>
                         <ul style="line-height: 1.8; color: #2C3E50; padding-left: 20px;">
-                            <li>Menyelenggarakan pendidikan kesetaraan yang berkualitas</li>
-                            <li>Mengembangkan keterampilan hidup yang aplikatif</li>
-                            <li>Membentuk karakter yang berintegritas</li>
-                            <li>Memberikan pelayanan pendidikan yang fleksibel</li>
+                            <li>Menyelenggarakan program pendidikan nonformal yang bermutu dan sesuai dengan kebutuhan masyarakat, seperti keaksaraan, kesetaraan (Paket A, B, C), dan keterampilan</li>
+                            <li>Meningkatkan kualitas sumber daya manusia melalui pembelajaran yang berorientasi pada pengembangan potensi diri dan keterampilan hidup (life skills).</li>
+
+                            <li>Mendorong partisipasi aktif masyarakat dalam proses belajar-mengajar serta pengelolaan PKBM secara partisipatif dan berkelanjutan.</li>
+                            <li>Membangun kemitraan dengan berbagai pihak (pemerintah, swasta, dan masyarakat) untuk memperluas akses dan mutu layanan pendidikan.</li>
+                            <li> Mewujudkan masyarakat pembelajar sepanjang hayat yang memiliki karakter, etika, dan kepedulian sosial.</li>
+
                         </ul>
                     </div>
                 </div>
@@ -192,7 +198,7 @@
                     style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #172B55;">
                     Sambutan Kepala Sekolah</h2>
                 <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;"><img
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGqsyUYUiR51MHBmRJbcshLQtyt2tfkFtEolb5Cx0hJvR1Fw8r4w-7ZdNVTQYQ6Ab8tw3ClYdfrZnHk0h9osFSkXcKD0BPsGpnS6QsZOWOHnVNxNQ7G_7wKf6ERGVRQvqDZ0X8OBGj91BNbYVFex2Kju9BZfD_YASD2mV6YFzEVmyx_dEiBTQmfvSWGWg/s320/wawan%20ridwan.png"
+                        src="<?= asset_url(); ?>assets/dist/img/user.png"
                         alt="Kepala Sekolah"
                         style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #F5B73B; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
                         onerror="this.src=''; this.alt='Kepala Sekolah'; this.style.display='none';">
@@ -201,8 +207,7 @@
                             Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di PKBM Hayati Nusantara. Kami
                             berkomitmen untuk memberikan pendidikan berkualitas yang dapat mengubah kehidupan dan
                             membuka peluang masa depan yang lebih cerah bagi setiap peserta didik kami.</p>
-                        <p id="principal-name" style="font-weight: 600; color: #172B55; font-size: 18px;">Wawan Ridwan,
-                            S.Pd., M.M.</p>
+                        <p id="principal-name" style="font-weight: 600; color: #172B55; font-size: 18px;">M. Yahya Soeharyanto, S.ag. M.ba</p>
                         <p style="color: #F5B73B; font-weight: 500;">Kepala Sekolah</p>
                     </div>
                 </div>
@@ -217,11 +222,9 @@
                 Program Akademik</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
-                        <div class="hover-lift"
-                            style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 6px solid #F5B73B;">
-                            <div
-                                style="width: 64px; height: 64px; background: #F5B73B; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="aos-init aos-animate">
+                        <div class="hover-lift" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 6px solid #F5B73B;">
+                            <div style="width: 64px; height: 64px; background: #F5B73B; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#172B55" stroke-width="2">
                                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -233,14 +236,11 @@
                                 tingkat SMP dengan kurikulum yang komprehensif dan metode pembelajaran yang fleksibel,
                                 disesuaikan dengan kebutuhan peserta didik.</p>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
-                                        style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
                                     Durasi 3 tahun</li>
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
-                                        style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
                                     Ijazah setara SMP</li>
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
-                                        style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
                                     Jadwal fleksibel</li>
                             </ul>
                         </div>
@@ -271,14 +271,13 @@
                                     Ijazah setara SMA</li>
                                 <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
                                         style="width: 8px; height: 8px; background: #172B55; border-radius: 50%; margin-right: 12px;"></span>
-                                    Jurusan IPA &amp; IPS</li>
+                                    Jurusan IPS</li>
                             </ul>
                         </div>
 
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -369,8 +368,12 @@
                         </div>
                         <div>
                             <p style="font-weight: 600; color: #172B55; margin-bottom: 4px;">Alamat</p>
-                            <p style="color: #2C3E50; line-height: 1.7;">Kp. Ciawitali RT.17 RW.09, Desa Cijengkol,
-                                Kecamatan Serangpanjang, Kabupaten Subang, Jawa Barat</p>
+                            <p style="color: #2C3E50; line-height: 1.7;">
+                                <a href="https://maps.app.goo.gl/vgTTDsvXMTqMqZAL6" target="_blank" class="text-reset">
+                                    Kp. Ciawitali RT.17 RW.09, Desa Cijengkol,
+                                    Kecamatan Serangpanjang, Kabupaten Subang, Jawa Barat
+                                </a>
+                            </p>
                         </div>
                     </div>
                     <div style="margin-bottom: 20px; display: flex; align-items: start; gap: 16px;">
@@ -379,8 +382,11 @@
                             📞
                         </div>
                         <div>
-                            <p style="font-weight: 600; color: #172B55; margin-bottom: 4px;">Telepon</p>
-                            <p style="color: #2C3E50; line-height: 1.7;">(021) 1234-5678</p>
+                            <p style="font-weight: 600; color: #172B55; margin-bottom: 4px;">Telepon/Whatsapp</p>
+                            <p style="color: #2C3E50; line-height: 1.7;">
+                                <a class="text-reset" href="ttps://api.whatsapp.com/send?phone=6282115896770&text=Halo%2C%20saya%20ingin%20daftar%20dengan%20di%20PKBM%20Hayati%20Nusantara." target="_blank">0821-1589-6770</a>
+
+                            </p>
                         </div>
                     </div>
                     <div style="margin-bottom: 32px; display: flex; align-items: start; gap: 16px;">
@@ -390,12 +396,14 @@
                         </div>
                         <div>
                             <p style="font-weight: 600; color: #172B55; margin-bottom: 4px;">Email</p>
-                            <p style="color: #2C3E50; line-height: 1.7;">info@pkbmhayatinusantara.sch.id</p>
+                            <p style="color: #2C3E50; line-height: 1.7;">
+                                <a href="mailto:pkbmhayatinusantara@gmail.com" target="_blank" class="text-reset">pkbmhayatinusantara@gmail.com</a>
+                            </p>
                         </div>
                     </div>
                     <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34928.91194662046!2d107.64946225654782!3d-6.719252806994286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e692127cfad688b%3A0xd25ae16439c79cb8!2sYAYASAN%20NUR%20INSANI%20%2F%20PKBM%20NUR%20INSANI!5e0!3m2!1sid!2sid!4v1768669789790!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3962.829711085634!2d107.62107999999999!3d-6.668012999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNDAnMDQuOSJTIDEwN8KwMzcnMTUuOSJF!5e0!3m2!1sid!2sid!4v1769816137134!5m2!1sid!2sid"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -439,6 +447,13 @@
                 <div>
                     <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #F5B73B;">PKBM Hayati
                         Nusantara</h3>
+                    <div>
+                        <small>NPSN : P9999412</small>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <small>Izin Operasional : PK.01.01/KEP-0001/DPMPTSP/2024</small>
+                    </div>
+
                     <p style="line-height: 1.8; opacity: 0.9;">Memberikan akses pendidikan berkualitas untuk semua
                         dengan program kesetaraan yang fleksibel dan berorientasi pada masa depan.</p>
                 </div>
@@ -464,31 +479,16 @@
                     </div>
                 </div>
                 <div>
-                    <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #F5B73B;">Ikuti Kami</h3>
-                    <div style="display: flex; gap: 12px;">
-                        <a href="#"
-                            style="width: 40px; height: 40px; background: rgba(245,183,59,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px; transition: all 0.3s;"
-                            onmouseover="this.style.background='#F5B73B'; this.style.transform='scale(1.1)'"
-                            onmouseout="this.style.background='rgba(245,183,59,0.2)'; this.style.transform='scale(1)'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
-                            </svg>
-                        </a>
-                        <a href="#"
-                            style="width: 40px; height: 40px; background: rgba(245,183,59,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px; transition: all 0.3s;"
-                            onmouseover="this.style.background='#F5B73B'; this.style.transform='scale(1.1)'"
-                            onmouseout="this.style.background='rgba(245,183,59,0.2)'; this.style.transform='scale(1)'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
-                            </svg></a>
-                        <a href="#"
-                            style="width: 40px; height: 40px; background: rgba(245,183,59,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px; transition: all 0.3s;"
-                            onmouseover="this.style.background='#F5B73B'; this.style.transform='scale(1.1)'"
-                            onmouseout="this.style.background='rgba(245,183,59,0.2)'; this.style.transform='scale(1)'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                            </svg>
-                        </a>
+                    <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #F5B73B;">Pembelajaran </h3>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a class="page-scroll" href="<?= base_url('materials'); ?>"
+                            style="color: rgb(250, 255, 254); text-decoration: none; opacity: 0.9; transition: opacity 0.3s;"
+                            onmouseover="this.style.opacity='1'; this.style.color='#F5B73B'"
+                            onmouseout="this.style.opacity='0.9'; this.style.color='#FAFFFE'">Materi</a>
+                        <a class="page-scroll" href="<?= base_url('assignments'); ?>"
+                            style="color: #FAFFFE; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;"
+                            onmouseover="this.style.opacity='1'; this.style.color='#F5B73B'"
+                            onmouseout="this.style.opacity='0.9'; this.style.color='#FAFFFE'">Tugas</a>
                     </div>
                 </div>
             </div>
