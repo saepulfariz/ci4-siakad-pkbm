@@ -384,7 +384,7 @@
                         <div>
                             <p style="font-weight: 600; color: #172B55; margin-bottom: 4px;">Telepon/Whatsapp</p>
                             <p style="color: #2C3E50; line-height: 1.7;">
-                                <a class="text-reset" href="ttps://api.whatsapp.com/send?phone=6282115896770&text=Halo%2C%20saya%20ingin%20daftar%20dengan%20di%20PKBM%20Hayati%20Nusantara." target="_blank">0821-1589-6770</a>
+                                <a class="text-reset" href="https://api.whatsapp.com/send?phone=6282115896770&text=Halo%2C%20saya%20ingin%20daftar%20dengan%20di%20PKBM%20Hayati%20Nusantara." target="_blank">0821-1589-6770</a>
 
                             </p>
                         </div>
@@ -527,6 +527,40 @@
 
             e.preventDefault();
         })
+    </script>
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const pesan = document.getElementById("message").value;
+
+
+            // const emailTo = "pkbmhayatinusantara@gmail.com";
+            // const subject = encodeURIComponent("Halo");
+            // const body = encodeURIComponent(
+            //     "Nama: " + nama + "\n" +
+            //     "Email: " + email + "\n\n" +
+            //     "Pesan:\n" + pesan
+            // );
+
+            // const mailtoLink = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+
+            // window.location.href = mailtoLink;
+
+            const phone = "6282115896770"; // ganti nomor tujuan
+
+            const text =
+                "Halo..%0A%0A" +
+                "Nama: " + nama + "%0A" +
+                "Email: " + email + "%0A%0A" +
+                "Pesan:%0A" + pesan;
+
+            const waLink = `https://api.whatsapp.com/send?phone=${phone}&text=${text}`;
+
+            window.open(waLink, "_blank");
+        });
     </script>
 </body>
 
