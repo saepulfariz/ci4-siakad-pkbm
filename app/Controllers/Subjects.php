@@ -13,6 +13,8 @@ class Subjects extends BaseController
     private $title = 'Subjects';
     public function __construct()
     {
+        $this->title = temp_lang('subjects.subjects');
+
         $this->model = new \App\Models\SubjectModel();
     }
 
@@ -105,7 +107,7 @@ class Subjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create subject')->withInput();
+                return redirect()->back()->with('error', temp_lang('subjects.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -113,10 +115,10 @@ class Subjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Subject created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('subjects.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create Subject')->withInput();
+            return redirect()->back()->with('error', temp_lang('subjects.create_error'))->withInput();
         }
     }
 
@@ -202,7 +204,7 @@ class Subjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Subject')->withInput();
+                return redirect()->back()->with('error',  temp_lang('subjects.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -210,10 +212,10 @@ class Subjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Subject updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('subjects.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Subject ')->withInput();
+            return redirect()->back()->with('error', temp_lang('subjects.update_error'))->withInput();
         }
     }
 
@@ -244,7 +246,7 @@ class Subjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete subject')->withInput();
+                return redirect()->back()->with('error', temp_lang('subjects.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -252,10 +254,10 @@ class Subjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Subject deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('subjects.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete subject')->withInput();
+            return redirect()->back()->with('error', temp_lang('subjects.delete_error'))->withInput();
         }
     }
 }

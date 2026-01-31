@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Subject</h1>
+                <h1 class="m-0"><?= temp_lang('app.new'); ?> <?= temp_lang('subjects.subject'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.new'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,7 +34,7 @@
 
 
                             <div class="form-group">
-                                <label for="code">Code</label>
+                                <label for="code"><?= temp_lang('subjects.code'); ?></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('code')) ? 'border-danger' : ((old('code')) ? 'border-success' : ''); ?>" id="code" name="code" placeholder="MTK-X" value="<?= old('code'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
@@ -42,14 +42,14 @@
 
 
                             <div class="form-group">
-                                <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <label for="name"><?= temp_lang('subjects.name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="Matematika" value="<?= old('name'); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.save'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
 
                         </div>

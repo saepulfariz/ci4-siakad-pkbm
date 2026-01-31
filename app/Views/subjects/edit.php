@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Subject</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('subjects.subject'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,21 +34,21 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <label for="code">Code</label>
+                                <label for="code"><?= temp_lang('subjects.code'); ?></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('code')) ? 'border-danger' : ((old('code')) ? 'border-success' : ''); ?>" id="code" name="code" placeholder="MTK-X" value="<?= old('code', esc($subject->code)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('code') && !$error) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="name">Name <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <label for="name"><?= temp_lang('subjects.name'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
                                 <input type="text" class="form-control <?= ($error = validation_show_error('name')) ? 'border-danger' : ((old('name')) ? 'border-success' : ''); ?>" id="name" name="name" placeholder="name" value="<?= old('name', esc($subject->name)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('name')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.update'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('subjects.cancel'); ?></a>
 
                         </div>
                     </div>
