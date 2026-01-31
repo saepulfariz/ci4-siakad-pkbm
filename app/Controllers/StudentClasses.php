@@ -15,6 +15,8 @@ class StudentClasses extends BaseController
     private $title = 'Student Classes';
     public function __construct()
     {
+        $this->title = temp_lang('student_classes.student_classes');
+
         $this->model = new \App\Models\StudentClassModel();
         $this->model_class = new \App\Models\ClassModel();
         $this->model_student = new \App\Models\StudentModel();
@@ -111,7 +113,7 @@ class StudentClasses extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create student class')->withInput();
+                return redirect()->back()->with('error', temp_lang('student_classes.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -119,10 +121,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('student_classes.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create student class')->withInput();
+            return redirect()->back()->with('error', temp_lang('student_classes.create_error'))->withInput();
         }
     }
 
@@ -206,7 +208,7 @@ class StudentClasses extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Student class')->withInput();
+                return redirect()->back()->with('error',  temp_lang('student_classes.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -214,10 +216,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('student_classes.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Student class ')->withInput();
+            return redirect()->back()->with('error', temp_lang('student_classes.update_error'))->withInput();
         }
     }
 
@@ -248,7 +250,7 @@ class StudentClasses extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete student class')->withInput();
+                return redirect()->back()->with('error', temp_lang('student_classes.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -256,10 +258,10 @@ class StudentClasses extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Student class deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('student_classes.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete student class')->withInput();
+            return redirect()->back()->with('error', temp_lang('student_classes.delete_error'))->withInput();
         }
     }
 }

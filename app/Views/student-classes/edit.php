@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Student Class</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('student_classes.student_class'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,7 +34,7 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <label for="student_id">Student</label>
+                                <label for="student_id"><?= temp_lang('students.student'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('student_id')) ? 'border-danger' : ((old('student_id')) ? 'border-success' : ''); ?> " value="<?= old('student_id'); ?>" id="student_id" name="student_id">
                                     <?php foreach ($students as $student): ?>
                                         <?php if (old('student_id')): ?>
@@ -59,7 +59,7 @@
 
 
                             <div class="form-group">
-                                <label for="class_id">Class</label>
+                                <label for="class_id"><?= temp_lang('classes.class'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('class_id')) ? 'border-danger' : ((old('class_id')) ? 'border-success' : ''); ?> " value="<?= old('class_id'); ?>" id="class_id" name="class_id">
                                     <?php foreach ($classes as $dt_class): ?>
                                         <?php if (old('class_id')): ?>
@@ -82,8 +82,8 @@
                             <?= (old('class_id')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.update'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
                     </div>
