@@ -15,6 +15,8 @@ class TeacherSubjects extends BaseController
     private $title = 'Teacher Subjects';
     public function __construct()
     {
+        $this->title = temp_lang('teacher_subjects.teacher_subjects');
+
         $this->model = new \App\Models\TeacherSubjectModel();
         $this->model_subject = new \App\Models\SubjectModel();
         $this->model_teacher = new \App\Models\TeacherModel();
@@ -111,7 +113,7 @@ class TeacherSubjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create Teacher subject')->withInput();
+                return redirect()->back()->with('error', temp_lang('teacher_subjects.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -119,10 +121,10 @@ class TeacherSubjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Teacher subject created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('teacher_subjects.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create Teacher subject')->withInput();
+            return redirect()->back()->with('error', temp_lang('teacher_subjects.create_error'))->withInput();
         }
     }
 
@@ -206,7 +208,7 @@ class TeacherSubjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update Teacher subject')->withInput();
+                return redirect()->back()->with('error',  temp_lang('teacher_subjects.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -214,10 +216,10 @@ class TeacherSubjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Teacher subject updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('teacher_subjects.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update Teacher subject ')->withInput();
+            return redirect()->back()->with('error', temp_lang('teacher_subjects.update_error'))->withInput();
         }
     }
 
@@ -248,7 +250,7 @@ class TeacherSubjects extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete Teacher subject')->withInput();
+                return redirect()->back()->with('error', temp_lang('teacher_subjects.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -256,10 +258,10 @@ class TeacherSubjects extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Teacher subject deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('teacher_subjects.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete Teacher subject')->withInput();
+            return redirect()->back()->with('error', temp_lang('teacher_subjects.delete_error'))->withInput();
         }
     }
 }

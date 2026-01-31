@@ -34,7 +34,7 @@
 
                 ?>
                 <?php if ($can_create): ?>
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2">New</a>
+                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
@@ -42,9 +42,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Teacher</th>
-                                    <th>Subject</th>
-                                    <th>Action</th>
+                                    <th><?= temp_lang('teachers.teacher'); ?></th>
+                                    <th><?= temp_lang('subjects.subject'); ?></th>
+                                    <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,7 +67,7 @@
                                                     <?= csrf_field(); ?>
                                                     <input type='hidden' name='_method' value='DELETE' />
                                                     <!-- GET, POST, PUT, PATCH, DELETE-->
-                                                    <button type='button' onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
+                                                    <button type='button' data-ket="<?= temp_lang('teacher_subjects.delete_confirm'); ?>" onclick='confirmDelete(this)' class='btn btn-sm mb-2 btn-danger'><i class="fas fa-trash"></i></button>
                                                 </form>
 
                                             <?php endif; ?>

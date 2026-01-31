@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">New Teacher Subject</h1>
+                <h1 class="m-0"><?= temp_lang('app.new'); ?> <?= temp_lang('teacher_subjects.teacher_subject'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">New</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.new'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -34,7 +34,7 @@
 
 
                             <div class="form-group">
-                                <label for="teacher_id">Teacher</label>
+                                <label for="teacher_id"><?= temp_lang('teachers.teacher'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('teacher_id')) ? 'border-danger' : ((old('teacher_id')) ? 'border-success' : ''); ?> " value="<?= old('teacher_id'); ?>" id="teacher_id" name="teacher_id">
                                     <?php foreach ($teachers as $teacher): ?>
                                         <?php if (old('teacher_id')): ?>
@@ -55,7 +55,7 @@
 
 
                             <div class="form-group">
-                                <label for="subject_id">Subject</label>
+                                <label for="subject_id"><?= temp_lang('subjects.subject'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('subject_id')) ? 'border-danger' : ((old('subject_id')) ? 'border-success' : ''); ?> " value="<?= old('subject_id'); ?>" id="subject_id" name="subject_id">
                                     <?php foreach ($subjects as $subject): ?>
                                         <?php if (old('subject_id')): ?>
@@ -75,9 +75,8 @@
 
 
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
-
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.save'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
                         </div>
                     </div>
