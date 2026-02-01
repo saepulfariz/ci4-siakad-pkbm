@@ -99,6 +99,7 @@ class SeedStudentClasses extends Seeder
             [
                 'class_id' => 1,
                 'student_id' => 1,
+                'semester_id' => 1,
             ],
         ];
 

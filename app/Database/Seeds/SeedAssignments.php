@@ -143,6 +143,7 @@ class SeedAssignments extends Seeder
 
         $data = [
             [
+                'semester_id' => 1,
                 'class_id' => 1,
                 'subject_id' => 1,
                 'teacher_id' => 1,

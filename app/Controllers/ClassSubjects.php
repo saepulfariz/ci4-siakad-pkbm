@@ -10,6 +10,7 @@ class ClassSubjects extends BaseController
     private $model;
     private $model_class;
     private $model_subject;
+    private $model_semester;
     private $link = 'class-subjects';
     private $view = 'class-subjects';
     private $title = 'Class Subjects';
@@ -20,6 +21,7 @@ class ClassSubjects extends BaseController
         $this->model = new \App\Models\ClassSubjectModel;
         $this->model_class = new \App\Models\ClassModel();
         $this->model_subject = new \App\Models\SubjectModel();
+        $this->model_semester = new \App\Models\SemesterModel();
     }
 
     /**
@@ -37,7 +39,7 @@ class ClassSubjects extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'class_subjects' => $this->model->select('class_subjects.*, classes.name as class_name, subjects.name as subject_name')->join('subjects', 'subjects.id = class_subjects.subject_id', 'left')->join('classes', 'classes.id = class_subjects.class_id', 'left')->orderBy('class_subjects.id', 'desc')->findAll()
+            'class_subjects' => $this->model->select('class_subjects.*, classes.name as class_name, subjects.name as subject_name')->select('semesters.name as semester_name')->join('semesters', 'semesters.id = class_subjects.semester_id')->join('subjects', 'subjects.id = class_subjects.subject_id', 'left')->join('classes', 'classes.id = class_subjects.class_id', 'left')->select('academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id  = semesters.academic_year_id')->orderBy('class_subjects.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -72,6 +74,7 @@ class ClassSubjects extends BaseController
             'link' => $this->link,
             'classes' => $this->model_class->findAll(),
             'subjects' => $this->model_subject->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -92,6 +95,7 @@ class ClassSubjects extends BaseController
         $rules = [
             'class_id' => 'required',
             'subject_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -106,6 +110,7 @@ class ClassSubjects extends BaseController
             $subjects = $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT);
             foreach ($subjects as $subject) {
                 $data = [
+                    'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
                     'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
                     'subject_id' => $subject,
                 ];
@@ -158,6 +163,7 @@ class ClassSubjects extends BaseController
             'class_subject' => $class_subject,
             'classes' => $this->model_class->findAll(),
             'subjects' => $this->model_subject->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -186,6 +192,7 @@ class ClassSubjects extends BaseController
         $rules = [
             'class_id' => 'required',
             'subject_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -201,6 +208,7 @@ class ClassSubjects extends BaseController
 
 
             $data = [
+                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
                 'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
                 'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
             ];

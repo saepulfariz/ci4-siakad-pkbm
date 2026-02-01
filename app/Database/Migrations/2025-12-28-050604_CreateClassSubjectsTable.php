@@ -26,6 +26,16 @@ class CreateClassSubjectsTable extends Migration
                 'constraint'     => 11,
                 'unsigned'       => true,
             ],
+            'subject_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+            ],
+            'semester_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+            ],
             'cid' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -59,6 +69,7 @@ class CreateClassSubjectsTable extends Migration
 
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('semester_id', 'semesters', 'id');
         $this->forge->addForeignKey('class_id', 'classes', 'id');
         $this->forge->addForeignKey('subject_id', 'subjects', 'id');
         $this->forge->createTable('class_subjects');

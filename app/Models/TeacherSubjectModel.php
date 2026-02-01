@@ -19,7 +19,8 @@ class TeacherSubjectModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'teacher_id',
-        'subject_id'
+        'subject_id',
+        'semester_id',
     ];
 
     protected $cacheKey = 'teacher_subjects';

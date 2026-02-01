@@ -44,6 +44,8 @@
                                     <th>#</th>
                                     <th><?= temp_lang('classes.class'); ?></th>
                                     <th><?= temp_lang('subjects.subject'); ?></th>
+                                    <th><?= temp_lang('semesters.semester'); ?></th>
+                                    <th><?= temp_lang('academic_years.academic_year'); ?></th>
                                     <th><?= temp_lang('app.action'); ?></th>
                                 </tr>
                             </thead>
@@ -54,6 +56,8 @@
                                         <td><?= $a++; ?></td>
                                         <td><?= esc($subject->class_name); ?></td>
                                         <td><?= esc($subject->subject_name); ?></td>
+                                        <td><?= esc($subject->semester_name); ?></td>
+                                        <td><?= esc($subject->academic_year_name); ?></td>
                                         <td>
                                             <?php if ($can_edit): ?>
 

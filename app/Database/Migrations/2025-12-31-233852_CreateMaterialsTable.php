@@ -16,6 +16,11 @@ class CreateMaterialsTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'semester_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+            ],
             'class_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
@@ -76,6 +81,7 @@ class CreateMaterialsTable extends Migration
 
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('semester_id', 'semesters', 'id');
         $this->forge->addForeignKey('class_id', 'classes', 'id');
         $this->forge->addForeignKey('subject_id', 'subjects', 'id');
         $this->forge->addForeignKey('teacher_id', 'teachers', 'id');

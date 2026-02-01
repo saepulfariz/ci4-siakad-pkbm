@@ -10,6 +10,7 @@ class TeacherSubjects extends BaseController
     private $model;
     private $model_subject;
     private $model_teacher;
+    private $model_semester;
     private $link = 'teacher-subjects';
     private $view = 'teacher-subjects';
     private $title = 'Teacher Subjects';
@@ -20,6 +21,7 @@ class TeacherSubjects extends BaseController
         $this->model = new \App\Models\TeacherSubjectModel();
         $this->model_subject = new \App\Models\SubjectModel();
         $this->model_teacher = new \App\Models\TeacherModel();
+        $this->model_semester = new \App\Models\SemesterModel();
     }
 
     /**
@@ -37,7 +39,7 @@ class TeacherSubjects extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'teacher_subjects' => $this->model->select('teacher_subjects.*, subjects.name as subject_name, teachers.full_name as teacher_name')->join('teachers', 'teachers.id = teacher_subjects.teacher_id', 'left')->join('subjects', 'subjects.id = teacher_subjects.subject_id', 'left')->orderBy('teacher_subjects.id', 'desc')->findAll()
+            'teacher_subjects' => $this->model->select('teacher_subjects.*, subjects.name as subject_name, teachers.full_name as teacher_name')->select('semesters.name as semester_name')->join('semesters', 'semesters.id = teacher_subjects.semester_id')->join('teachers', 'teachers.id = teacher_subjects.teacher_id', 'left')->join('subjects', 'subjects.id = teacher_subjects.subject_id', 'left')->select('academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id  = semesters.academic_year_id')->orderBy('teacher_subjects.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -72,6 +74,7 @@ class TeacherSubjects extends BaseController
             'link' => $this->link,
             'subjects' => $this->model_subject->findAll(),
             'teachers' => $this->model_teacher->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -92,6 +95,7 @@ class TeacherSubjects extends BaseController
         $rules = [
             'subject_id' => 'required',
             'teacher_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -105,6 +109,7 @@ class TeacherSubjects extends BaseController
 
         try {
             $data = [
+                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
                 'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
                 'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
             ];
@@ -156,6 +161,7 @@ class TeacherSubjects extends BaseController
             'teacher_subject' => $teacher_subject,
             'subjects' => $this->model_subject->findAll(),
             'teachers' => $this->model_teacher->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -184,6 +190,7 @@ class TeacherSubjects extends BaseController
         $rules = [
             'subject_id' => 'required',
             'teacher_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -199,6 +206,7 @@ class TeacherSubjects extends BaseController
 
 
             $data = [
+                'semester_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
                 'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
                 'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
             ];

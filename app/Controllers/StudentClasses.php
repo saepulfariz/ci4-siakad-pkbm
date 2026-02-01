@@ -10,6 +10,7 @@ class StudentClasses extends BaseController
     private $model;
     private $model_class;
     private $model_student;
+    private $model_semester;
     private $link = 'student-classes';
     private $view = 'student-classes';
     private $title = 'Student Classes';
@@ -20,6 +21,7 @@ class StudentClasses extends BaseController
         $this->model = new \App\Models\StudentClassModel();
         $this->model_class = new \App\Models\ClassModel();
         $this->model_student = new \App\Models\StudentModel();
+        $this->model_semester = new \App\Models\SemesterModel();
     }
 
     /**
@@ -37,7 +39,7 @@ class StudentClasses extends BaseController
         $data = [
             'title' => $this->title,
             'link' => $this->link,
-            'student_classes' => $this->model->select('student_classes.*, classes.name as class_name, students.full_name as student_name')->join('students', 'students.id = student_classes.student_id', 'left')->join('classes', 'classes.id = student_classes.class_id', 'left')->orderBy('student_classes.id', 'desc')->findAll()
+            'student_classes' => $this->model->select('student_classes.*, classes.name as class_name, students.full_name as student_name')->select('semesters.name as semester_name')->join('semesters', 'semesters.id = student_classes.semester_id')->join('students', 'students.id = student_classes.student_id', 'left')->join('classes', 'classes.id = student_classes.class_id', 'left')->select('academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id  = semesters.academic_year_id')->orderBy('student_classes.id', 'desc')->findAll()
         ];
 
         return view($this->view . '/index', $data);
@@ -72,6 +74,7 @@ class StudentClasses extends BaseController
             'link' => $this->link,
             'classes' => $this->model_class->findAll(),
             'students' => $this->model_student->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -92,6 +95,7 @@ class StudentClasses extends BaseController
         $rules = [
             'class_id' => 'required',
             'student_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -105,6 +109,7 @@ class StudentClasses extends BaseController
 
         try {
             $data = [
+                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
                 'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
                 'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
             ];
@@ -156,6 +161,7 @@ class StudentClasses extends BaseController
             'student_class' => $student_class,
             'classes' => $this->model_class->findAll(),
             'students' => $this->model_student->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -184,6 +190,7 @@ class StudentClasses extends BaseController
         $rules = [
             'class_id' => 'required',
             'student_id' => 'required',
+            'semester_id' => 'required',
         ];
 
         $input = $this->request->getVar();
@@ -199,6 +206,7 @@ class StudentClasses extends BaseController
 
 
             $data = [
+                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
                 'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
                 'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
             ];

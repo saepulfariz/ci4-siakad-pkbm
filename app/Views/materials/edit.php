@@ -33,6 +33,33 @@
                     <div class="card">
                         <div class="card-body">
 
+                            <?php if (auth()->user()->can('materials.access-all')): ?>
+                                <div class="form-group">
+                                    <label for="semester_id"><?= temp_lang('semesters.semester'); ?></label>
+                                    <select type="text" class="form-control <?= ($error = validation_show_error('semester_id')) ? 'border-danger' : ((old('semester_id')) ? 'border-success' : ''); ?> " value="<?= old('semester_id'); ?>" id="semester_id" name="semester_id">
+                                        <?php foreach ($semesters as $semester): ?> <?php $active = ($semester->is_active) ? '(' . temp_lang('semesters.active') . ')' : '' ?>
+                                            <?php if (old('semester_id')): ?>
+                                                <?php if (old('semester_id') == $semester->id): ?>
+                                                    <option selected value="<?= $semester->id; ?>"><?= $semester->name; ?> - <?= $semester->academic_year_name; ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?= $semester->id; ?>"><?= $semester->name; ?> - <?= $semester->academic_year_name; ?></option>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <?php if ($material->semester_id == $semester->id): ?>
+                                                    <option selected value="<?= $semester->id; ?>"><?= $semester->name; ?> - <?= $semester->academic_year_name; ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?= $semester->id; ?>"><?= $semester->name; ?> - <?= $semester->academic_year_name; ?></option>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
+                                <?= (old('semester_id')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+
+
+                            <?php endif; ?>
+
                             <div class="form-group">
                                 <label for="class_id"><?= temp_lang('classes.class'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('class_id')) ? 'border-danger' : ((old('class_id')) ? 'border-success' : ''); ?> " value="<?= old('class_id'); ?>" id="class_id" name="class_id">

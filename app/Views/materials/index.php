@@ -38,10 +38,11 @@
                 <?php endif; ?>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table" id="table2">
+                        <table class="table w-100" id="table2">
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th><?= temp_lang('semesters.semester'); ?></th>
                                     <th><?= temp_lang('classes.class'); ?></th>
                                     <th><?= temp_lang('subjects.subject'); ?></th>
                                     <th><?= temp_lang('teachers.teacher'); ?></th>
@@ -56,6 +57,7 @@
                                 foreach ($materials as $material): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
+                                        <td><?= esc($material->semester_name) . ' - ' . esc($material->academic_year_name); ?></td>
                                         <td><?= esc($material->class_name); ?></td>
                                         <td><?= esc($material->subject_name); ?></td>
                                         <td><?= esc($material->teacher_name); ?></td>

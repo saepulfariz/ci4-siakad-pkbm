@@ -11,6 +11,7 @@ class Materials extends BaseController
     private $model_class;
     private $model_subject;
     private $model_teacher;
+    private $model_semester;
 
     protected $uploadPath;
 
@@ -25,6 +26,7 @@ class Materials extends BaseController
         $this->model_class = new \App\Models\ClassModel();
         $this->model_subject = new \App\Models\SubjectModel();
         $this->model_teacher = new \App\Models\TeacherModel();
+        $this->model_semester = new \App\Models\SemesterModel();
 
         $this->uploadPath = WRITEPATH . 'uploads/materials/';
 
@@ -45,7 +47,7 @@ class Materials extends BaseController
             return $redirect;
         }
 
-        $materials = $this->model->select('materials.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = materials.subject_id', 'left')->join('classes', 'classes.id = materials.class_id', 'left')->join('teachers', 'teachers.id = materials.teacher_id', 'left')->orderBy('materials.id', 'desc');
+        $materials = $this->model->select('materials.*, classes.name as class_name, subjects.name as subject_name, teachers.full_name as teacher_name')->join('subjects', 'subjects.id = materials.subject_id', 'left')->join('classes', 'classes.id = materials.class_id', 'left')->join('teachers', 'teachers.id = materials.teacher_id', 'left')->select('semesters.name as semester_name')->join('semesters', 'semesters.id = materials.semester_id')->select('academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('materials.id', 'desc');
 
         if (!auth()->user()->can('materials.access-all')) {
             $check_student = auth()->user()->inGroup('student');
@@ -108,6 +110,7 @@ class Materials extends BaseController
             'teachers' => $teachers->findAll(),
             'classes' => $this->model_class->findAll(),
             'subjects' => $subjects->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/new', $data);
@@ -181,6 +184,12 @@ class Materials extends BaseController
                 // 'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
             ];
 
+            if (!auth()->user()->can('materials.access-all')) {
+                $data['semester_id'] = $this->model_semester->where('is_active', 1)->first()->id ?? 1;
+            } else {
+                $data['semester_id'] = $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT);
+            }
+
             if ($fileUpload && $fileUpload->isValid()) {
 
                 $nameFile = $fileUpload->getRandomName();
@@ -250,6 +259,7 @@ class Materials extends BaseController
             'teachers' => $teachers->findAll(),
             'classes' => $this->model_class->findAll(),
             'subjects' => $subjects->findAll(),
+            'semesters' => $this->model_semester->select('semesters.*, academic_years.name as academic_year_name')->join('academic_years', 'academic_years.id = semesters.academic_year_id')->orderBy('semesters.id', 'DESC')->findAll(),
         ];
 
         return view($this->view . '/edit', $data);
@@ -338,6 +348,10 @@ class Materials extends BaseController
                 // 'file' => $this->request->getVar('file', FILTER_SANITIZE_STRING),
                 'file' => $material->file, // default pakai file lama
             ];
+
+            if (auth()->user()->can('materials.access-all')) {
+                $data['semester_id'] = $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT);
+            }
 
             // jika upload file baru
             if ($fileUpload && $fileUpload->isValid() && !$fileUpload->hasMoved()) {

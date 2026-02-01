@@ -18,7 +18,8 @@ class StudentClassModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'student_id',
-        'class_id'
+        'class_id',
+        'semester_id',
     ];
 
     protected $cacheKey = 'student_classes';

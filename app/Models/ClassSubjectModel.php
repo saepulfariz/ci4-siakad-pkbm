@@ -19,7 +19,8 @@ class ClassSubjectModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'class_id',
-        'subject_id'
+        'subject_id',
+        'semester_id',
     ];
 
     protected $cacheKey = 'class_subjects';

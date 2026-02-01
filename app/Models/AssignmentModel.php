@@ -17,6 +17,7 @@ class AssignmentModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'semester_id',
         'class_id',
         'subject_id',
         'teacher_id',

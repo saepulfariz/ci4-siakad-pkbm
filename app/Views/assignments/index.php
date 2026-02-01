@@ -42,6 +42,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th><?= temp_lang('semesters.semester'); ?></th>
                                     <th><?= temp_lang('classes.class'); ?></th>
                                     <th><?= temp_lang('subjects.subject'); ?></th>
                                     <th><?= temp_lang('teachers.teacher'); ?></th>
@@ -57,6 +58,7 @@
                                 foreach ($assignments as $assignment): ?>
                                     <tr>
                                         <td><?= $a++; ?></td>
+                                        <td><?= esc($assignment->semester_name) . ' - ' . esc($assignment->academic_year_name); ?></td>
                                         <td><?= esc($assignment->class_name); ?></td>
                                         <td><?= esc($assignment->subject_name); ?></td>
                                         <td><?= esc($assignment->teacher_name); ?></td>
