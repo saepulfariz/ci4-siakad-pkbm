@@ -26,5 +26,6 @@ class All extends Seeder
         $this->call('SeedAssignmentSubmissions');
         $this->call('SeedNotifications');
         $this->call('SeedAnnouncements');
+        $this->call('SeedAttendances');
     }
 }

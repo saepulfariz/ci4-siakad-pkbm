@@ -57,4 +57,7 @@ $routes->resource('assignment-submissions', ['controller' => '\App\Controllers\A
 
 $routes->resource('notifications', ['controller' => '\App\Controllers\Notifications', 'filter' => 'session']);
 $routes->resource('announcements', ['controller' => '\App\Controllers\Announcements', 'filter' => 'session']);
+
+$routes->get('attendances/ajax_users', '\App\Controllers\Attendances::ajax_users');
+$routes->resource('attendances', ['controller' => '\App\Controllers\Attendances', 'filter' => 'session']);
 service('auth')->routes($routes);

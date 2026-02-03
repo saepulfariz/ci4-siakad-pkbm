@@ -72,7 +72,12 @@
                   <?php endif; ?>
                 </h3>
                 <p class="text-sm"><?= $notification->message; ?></p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> <?= date('Y-m-d H:i:s', strtotime($notification->created_at)); ?></p>
+                <p class="text-sm text-muted">
+                  <i class="far fa-clock mr-1"></i>
+                  <?= $notification->created_at
+                    ? date('Y-m-d H:i:s', strtotime($notification->created_at))
+                    : '-' ?>
+                </p>
               </div>
             </div>
             <!-- Message End -->
