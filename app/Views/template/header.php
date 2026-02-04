@@ -5,11 +5,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <?php if ($title_section = $this->renderSection('title')): ?> 
+  <?php if ($title_section = $this->renderSection('title')): ?>
     <title><?= $title_section; ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php else: ?>
     <title><?= (isset($statusCode)) ? ($statusCode) : ((isset($title)) ? $title : 'Home'); ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php endif; ?>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="SIPENA - PKBM HAYATI NUSANTARA" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

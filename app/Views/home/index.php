@@ -6,8 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PKBM HAYATI NUSANTARA - SIPENA - Belajar Tertata, Nilai Terdata</title>
 
-    <meta name="description" content="">
+    <meta name="description" content="PKBM HAYATI NUSANTARA - SIPENA - Belajar Tertata, Nilai Terdata">
     <meta name="author" content="">
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="SIPENA - PKBM HAYATI NUSANTARA" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="stylesheet" href="<?= asset_url(); ?>assets/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= asset_url(); ?>assets/frontend/css/animate.css">
@@ -150,40 +157,48 @@
             <h2 id="about-title" class="section-title"
                 style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #172B55;">
                 Tentang Kami</h2>
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 64px;">
-                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="hover-lift"
-                        style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                        <h3 style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Sejarah</h3>
-                        <p style="line-height: 1.8; color: #2C3E50;">PKBM Hayati Nusantara didirikan dengan komitmen untuk
-                            memberikan akses pendidikan berkualitas bagi seluruh lapisan masyarakat. Kami percaya bahwa
-                            setiap individu berhak mendapatkan pendidikan yang setara dan bermakna.</p>
+            <div class="row">
+                <div class="col mb-2">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="hover-lift"
+                            style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                            <h3 style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Sejarah</h3>
+                            <p style="line-height: 1.8; color: #2C3E50;">PKBM Hayati Nusantara didirikan dengan komitmen untuk
+                                memberikan akses pendidikan berkualitas bagi seluruh lapisan masyarakat. Kami percaya bahwa
+                                setiap individu berhak mendapatkan pendidikan yang setara dan bermakna.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">
+                        <div class="hover-lift"
+                            style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                            <h3 id="vision-title"
+                                style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Visi</h3>
+                            <p style="line-height: 1.8; color: #2C3E50;">Mewujudkan masyarakat yang cerdas dan mandiri melalui pendidikan sepanjang hayat.</p>
+                        </div>
                     </div>
                 </div>
-                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">
-                    <div class="hover-lift"
-                        style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                        <h3 id="vision-title"
-                            style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Visi</h3>
-                        <p style="line-height: 1.8; color: #2C3E50;">Mewujudkan masyarakat yang cerdas dan mandiri melalui pendidikan sepanjang hayat.</p>
-                    </div>
-                </div>
-                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">
+                <div class="col-md-12 mb-2">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">
 
-                    <div class="hover-lift"
-                        style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-                        <h3 id="mission-title"
-                            style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Misi</h3>
-                        <ul style="line-height: 1.8; color: #2C3E50; padding-left: 20px;">
-                            <li>Menyelenggarakan program pendidikan nonformal yang bermutu dan sesuai dengan kebutuhan masyarakat, seperti keaksaraan, kesetaraan (Paket A, B, C), dan keterampilan</li>
-                            <li>Meningkatkan kualitas sumber daya manusia melalui pembelajaran yang berorientasi pada pengembangan potensi diri dan keterampilan hidup (life skills).</li>
+                        <div class="hover-lift"
+                            style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                            <h3 id="mission-title"
+                                style="font-size: 24px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Misi</h3>
+                            <ul style="line-height: 1.8; color: #2C3E50; padding-left: 20px;">
+                                <li>Menyelenggarakan program pendidikan nonformal yang bermutu dan sesuai dengan kebutuhan masyarakat, seperti keaksaraan, kesetaraan (Paket A, B, C), dan keterampilan</li>
+                                <li>Meningkatkan kualitas sumber daya manusia melalui pembelajaran yang berorientasi pada pengembangan potensi diri dan keterampilan hidup (life skills).</li>
 
-                            <li>Mendorong partisipasi aktif masyarakat dalam proses belajar-mengajar serta pengelolaan PKBM secara partisipatif dan berkelanjutan.</li>
-                            <li>Membangun kemitraan dengan berbagai pihak (pemerintah, swasta, dan masyarakat) untuk memperluas akses dan mutu layanan pendidikan.</li>
-                            <li> Mewujudkan masyarakat pembelajar sepanjang hayat yang memiliki karakter, etika, dan kepedulian sosial.</li>
+                                <li>Mendorong partisipasi aktif masyarakat dalam proses belajar-mengajar serta pengelolaan PKBM secara partisipatif dan berkelanjutan.</li>
+                                <li>Membangun kemitraan dengan berbagai pihak (pemerintah, swasta, dan masyarakat) untuk memperluas akses dan mutu layanan pendidikan.</li>
+                                <li> Mewujudkan masyarakat pembelajar sepanjang hayat yang memiliki karakter, etika, dan kepedulian sosial.</li>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,8 +236,31 @@
                 style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #172B55;">
                 Program Akademik</h2>
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="aos-init aos-animate">
+                <div class="col-md-4 mb-3">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="hover-lift" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 6px solid #3bb6f5;">
+                            <div style="width: 64px; height: 64px; background: #3bb6f5; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#172B55" stroke-width="2">
+                                    <path d="M12 20h9"></path>
+                                    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                                </svg>
+                            </div>
+
+                            <h3 style="font-size: 26px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Paket A (Setara SD)</h3>
+                            <p style="line-height: 1.8; color: #2C3E50; margin-bottom: 20px;">Program pendidikan kesetaraan tingkat SD dengan kurikulum dasar yang menyeluruh dan metode pembelajaran yang fleksibel, disesuaikan dengan kebutuhan peserta didik..</p>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                    Durasi 6 tahun</li>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                    Ijazah setara SD</li>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                    Jadwal fleksibel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">
                         <div class="hover-lift" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 6px solid #F5B73B;">
                             <div style="width: 64px; height: 64px; background: #F5B73B; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#172B55" stroke-width="2">
@@ -246,8 +284,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">
+                <div class="col-md-4 mb-3">
+                    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">
                         <div class="hover-lift"
                             style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 6px solid #172B55;">
                             <div
@@ -260,7 +298,7 @@
                             <h3 style="font-size: 26px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Paket C (Setara
                                 SMA)</h3>
                             <p style="line-height: 1.8; color: #2C3E50; margin-bottom: 20px;">Program pendidikan kesetaraan
-                                tingkat SMA dengan pilihan jurusan IPA dan IPS, dilengkapi dengan pelatihan keterampilan untuk
+                                tingkat SMA dengan pilihan IPS, dilengkapi dengan pelatihan keterampilan untuk
                                 mempersiapkan masa depan yang lebih baik.</p>
                             <ul style="list-style: none; padding: 0;">
                                 <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
@@ -298,7 +336,7 @@
                             <div>
                                 <h4 style="font-size: 18px; font-weight: 600; color: #172B55; margin-bottom: 4px;">Andi
                                     Setiawan</h4>
-                                <p style="font-size: 14px; color: #2C3E50;">Alumni Paket C 2023</p>
+                                <p style="font-size: 14px; color: #2C3E50;">Alumni Paket C 2025</p>
                             </div>
                         </div>
                         <p style="color: #2C3E50; line-height: 1.8; font-style: italic;">"PKBM Hayati Nusantara memberikan
@@ -338,7 +376,7 @@
                             <div>
                                 <h4 style="font-size: 18px; font-weight: 600; color: #172B55; margin-bottom: 4px;">Budi
                                     Santoso</h4>
-                                <p style="font-size: 14px; color: #2C3E50;">Alumni Paket B 2022</p>
+                                <p style="font-size: 14px; color: #2C3E50;">Alumni Paket B 2025</p>
                             </div>
                         </div>
                         <p style="color: #2C3E50; line-height: 1.8; font-style: italic;">"Keterampilan yang saya pelajari di
