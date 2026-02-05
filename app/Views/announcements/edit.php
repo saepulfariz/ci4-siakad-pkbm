@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Announcement</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('announcements.announcement'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -35,24 +35,24 @@
 
 
                             <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', esc($announcement->title)); ?>">
+                                <label for="title"><?= temp_lang('announcements.title'); ?></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="<?= temp_lang('announcements.title'); ?>" value="<?= old('title', esc($announcement->title)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('title')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
                             <div class="form-group">
-                                <label for="content">Content</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('content')) ? 'border-danger' : ((old('content')) ? 'border-success' : ''); ?>" id="content" name="content" placeholder="Content"><?= old('content', esc($announcement->content)); ?></textarea>
+                                <label for="content"><?= temp_lang('announcements.content'); ?></label>
+                                <textarea class="form-control <?= ($error = validation_show_error('content')) ? 'border-danger' : ((old('content')) ? 'border-success' : ''); ?>" id="content" name="content" placeholder="<?= temp_lang('announcements.content'); ?>"><?= old('content', esc($announcement->content)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('content')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.update'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
 
                         </div>

@@ -13,6 +13,8 @@ class Announcements extends BaseController
     private $title = 'Announcements';
     public function __construct()
     {
+        $this->title = temp_lang('announcements.announcements');
+
         $this->model = new \App\Models\AnnouncementModel();
     }
 
@@ -104,7 +106,7 @@ class Announcements extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create announcement')->withInput();
+                return redirect()->back()->with('error', temp_lang('annoucements.create_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -112,10 +114,10 @@ class Announcements extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Announcement created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('annoucements.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create announcement')->withInput();
+            return redirect()->back()->with('error', temp_lang('annoucements.create_error'))->withInput();
         }
     }
 
@@ -197,7 +199,7 @@ class Announcements extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update announcement')->withInput();
+                return redirect()->back()->with('error',  temp_lang('annoucements.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -205,10 +207,10 @@ class Announcements extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Announcement updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('annoucements.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update announcement ')->withInput();
+            return redirect()->back()->with('error', temp_lang('annoucements.update_error'))->withInput();
         }
     }
 
@@ -239,7 +241,7 @@ class Announcements extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete announcement')->withInput();
+                return redirect()->back()->with('error', temp_lang('annoucements.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -247,10 +249,10 @@ class Announcements extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Announcement deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('annoucements.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete announcement')->withInput();
+            return redirect()->back()->with('error', temp_lang('annoucements.delete_error'))->withInput();
         }
     }
 }
