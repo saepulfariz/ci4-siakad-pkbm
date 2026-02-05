@@ -14,6 +14,8 @@ class Notifications extends BaseController
     private $title = 'Notifications';
     public function __construct()
     {
+        $this->title = temp_lang('notifications.notifications');
+
         $this->model = new \App\Models\NotificationModel();
         $this->model_user = auth()->getProvider();
     }
@@ -163,19 +165,18 @@ class Notifications extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to create notification')->withInput();
+                return redirect()->back()->with('error', temp_lang('notifications.create_error'))->withInput();
             }
 
             $this->db->transCommit();
 
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
-            $cache->delete($this->model->cacheKey . '_.*');
 
-            return redirect()->with('success', 'Notification created successfully.')->to($this->link);
+            return redirect()->with('success',  temp_lang('notifications.create_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to create notification')->withInput();
+            return redirect()->back()->with('error', temp_lang('notifications.create_error'))->withInput();
         }
     }
 
@@ -276,7 +277,7 @@ class Notifications extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to update notification')->withInput();
+                return redirect()->back()->with('error',  temp_lang('notifications.update_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -284,10 +285,10 @@ class Notifications extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            return redirect()->with('success', 'Notification updated successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('notifications.update_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to update notification ')->withInput();
+            return redirect()->back()->with('error', temp_lang('notifications.update_error'))->withInput();
         }
     }
 
@@ -326,7 +327,7 @@ class Notifications extends BaseController
 
             if ($this->db->transStatus() === false) {
                 $this->db->transRollback();
-                return redirect()->back()->with('error', 'Failed to delete notification')->withInput();
+                return redirect()->back()->with('error', temp_lang('notifications.delete_error'))->withInput();
             }
 
             $this->db->transCommit();
@@ -334,12 +335,10 @@ class Notifications extends BaseController
             $cache = \Config\Services::cache();
             $cache->delete($this->model->cacheKey);
 
-            $cache->delete($this->model->cacheKey . '_.*');
-
-            return redirect()->with('success', 'Notification deleted successfully.')->to($this->link);
+            return redirect()->with('success', temp_lang('notifications.delete_success'))->to($this->link);
         } catch (\Throwable $th) {
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Failed to delete notification')->withInput();
+            return redirect()->back()->with('error', temp_lang('notifications.delete_error'))->withInput();
         }
     }
 }

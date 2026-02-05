@@ -6,15 +6,15 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Edit Notification</h1>
+                <h1 class="m-0"><?= temp_lang('app.edit'); ?> <?= temp_lang('notifications.notification'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.edit'); ?></li>
                 </ol>
-            </div>
+        </div>
             <!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -35,7 +35,7 @@
 
 
                             <div class="form-group">
-                                <label for="user_id">User</label>
+                                <label for="user_id"><?= temp_lang('notifications.username'); ?></label>
                                 <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " value="<?= old('user_id'); ?>" id="user_id" name="user_id">
                                     <?php foreach ($users as $user): ?>
                                         <?php if (old('user_id')): ?>
@@ -58,24 +58,25 @@
                             <?= (old('user_id')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="Title" value="<?= old('title', esc($notification->title)); ?>">
+                                <label for="title"><?= temp_lang('notifications.title'); ?></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('title')) ? 'border-danger' : ((old('title')) ? 'border-success' : ''); ?>" id="title" name="title" placeholder="<?= temp_lang('notifications.title'); ?>" value="<?= old('title', esc($notification->title)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('title')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
                             <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="message" placeholder="Message"><?= old('message', esc($notification->message)); ?></textarea>
+                                <label for="message"><?= temp_lang('notifications.message'); ?></label>
+                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="message" placeholder="<?= temp_lang('notifications.message'); ?>"><?= old('message', esc($notification->message)); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
                             <?= (old('message')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="<?= base_url($link); ?>" class="btn btn-secondary">Cancel</a>
+
+                            <button type="submit" class="btn btn-primary"><?= temp_lang('app.update'); ?></button>
+                            <a href="<?= base_url($link); ?>" class="btn btn-secondary"><?= temp_lang('app.cancel'); ?></a>
 
 
                         </div>

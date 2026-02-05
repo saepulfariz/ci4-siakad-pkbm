@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Show Notification</h1>
+                <h1 class="m-0"><?= temp_lang('app.show'); ?> <?= temp_lang('notifications.notification'); ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('dashboard'); ?>">Home</a></li>
                     <li class="breadcrumb-item">Data <?= $title; ?></li>
-                    <li class="breadcrumb-item active">Show</li>
+                    <li class="breadcrumb-item active"><?= temp_lang('app.show'); ?></li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -32,7 +32,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-bell"></i>
-                            Show Notifikasi
+                            <?= temp_lang('app.show'); ?> <?= temp_lang('notifications.notification'); ?>
                         </h3>
                     </div>
 
@@ -55,7 +55,7 @@
 
                     <div class="card-footer text-right">
                         <a href="<?= base_url($link) ?>" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Kembali
+                            <i class="fas fa-arrow-left"></i> <?= temp_lang('app.back'); ?>
                         </a>
                     </div>
                 </div>
