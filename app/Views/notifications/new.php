@@ -37,7 +37,7 @@
 
                             <div class="form-group">
                                 <label for="user_id"><?= temp_lang('notifications.username'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " value="<?= old('user_id'); ?>" id="user_id" name="user_id">
+                                <select multiple class="form-control <?= ($error = validation_show_error('user_id')) ? 'border-danger' : ((old('user_id')) ? 'border-success' : ''); ?> " value="<?= old('user_id'); ?>" id="user_id" name="user_id[]">
                                     <?php foreach ($users as $user): ?>
                                         <?php if (old('user_id')): ?>
                                             <?php if (old('user_id') == $user->id): ?>

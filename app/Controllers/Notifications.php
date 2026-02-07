@@ -155,17 +155,21 @@ class Notifications extends BaseController
         $this->db->transBegin();
 
         try {
-            $data = [
-                'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
-                'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
-                'message' => $this->request->getVar('message', FILTER_SANITIZE_STRING),
-            ];
 
-            $this->model->insert($data);
+            $users = $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT);
+            foreach ($users as $user_id) {
+                $data = [
+                    'user_id' => $user_id,
+                    'title' => $this->request->getVar('title', FILTER_SANITIZE_STRING),
+                    'message' => $this->request->getVar('message', FILTER_SANITIZE_STRING),
+                ];
 
-            if ($this->db->transStatus() === false) {
-                $this->db->transRollback();
-                return redirect()->back()->with('error', temp_lang('notifications.create_error'))->withInput();
+                $this->model->insert($data);
+
+                if ($this->db->transStatus() === false) {
+                    $this->db->transRollback();
+                    return redirect()->back()->with('error', temp_lang('notifications.create_error'))->withInput();
+                }
             }
 
             $this->db->transCommit();
