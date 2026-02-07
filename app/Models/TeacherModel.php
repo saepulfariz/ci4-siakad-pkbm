@@ -18,7 +18,7 @@ class TeacherModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'user_id',
-        'nip',
+        'nik',
         'full_name',
         'gender',
         'birth_place',

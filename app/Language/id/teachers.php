@@ -5,7 +5,7 @@ return [
     'teacher'  => 'Guru',
 
     'user' => 'User Login',
-    'nip' => 'NIP',
+    'nik' => 'NIK',
     'full_name' => 'Nama Lengkap',
     'gender' => 'Jenis Kelamin',
     'birth_place' => 'Tempat Lahir',

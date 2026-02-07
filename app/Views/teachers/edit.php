@@ -59,11 +59,11 @@
                             <?= (old('user_id')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
                             <div class="form-group">
-                                <label for="nip"><?= temp_lang('teachers.nip'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
-                                <input type="text" class="form-control <?= ($error = validation_show_error('nip')) ? 'border-danger' : ((old('nip')) ? 'border-success' : ''); ?>" id="nip" name="nip" placeholder="" value="<?= old('nip', esc($teacher->nip)); ?>">
+                                <label for="nik"><?= temp_lang('teachers.nik'); ?> <small class="fw-weight-bold text-danger"><b>*</b></small></label>
+                                <input type="text" class="form-control <?= ($error = validation_show_error('nik')) ? 'border-danger' : ((old('nik')) ? 'border-success' : ''); ?>" id="nik" name="nik" placeholder="" value="<?= old('nik', esc($teacher->nik)); ?>">
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>
-                            <?= (old('nip')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
+                            <?= (old('nik')) ? '<div class="error text-success mb-2" style="margin-top: -15px">Looks good!</div>' : ''; ?>
 
 
                             <div class="form-group">

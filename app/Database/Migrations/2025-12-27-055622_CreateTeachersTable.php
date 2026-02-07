@@ -22,7 +22,7 @@ class CreateTeachersTable extends Migration
                 'unsigned'       => true,
                 'null' => true
             ],
-            'nip' => [
+            'nik' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

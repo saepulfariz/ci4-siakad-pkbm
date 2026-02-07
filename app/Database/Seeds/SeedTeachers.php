@@ -134,7 +134,7 @@ class SeedTeachers extends Seeder
         $data = [
             [
                 'user_id' => 3,
-                'nip' => '8889999',
+                'nik' => '8889999',
                 'full_name' => 'Aceng Dadan',
                 'gender' => 'L',
                 'birth_place' => 'Subang',

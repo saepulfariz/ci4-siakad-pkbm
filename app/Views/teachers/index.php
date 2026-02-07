@@ -45,7 +45,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th><?= temp_lang('teachers.user'); ?></th>
-                                    <th><?= temp_lang('teachers.nip'); ?></th>
+                                    <th><?= temp_lang('teachers.nik'); ?></th>
                                     <th><?= temp_lang('teachers.full_name'); ?></th>
                                     <th><?= temp_lang('teachers.gender'); ?></th>
                                     <th><?= temp_lang('teachers.birth_place'); ?></th>
@@ -65,7 +65,7 @@
                                     <tr>
                                         <td><?= $a++; ?></td>
                                         <td><?= esc($teacher->user_name); ?></td>
-                                        <td><?= esc($teacher->nip); ?></td>
+                                        <td><?= esc($teacher->nik); ?></td>
                                         <td><?= esc($teacher->full_name); ?></td>
                                         <td><?= esc($teacher->gender); ?></td>
                                         <td><?= esc($teacher->birth_place); ?></td>

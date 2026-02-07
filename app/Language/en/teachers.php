@@ -5,7 +5,7 @@ return [
     'teacher' => 'Teacher',
 
     'user' => 'User Login',
-    'nip' => 'NIP',
+    'nik' => 'NIK',
     'full_name' => 'Full Name',
     'gender' => 'Gender',
     'birth_place' => 'Birth Place',
