@@ -56,7 +56,7 @@
 
                             <div class="form-group">
                                 <label for="student_id"><?= temp_lang('students.student'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('student_id')) ? 'border-danger' : ((old('student_id')) ? 'border-success' : ''); ?> " value="<?= old('student_id'); ?>" id="student_id" name="student_id">
+                                <select multiple class="form-control <?= ($error = validation_show_error('student_id')) ? 'border-danger' : ((old('student_id')) ? 'border-success' : ''); ?> " value="<?= old('student_id'); ?>" id="student_id" name="student_id[]">
                                     <?php foreach ($students as $student): ?>
                                         <?php if (old('student_id')): ?>
                                             <?php if (old('student_id') == $student->id): ?>
@@ -77,7 +77,7 @@
 
                             <div class="form-group">
                                 <label for="class_id"><?= temp_lang('classes.class'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('class_id')) ? 'border-danger' : ((old('class_id')) ? 'border-success' : ''); ?> " value="<?= old('class_id'); ?>" id="class_id" name="class_id">
+                                <select class="form-control <?= ($error = validation_show_error('class_id')) ? 'border-danger' : ((old('class_id')) ? 'border-success' : ''); ?> " value="<?= old('class_id'); ?>" id="class_id" name="class_id">
                                     <?php foreach ($classes as $class): ?>
                                         <?php if (old('class_id')): ?>
                                             <?php if (old('class_id') == $class->id): ?>

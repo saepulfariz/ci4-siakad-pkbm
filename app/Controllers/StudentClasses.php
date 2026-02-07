@@ -108,17 +108,21 @@ class StudentClasses extends BaseController
 
 
         try {
-            $data = [
-                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
-                'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
-                'student_id' => $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT),
-            ];
 
-            $this->model->insert($data);
+            $students = $this->request->getVar('student_id', FILTER_SANITIZE_NUMBER_INT);
+            foreach ($students as $student_id) {
+                $data = [
+                    'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
+                    'class_id' => $this->request->getVar('class_id', FILTER_SANITIZE_NUMBER_INT),
+                    'student_id' => $student_id,
+                ];
 
-            if ($this->db->transStatus() === false) {
-                $this->db->transRollback();
-                return redirect()->back()->with('error', temp_lang('student_classes.create_error'))->withInput();
+                $this->model->insert($data);
+
+                if ($this->db->transStatus() === false) {
+                    $this->db->transRollback();
+                    return redirect()->back()->with('error', temp_lang('student_classes.create_error'))->withInput();
+                }
             }
 
             $this->db->transCommit();
