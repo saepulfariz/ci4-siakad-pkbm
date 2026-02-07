@@ -108,18 +108,23 @@ class TeacherSubjects extends BaseController
 
 
         try {
-            $data = [
-                'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
-                'subject_id' => $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT),
-                'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
-            ];
+            $subjects = $this->request->getVar('subject_id', FILTER_SANITIZE_NUMBER_INT);
 
-            $this->model->insert($data);
+            foreach ($subjects as $subject_id) {
+                $data = [
+                    'semester_id' => $this->request->getVar('semester_id', FILTER_SANITIZE_NUMBER_INT),
+                    'subject_id' => $subject_id,
+                    'teacher_id' => $this->request->getVar('teacher_id', FILTER_SANITIZE_NUMBER_INT),
+                ];
 
-            if ($this->db->transStatus() === false) {
-                $this->db->transRollback();
-                return redirect()->back()->with('error', temp_lang('teacher_subjects.create_error'))->withInput();
+                $this->model->insert($data);
+
+                if ($this->db->transStatus() === false) {
+                    $this->db->transRollback();
+                    return redirect()->back()->with('error', temp_lang('teacher_subjects.create_error'))->withInput();
+                }
             }
+
 
             $this->db->transCommit();
 

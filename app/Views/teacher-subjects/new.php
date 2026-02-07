@@ -55,7 +55,7 @@
 
                             <div class="form-group">
                                 <label for="teacher_id"><?= temp_lang('teachers.teacher'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('teacher_id')) ? 'border-danger' : ((old('teacher_id')) ? 'border-success' : ''); ?> " value="<?= old('teacher_id'); ?>" id="teacher_id" name="teacher_id">
+                                <select class="form-control <?= ($error = validation_show_error('teacher_id')) ? 'border-danger' : ((old('teacher_id')) ? 'border-success' : ''); ?> " value="<?= old('teacher_id'); ?>" id="teacher_id" name="teacher_id">
                                     <?php foreach ($teachers as $teacher): ?>
                                         <?php if (old('teacher_id')): ?>
                                             <?php if (old('teacher_id') == $teacher->id): ?>
@@ -76,7 +76,7 @@
 
                             <div class="form-group">
                                 <label for="subject_id"><?= temp_lang('subjects.subject'); ?></label>
-                                <select type="text" class="form-control <?= ($error = validation_show_error('subject_id')) ? 'border-danger' : ((old('subject_id')) ? 'border-success' : ''); ?> " value="<?= old('subject_id'); ?>" id="subject_id" name="subject_id">
+                                <select multiple class="form-control <?= ($error = validation_show_error('subject_id')) ? 'border-danger' : ((old('subject_id')) ? 'border-success' : ''); ?> " value="<?= old('subject_id'); ?>" id="subject_id" name="subject_id[]">
                                     <?php foreach ($subjects as $subject): ?>
                                         <?php if (old('subject_id')): ?>
                                             <?php if (old('subject_id') == $subject->id): ?>
