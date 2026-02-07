@@ -18,7 +18,6 @@ class StudentModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'user_id',
-        'nis',
         'nisn',
         'full_name',
         'gender',
@@ -26,6 +25,7 @@ class StudentModel extends Model
         'birth_date',
         'address',
         'phone',
+        'school_origin',
         'parent_father',
         'parent_mother',
         'photo',

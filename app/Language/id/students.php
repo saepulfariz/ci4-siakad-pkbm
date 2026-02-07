@@ -13,6 +13,7 @@ return [
     'birth_date' => 'Tanggal Lahir',
     'address' => 'Alamat',
     'phone' => 'No HP',
+    'school_origin' => 'Sekolah Asal',
     'parent_father' => 'Ayah',
     'parent_mother' => 'Ibu',
     'photo' => 'Pas Foto',

@@ -134,7 +134,6 @@ class SeedStudents extends Seeder
         $data = [
             [
                 'user_id' => 2,
-                'nis' => '8889999',
                 'nisn' => '8889999',
                 'full_name' => 'Jajang Dadan',
                 'gender' => 'L',
@@ -142,6 +141,7 @@ class SeedStudents extends Seeder
                 'birth_date' => '2025-12-20',
                 'address' => 'Subang',
                 'phone' => '08XXXXXXXXXX',
+                'school_origin' => 'SMK BINA TEKNOLOGI SUBANG',
                 'parent_father' => 'Kang Ibing',
                 'parent_mother' => 'Ibu siti',
                 'photo' => 'student.png',

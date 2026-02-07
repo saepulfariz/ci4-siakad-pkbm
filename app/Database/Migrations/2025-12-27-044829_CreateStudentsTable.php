@@ -22,10 +22,6 @@ class CreateStudentsTable extends Migration
                 'unsigned'       => true,
                 'null' => true
             ],
-            'nis' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
             'nisn' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
@@ -52,6 +48,11 @@ class CreateStudentsTable extends Migration
             'phone' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '20',
+            ],
+            'school_origin' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
             ],
             'parent_father' => [
                 'type'       => 'VARCHAR',

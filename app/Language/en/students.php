@@ -5,7 +5,6 @@ return [
     'student' => 'Student',
 
     'user' => 'User Login',
-    'nis' => 'NIS',
     'nisn' => 'NISN',
     'full_name' => 'Full Name',
     'gender' => 'Gender',
@@ -13,6 +12,7 @@ return [
     'birth_date' => 'Birth Date',
     'address' => 'Address',
     'phone' => 'Phone',
+    'school_origin' => 'School Origin',
     'parent_father' => 'Father',
     'parent_mother' => 'Mother',
     'photo' => 'Photo',

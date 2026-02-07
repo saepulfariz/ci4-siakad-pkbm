@@ -43,12 +43,12 @@
                                 <tr>
                                     <th>#</th>
                                     <th><?= temp_lang('students.user'); ?></th>
-                                    <th><?= temp_lang('students.nis'); ?></th>
                                     <th><?= temp_lang('students.nisn'); ?></th>
                                     <th><?= temp_lang('students.full_name'); ?></th>
                                     <th><?= temp_lang('students.gender'); ?></th>
                                     <th><?= temp_lang('students.birth_place'); ?></th>
                                     <th><?= temp_lang('students.birth_date'); ?></th>
+                                    <th><?= temp_lang('students.school_origin'); ?></th>
                                     <th><?= temp_lang('students.address'); ?></th>
                                     <th><?= temp_lang('students.phone'); ?></th>
                                     <th><?= temp_lang('students.parent_father'); ?></th>
@@ -63,12 +63,12 @@
                                     <tr>
                                         <td><?= $a++; ?></td>
                                         <td><?= esc($student->user_name); ?></td>
-                                        <td><?= esc($student->nis); ?></td>
                                         <td><?= esc($student->nisn); ?></td>
                                         <td><?= esc($student->full_name); ?></td>
                                         <td><?= esc($student->gender); ?></td>
                                         <td><?= esc($student->birth_place); ?></td>
                                         <td><?= esc($student->birth_date); ?></td>
+                                        <td><?= esc($student->school_origin); ?></td>
                                         <td><?= esc($student->address); ?></td>
                                         <td><?= esc($student->phone); ?></td>
                                         <td><?= esc($student->parent_father); ?></td>

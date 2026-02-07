@@ -107,7 +107,7 @@ class Students extends BaseController
 
         $rules = [
             // 'user_id' => 'required',
-            'nis' => 'required',
+            'school_origin' => 'required',
             'nisn' => 'required',
             'full_name' => 'required',
             'gender' => 'required',
@@ -149,7 +149,7 @@ class Students extends BaseController
         try {
             $data = [
                 'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
-                'nis' => $this->request->getVar('nis', FILTER_SANITIZE_STRING),
+                'school_origin' => $this->request->getVar('school_origin', FILTER_SANITIZE_STRING),
                 'nisn' => $this->request->getVar('nisn', FILTER_SANITIZE_STRING),
                 'full_name' => $this->request->getVar('full_name', FILTER_SANITIZE_STRING),
                 'gender' => $this->request->getVar('gender', FILTER_SANITIZE_STRING),
@@ -253,7 +253,7 @@ class Students extends BaseController
 
         $rules = [
             // 'user_id' => 'required',
-            'nis' => 'required',
+            'school_origin' => 'required',
             'nisn' => 'required',
             'full_name' => 'required',
             'gender' => 'required',
@@ -297,7 +297,7 @@ class Students extends BaseController
 
             $data = [
                 'user_id' => $this->request->getVar('user_id', FILTER_SANITIZE_NUMBER_INT),
-                'nis' => $this->request->getVar('nis', FILTER_SANITIZE_STRING),
+                'school_origin' => $this->request->getVar('school_origin', FILTER_SANITIZE_STRING),
                 'nisn' => $this->request->getVar('nisn', FILTER_SANITIZE_STRING),
                 'full_name' => $this->request->getVar('full_name', FILTER_SANITIZE_STRING),
                 'gender' => $this->request->getVar('gender', FILTER_SANITIZE_STRING),
