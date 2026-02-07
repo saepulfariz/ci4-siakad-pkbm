@@ -64,7 +64,7 @@
 
                             <div class="form-group">
                                 <label for="message"><?= temp_lang('notifications.message'); ?></label>
-                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="<?= temp_lang('notifications.message'); ?>" placeholder="Message"><?= old('message'); ?></textarea>
+                                <textarea class="form-control <?= ($error = validation_show_error('message')) ? 'border-danger' : ((old('message')) ? 'border-success' : ''); ?>" id="message" name="message" placeholder="<?= temp_lang('notifications.message'); ?>"><?= old('message'); ?></textarea>
 
                             </div>
                             <?= ($error) ? '<div class="error text-danger mb-2" style="margin-top: -15px">' . $error . '</div>' : ''; ?>

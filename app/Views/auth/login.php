@@ -147,7 +147,6 @@
                                 <span class="ml-2"> <?= lang('Auth.rememberMe') ?></span>
                             </div>
 
-                            <a href="#" class="text-sm">Lupa Kata Sandi?</a>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block">

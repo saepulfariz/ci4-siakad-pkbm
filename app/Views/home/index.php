@@ -247,7 +247,7 @@
                             </div>
 
                             <h3 style="font-size: 26px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Paket A (Setara SD)</h3>
-                            <p style="line-height: 1.8; color: #2C3E50; margin-bottom: 20px;">Program pendidikan kesetaraan tingkat SD dengan kurikulum dasar yang menyeluruh dan metode pembelajaran yang fleksibel, disesuaikan dengan kebutuhan peserta didik..</p>
+                            <p style="line-height: 1.8; color: #2C3E50; margin-bottom: 20px;">Program pendidikan kesetaraan tingkat SD dengan kurikulum dasar yang menyeluruh dan metode pembelajaran yang fleksibel, disesuaikan dengan kebutuhan peserta didik.</p>
                             <ul style="list-style: none; padding: 0;">
                                 <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
                                     Durasi 6 tahun</li>

@@ -66,7 +66,7 @@
                                                 <?php if (filter_var($submission->file, FILTER_VALIDATE_URL)): ?>
                                                     <a href="<?= esc($submission->file); ?>" target="_blank">Download</a>
                                                 <?php else: ?>
-                                                    <a href="<?= asset_url(); ?>uploads/submissions/<?= esc($submission->file); ?>" target="_blank">Download</a>
+                                                    <a href="<?= asset_url(); ?>uploads/assignment_submissions/<?= esc($submission->file); ?>" target="_blank">Download</a>
                                                 <?php endif; ?>
 
 
