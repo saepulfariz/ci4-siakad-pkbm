@@ -40,6 +40,49 @@ class SeedAttendances extends Seeder
                 'created_at' => '2026-02-02 05:34:00',
                 'updated_at' => '2026-02-02 05:34:00',
             ],
+
+            [
+                'name' => 'attendances.sunday',
+                'title' => 'Can create attendance sunday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.monday',
+                'title' => 'Can create attendance monday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.tuesday',
+                'title' => 'Can create attendance tuesday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.wednesday',
+                'title' => 'Can create attendance wednesday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.thursday',
+                'title' => 'Can create attendance thursday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.friday',
+                'title' => 'Can create attendance friday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'name' => 'attendances.saturday',
+                'title' => 'Can create attendance saturday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
         ];
 
         $this->db->table('auth_permissions')->insertBatch($data);
@@ -75,6 +118,50 @@ class SeedAttendances extends Seeder
                 'created_at' => '2026-02-02 05:34:00',
                 'updated_at' => '2026-02-02 05:34:00',
             ],
+
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.sunday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.monday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.tuesday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.wednesday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.thursday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.friday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 1,
+                'permission' => 'attendances.saturday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+
 
             [
                 'group_id' => 2,
