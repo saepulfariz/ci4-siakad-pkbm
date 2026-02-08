@@ -205,35 +205,10 @@
         </div>
     </section>
 
-    <section style="padding: 80px 24px; background: linear-gradient(135deg, #172B55 0%, #2a4a7f 100%);">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <div
-                style="background: white; border-radius: 24px; padding: 48px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-                <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="section-title"
-                    style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #172B55;">
-                    Sambutan Kepala Sekolah</h2>
-                <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;"><img
-                        src="<?= asset_url(); ?>assets/dist/img/user.png"
-                        alt="Kepala Sekolah"
-                        style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #F5B73B; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-                        onerror="this.src=''; this.alt='Kepala Sekolah'; this.style.display='none';">
-                    <div style="flex: 1; min-width: 300px;" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                        <p style="line-height: 1.9; color: #2C3E50; margin-bottom: 24px; font-size: 16px;">
-                            Assalamu'alaikum Warahmatullahi Wabarakatuh. Selamat datang di PKBM Hayati Nusantara. Kami
-                            berkomitmen untuk memberikan pendidikan berkualitas yang dapat mengubah kehidupan dan
-                            membuka peluang masa depan yang lebih cerah bagi setiap peserta didik kami.</p>
-                        <p id="principal-name" style="font-weight: 600; color: #172B55; font-size: 18px;">M. Yahya Soeharyanto, S.ag. M.ba</p>
-                        <p style="color: #F5B73B; font-weight: 500;">Kepala Sekolah</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="program" style="padding: 80px 24px; background: #f8f9fa;">
+    <section id="program" style="padding: 80px 24px; background: linear-gradient(135deg, #172B55 0%, #2a4a7f 100%);">
         <div style="max-width: 1280px; margin: 0 auto;">
             <h2 class="section-title"
-                style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #172B55;">
+                style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #fff;">
                 Program Akademik</h2>
             <div class="row">
                 <div class="col-md-4 mb-3">
@@ -249,11 +224,11 @@
                             <h3 style="font-size: 26px; font-weight: 600; color: #172B55; margin-bottom: 16px;">Paket A (Setara SD)</h3>
                             <p style="line-height: 1.8; color: #2C3E50; margin-bottom: 20px;">Program pendidikan kesetaraan tingkat SD dengan kurikulum dasar yang menyeluruh dan metode pembelajaran yang fleksibel, disesuaikan dengan kebutuhan peserta didik.</p>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #3bb6f5; border-radius: 50%; margin-right: 12px;"></span>
                                     Durasi 6 tahun</li>
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #3bb6f5; border-radius: 50%; margin-right: 12px;"></span>
                                     Ijazah setara SD</li>
-                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #F5B73B; border-radius: 50%; margin-right: 12px;"></span>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span style="width: 8px; height: 8px; background: #3bb6f5; border-radius: 50%; margin-right: 12px;"></span>
                                     Jadwal fleksibel</li>
                             </ul>
                         </div>
@@ -310,12 +285,45 @@
                                 <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
                                         style="width: 8px; height: 8px; background: #172B55; border-radius: 50%; margin-right: 12px;"></span>
                                     Jurusan IPS</li>
+                                <li style="padding: 8px 0; color: #2C3E50; display: flex; align-items: center;"><span
+                                        style="width: 8px; height: 8px; background: #172B55; border-radius: 50%; margin-right: 12px;"></span>
+                                    Jadwal flexsibel</li>
+
+
                             </ul>
                         </div>
 
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 24px;  background: #f8f9fa;"">
+        <div style=" max-width: 1000px; margin: 0 auto;">
+        <div
+            style="background: #172B55; border-radius: 24px; padding: 48px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+            <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="section-title"
+                style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #fff;">
+                Ekstrakurikuler</h2>
+            <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;"><img
+                    src="https://pstiumpwr.com/wp-content/uploads/2018/10/Lab-Komputer-SMP-Negeri-12-Binjai-Gambar-Ilustrasi.jpg"
+                    alt="Ekstrakurikuler"
+                    style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #F5B73B; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+                    onerror="this.src=''; this.alt='Ekstrakurikuler'; this.style.display='none';">
+                <div style="flex: 1; min-width: 300px;" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <p style="line-height: 1.9; color: #fff; margin-bottom: 24px; font-size: 16px;">
+                        Di era digital, kemampuan komputer bukan lagi pilihan, melainkan keharusan. Kami menyediakan fasilitas yang memadai dan mentor yang siap membimbing dari nol hingga mahir (Zero to Hero).
+                    </p>
+                    <p style="line-height: 1.9; color: #fff; margin-bottom: 0px; font-size: 16px;">
+                        Jadwal : Setiap Sabtu, Pukul 13.00 - 15.00 WIB.
+                    </p>
+                    <p style="line-height: 1.9; color: #fff; margin-bottom: 0px; font-size: 16px;">
+                        Fasilitas : Lab Komputer, Akses Internet Cepat, dan Modul Digital.
+                    </p>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -379,9 +387,7 @@
                                 <p style="font-size: 14px; color: #2C3E50;">Alumni Paket B 2025</p>
                             </div>
                         </div>
-                        <p style="color: #2C3E50; line-height: 1.8; font-style: italic;">"Keterampilan yang saya pelajari di
-                            ekstrakurikuler tata boga sangat berguna. Sekarang saya sudah punya usaha catering
-                            kecil-kecilan. Terima kasih PKBM Hayati Nusantara!"</p>
+                        <p style="color: #2C3E50; line-height: 1.8; font-style: italic;">"Bergabung dengan ekskul komputer di PKBM Hayati Nusantara adalah keputusan terbaik yang saya ambil. Materinya sangat aplikatif, mulai dari penguasaan Microsoft Office hingga desain dasar. Berkat bimbingan mentor yang sabar, saya sekarang jauh lebih percaya diri saat melamar kerja karena sudah punya bekal skill digital yang mumpuni. Terima kasih PKBM Hayati Nusantara"</p>
                     </div>
                 </div>
             </div>
