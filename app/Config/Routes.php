@@ -60,4 +60,6 @@ $routes->resource('announcements', ['controller' => '\App\Controllers\Announceme
 
 $routes->get('attendances/ajax_users', '\App\Controllers\Attendances::ajax_users');
 $routes->resource('attendances', ['controller' => '\App\Controllers\Attendances', 'filter' => 'session']);
+
+$routes->get('report-logins', '\App\Controllers\ReportLogins::index');
 service('auth')->routes($routes);
