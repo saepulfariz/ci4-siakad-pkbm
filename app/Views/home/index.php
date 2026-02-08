@@ -538,7 +538,7 @@
             </div>
             <div
                 style="border-top: 1px solid rgba(245,183,59,0.3); padding-top: 24px; text-align: center; opacity: 0.9;">
-                <p>© 2026 PKBM Hayati Nusantara. Semua hak dilindungi.</p>
+                <p>© <?= copyright('2026'); ?> PKBM Hayati Nusantara. Semua hak dilindungi.</p>
             </div>
         </div>
     </footer>

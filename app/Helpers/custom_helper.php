@@ -6,6 +6,16 @@ function asset_url($path = '')
     return base_url(PUBLIC_PATH . $path);
 }
 
+function copyright($year = null)
+{
+    $tahun_start = ($year == null) ? '2026' : $year;
+    $tahun_now = date('Y');
+    if ($tahun_start == $tahun_now) {
+        return $tahun_start;
+    } else {
+        return $tahun_start . '-' . $tahun_now;
+    }
+}
 
 function temp_lang(string $line, array $args = [], ?string $locale = null)
 {
