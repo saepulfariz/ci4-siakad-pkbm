@@ -25,75 +25,87 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3><?= $total_teachers; ?></h3>
-            <p><?= temp_lang('dashboard.total_teachers'); ?></p>
+        <a href="<?= base_url('teachers'); ?>">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3><?= $total_teachers; ?></h3>
+              <p><?= temp_lang('dashboard.total_teachers'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h3><?= $total_students; ?></h3>
-            <p><?= temp_lang('dashboard.total_students'); ?></p>
+        <a href="<?= base_url('students'); ?>">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3><?= $total_students; ?></h3>
+              <p><?= temp_lang('dashboard.total_students'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-user-graduate"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3><?= $total_classes; ?></h3>
-            <p><?= temp_lang('dashboard.total_classes'); ?></p>
+        <a href="<?= base_url('classes'); ?>">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3><?= $total_classes; ?></h3>
+              <p><?= temp_lang('dashboard.total_classes'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-school"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-school"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3><?= $total_subjects; ?></h3>
-            <p><?= temp_lang('dashboard.total_subjects'); ?></p>
+        <a href="<?= base_url('subjects'); ?>">
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3><?= $total_subjects; ?></h3>
+              <p><?= temp_lang('dashboard.total_subjects'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-book"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-book"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-primary">
-          <div class="inner">
-            <h3><?= $total_assignments; ?></h3>
-            <p><?= temp_lang('dashboard.active_assignments'); ?></p>
+        <a href="<?= base_url('assignments'); ?>">
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3><?= $total_assignments; ?></h3>
+              <p><?= temp_lang('dashboard.active_assignments'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-tasks"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-tasks"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-4 col-6">
-        <div class="small-box bg-secondary">
-          <div class="inner">
-            <h3><?= $total_materials; ?></h3>
-            <p><?= temp_lang('dashboard.total_materials'); ?></p>
+        <a href="<?= base_url('materials'); ?>">
+          <div class="small-box bg-secondary">
+            <div class="inner">
+              <h3><?= $total_materials; ?></h3>
+              <p><?= temp_lang('dashboard.total_materials'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-book-open"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-book-open"></i>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
 

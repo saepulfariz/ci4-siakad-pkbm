@@ -50,27 +50,31 @@
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3><?= $total_assignments; ?></h3>
-            <p><?= temp_lang('dashboard.total_assignments'); ?></p>
+        <a href="<?= base_url('assignments'); ?>">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3><?= $total_assignments; ?></h3>
+              <p><?= temp_lang('dashboard.total_assignments'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-tasks"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-tasks"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3><?= $average_score_submission->avg_score ?? 0; ?></h3>
-            <p><?= temp_lang('dashboard.avg_score'); ?></p>
+        <a href="<?= base_url('assignment-submissions'); ?>">
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3><?= $average_score_submission->avg_score ?? 0; ?></h3>
+              <p><?= temp_lang('dashboard.avg_score'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
 

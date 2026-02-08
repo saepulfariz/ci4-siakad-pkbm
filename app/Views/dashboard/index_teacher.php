@@ -49,27 +49,31 @@
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3><?= $total_assignments; ?></h3>
-            <p><?= temp_lang('dashboard.total_assignments'); ?></p>
+        <a href="<?= base_url('assignments'); ?>">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3><?= $total_assignments; ?></h3>
+              <p><?= temp_lang('dashboard.total_assignments'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-tasks"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-tasks"></i>
-          </div>
-        </div>
+        </a>
       </div>
 
       <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3><?= $total_assignment_submissions; ?></h3>
-            <p><?= temp_lang('dashboard.total_assignment_submissions'); ?></p>
+        <a href="<?= base_url('assignment-submissions'); ?>">
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3><?= $total_assignment_submissions; ?></h3>
+              <p><?= temp_lang('dashboard.total_assignment_submissions'); ?></p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fas fa-clipboard-check"></i>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
 
