@@ -175,6 +175,21 @@ class SeedAttendances extends Seeder
                 'created_at' => '2026-02-02 05:34:00',
                 'updated_at' => '2026-02-02 05:34:00',
             ],
+
+            [
+                'group_id' => 2,
+                'permission' => 'attendances.sunday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 2,
+                'permission' => 'attendances.saturday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+
+
             [
                 'group_id' => 3,
                 'permission' => 'attendances.access',
@@ -186,6 +201,20 @@ class SeedAttendances extends Seeder
                 'permission' => 'attendances.create',
                 'created_at' => '2026-02-02 05:34:00',
                 'updated_at' => '2026-02-02 05:34:00',
+            ],
+
+
+            [
+                'group_id' => 3,
+                'permission' => 'attendances.sunday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
+            ],
+            [
+                'group_id' => 3,
+                'permission' => 'attendances.saturday',
+                'created_at' => '2026-02-08 16:53:00',
+                'updated_at' => '2026-02-08 16:53:00',
             ],
         ];
 

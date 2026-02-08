@@ -33,10 +33,19 @@
                 $can_delete = auth()->user()->can('attendances.delete');
 
                 $can_action = ($can_edit || $can_delete) ? true : false;
+
+                $checkTheDay = false;
+                if (!auth()->user()->can('attendances.access-all')) {
+                    $checkTheDay  = checkTheDay();
+                }
                 ?>
                 <?php if ($can_create): ?>
 
-                    <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
+                    <?php if ($checkTheDay): ?>
+
+                        <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
+
+                    <?php endif; ?>
 
                 <?php endif; ?>
                 <div class="card">

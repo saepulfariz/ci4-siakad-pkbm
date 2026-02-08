@@ -82,6 +82,13 @@ class Attendances extends BaseController
             return $redirect;
         }
 
+        if (!auth()->user()->can('attendances.access-all')) {
+            $checkTheDay  = checkTheDay();
+            if ($checkTheDay == false) {
+                return redirect()->to($this->link);
+            }
+        }
+
         $data = [
             'title' => $this->title,
             'link' => $this->link,
@@ -102,6 +109,13 @@ class Attendances extends BaseController
         $redirect = checkPermission('attendances.create');
         if ($redirect instanceof \CodeIgniter\HTTP\RedirectResponse) {
             return $redirect;
+        }
+
+        if (!auth()->user()->can('attendances.access-all')) {
+            $checkTheDay  = checkTheDay();
+            if ($checkTheDay == false) {
+                return redirect()->to($this->link);
+            }
         }
 
         $rules = [

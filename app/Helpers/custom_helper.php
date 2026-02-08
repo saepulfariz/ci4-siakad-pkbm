@@ -73,44 +73,51 @@ function checkTheDay()
 {
     $result = false;
     if (auth()->user()->can('attendances.sunday')) {
-        if (!isToday(date('Y-m-d'), 'Sunday')) {
+        if (isToday(date('Y-m-d'), 'Sunday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.monday')) {
-        if (!isToday(date('Y-m-d'), 'Monday')) {
+        if (isToday(date('Y-m-d'), 'Monday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.tuesday')) {
-        if (!isToday(date('Y-m-d'), 'Tuesday')) {
+        if (isToday(date('Y-m-d'), 'Tuesday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.wednesday')) {
-        if (!isToday(date('Y-m-d'), 'Wednesday')) {
+        if (isToday(date('Y-m-d'), 'Wednesday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.thursday')) {
-        if (!isToday(date('Y-m-d'), 'Thursday')) {
+        if (isToday(date('Y-m-d'), 'Thursday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.friday')) {
-        if (!isToday(date('Y-m-d'), 'Friday')) {
+        if (isToday(date('Y-m-d'), 'Friday')) {
             $result = true;
+            return $result;
         }
     }
 
     if (auth()->user()->can('attendances.saturday')) {
-        if (!isToday(date('Y-m-d'), 'Saturday')) {
+        if (isToday(date('Y-m-d'), 'Saturday')) {
             $result = true;
+            return $result;
         }
     }
 
