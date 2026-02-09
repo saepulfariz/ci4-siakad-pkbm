@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+$routes->get('sitemap.xml', 'Seo::sitemap');
+$routes->get('robots.txt', 'Seo::robots');
+
 $routes->get('lang/(:segment)', 'Language::switch/$1');
 
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'session']);
