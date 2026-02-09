@@ -11,6 +11,11 @@
     <title><?= (isset($statusCode)) ? ($statusCode) : ((isset($title)) ? $title : 'Home'); ?> - SIPENA - Belajar Tertata, Nilai Terdata</title>
   <?php endif; ?>
 
+  <meta name="description" content="PKBM Hayati Nusantara Subang melalui SIPENA menghadirkan layanan pendidikan nonformal dengan sistem belajar tertata dan nilai terdata untuk Paket A, B, dan C.">
+  <meta name="keywords" content="PKBM Hayati Nusantara, SIPENA, PKBM Subang, pendidikan nonformal Subang, Paket A Subang, Paket B Subang, Paket C Subang, belajar tertata, nilai terdata">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="PKBM Hayati Nusantara Subang">
+
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
