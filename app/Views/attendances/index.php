@@ -31,6 +31,8 @@
                 $can_create = auth()->user()->can('attendances.create');
                 $can_edit = auth()->user()->can('attendances.edit');
                 $can_delete = auth()->user()->can('attendances.delete');
+				
+				$can_access_all = auth()->user()->can('attendances.access-all');
 
                 $can_action = ($can_edit || $can_delete) ? true : false;
 
@@ -41,7 +43,7 @@
                 ?>
                 <?php if ($can_create): ?>
 
-                    <?php if ($checkTheDay): ?>
+                    <?php if ($checkTheDay || $can_access_all): ?>
 
                         <a href="<?= base_url($link . '/new'); ?>" class="btn btn-primary btn-sm mb-2"><?= temp_lang('app.new'); ?></a>
 

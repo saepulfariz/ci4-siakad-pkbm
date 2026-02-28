@@ -83,11 +83,6 @@ function checkTheDay()
 {
     $result = false;
 	
-	if (auth()->user()->can('attendances.access-all')) {
-        $result = true;
-        return $result;
-    }
-	
     if (auth()->user()->can('attendances.sunday')) {
         if (isToday(date('Y-m-d'), 'Sunday')) {
             $result = true;
