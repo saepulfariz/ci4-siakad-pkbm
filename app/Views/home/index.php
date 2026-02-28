@@ -561,18 +561,19 @@
 
 
         $('.page-scroll').on('click', function(e) {
-            const tujuan = $(this).attr('href');
-            const elemenTujuan = $(tujuan);
-            // console.log(elemenTujuan);
-            // $('body').scrollTop(elemenTujuan.offset().top);
+			e.preventDefault();
 
-            $('html, body').animate({
-                scrollTop: elemenTujuan.offset().top - 55
-            }, 1250);
+			const tujuan = $(this).attr('href');
+			const elemenTujuan = $(tujuan);
 
+			// cek mobile atau bukan
+			const isMobile = $(window).width() <= 768; // bisa kamu sesuaikan
+			const offset = isMobile ? 185 : 55;
 
-            e.preventDefault();
-        })
+			$('html, body').animate({
+				scrollTop: elemenTujuan.offset().top - offset
+			}, 1250);
+		});
     </script>
     <script>
         document.getElementById("contact-form").addEventListener("submit", function(e) {
