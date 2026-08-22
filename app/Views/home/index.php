@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="<?= asset_url(); ?>assets/frontend/css/animate.css">
     <link rel="stylesheet" href="<?= asset_url(); ?>assets/frontend/css/aos.css">
 
+    <link rel="preload" as="image" href="<?= asset_url(); ?>assets/images/pkbm.webp" type="image/webp">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -81,7 +83,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #172B55; box-shadow: 0 2px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
         <div class="container" style="max-width: 1280px;">
             <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 16px;">
-                <img src="<?= asset_url(); ?>assets/images/logo.png" alt="Logo PKBM Hayati Nusantara" style="height: 50px; width: auto;" onerror="this.src=''; this.alt='Logo PKBM Hayati Nusantara'; this.style.display='none';">
+                <img src="<?= asset_url(); ?>assets/images/logo.webp" alt="Logo PKBM Hayati Nusantara" style="height: 50px; width: auto;" onerror="this.src=''; this.alt='Logo PKBM Hayati Nusantara'; this.style.display='none';">
                 <div>
                     <div id="nav-title" style="font-size: 20px; font-weight: 700; color: #FAFFFE; line-height: 1.2;">
                         PKBM Hayati Nusantara
