@@ -1,106 +1,117 @@
-# CodeIgniter 4 Siakad
+# SIAKAD PKBM (Sistem Informasi Akademik)
 
-## What is CodeIgniter?
+SIAKAD PKBM adalah Sistem Informasi Akademik yang dibangun menggunakan **CodeIgniter 4**. Aplikasi ini dirancang khusus untuk Pusat Kegiatan Belajar Masyarakat (PKBM) guna mengelola data akademik, memfasilitasi _e-learning_ (pembelajaran jarak jauh), serta memantau kegiatan belajar mengajar antara Siswa, Guru, dan Admin.
 
-App Siakad Codeigniter 4
+## 🚀 Fitur Utama
 
-## Installation & updates
+- **Multi-Role Authentication**: Mendukung pembagian hak akses untuk _Superadmin_, _Guru_ (Teacher), dan _Siswa_ (Student) yang aman menggunakan _library_ CodeIgniter Shield.
+- **Manajemen Data Akademik**: Pengelolaan komprehensif mulai dari Tahun Ajaran, Semester, Data Kelas, Mata Pelajaran, hingga Data Pendidikan.
+- **E-Learning & Penugasan**:
+  - Guru dapat mengunggah Materi Pelajaran dan membuat Penugasan (Assignments).
+  - Siswa dapat mengumpulkan/mengirim tugas secara online melalui sistem (Assignment Submissions).
+- **Monitoring Kehadiran**: Pengecekan dan pelaporan riwayat kehadiran dan partisipasi siswa.
+- **Pengumuman & Notifikasi**: Sistem _announcement_ dan notifikasi _real-time_ kepada _user_ terkait.
+- **Support Multi-Database**: Kode dirancang untuk bisa berjalan di MySQL/MariaDB maupun SQLite3 secara mulus tanpa error.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🛠️ Persyaratan Sistem (Server Requirements)
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+- **PHP 8.1** atau lebih baru.
+- Ekstensi PHP: `intl`, `mbstring`, `json`, `mysqlnd` (jika menggunakan MySQL), `libcurl`, `sqlite3` (jika menggunakan SQLite).
+- **Composer** (untuk instalasi dependensi).
 
-## Setup
+## 📦 Panduan Instalasi & Konfigurasi
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+1. **Clone/Download Project**
+   Pastikan _source code_ sudah berada di folder server Anda (contoh: di `htdocs` XAMPP, `www` Laragon, atau Herd).
 
-## Migration and Seeder
+2. **Install Dependencies**
+   Buka terminal di root proyek, lalu jalankan Composer:
 
-```bash
-php spark migrate:refresh --all
-```
+   ```bash
+   composer install
+   ```
 
-```bash
-php spark db:seed all
-```
+3. **Konfigurasi Lingkungan (.env)**
+   Salin file `env` bawaan CI4 menjadi `.env` lalu sesuaikan konfigurasinya.
 
-## Symlink storage
+   ```bash
+   cp env .env
+   ```
 
-### Windows
+   Buka file `.env` dan atur Base URL Anda:
 
-- CMD (run as administrator)
+   ```env
+   app.baseURL = 'http://localhost:8080/'
+   ```
 
-```bash
-cd public
-mklink /D uploads ..\writable\uploads
-```
+   Atur koneksi database Anda, misalnya untuk **MySQL**:
 
-### Cpanel
+   ```env
+   database.default.hostname = localhost
+   database.default.database = ci4_siakad_pkbm
+   database.default.username = root
+   database.default.password =
+   database.default.DBDriver = MySQLi
+   ```
 
-```bash
-cd ~/public_html/ci4
-ln -s ../../ci4/writable/uploads uploads
-ls -l
-```
+   Atau jika menggunakan **SQLite3**:
 
-## Default login
+   ```env
+   database.default.database = database.db
+   database.default.DBDriver = SQLite3
+   ```
 
-http://localhost:8080/login
+4. **Jalankan Migrasi dan Seeder (Otomatis Buat Tabel)**
+   Sistem ini menggunakan _migration_ untuk membangun struktur tabel secara otomatis dan _seeder_ untuk mengisi data awal (dummy).
 
-- Superadmin
+   ```bash
+   php spark migrate:refresh --all
+   php spark db:seed All
+   ```
 
-  - email: super@admin.com
-  - password: password
+5. **Buat Symlink Storage**
+   Agar file hasil _upload_ (seperti foto profil, lampiran materi, dan tugas) bisa diakses secara publik, buatlah _symlink_ dari folder `writable/uploads` ke `public/uploads`.
 
-- Student
+   _Untuk Windows (Jalankan CMD sebagai Administrator):_
 
-  - email: student@mail.com
-  - password: 123
+   ```cmd
+   cd public
+   mklink /D uploads ..\writable\uploads
+   ```
 
-- Teacher
-  - email: teacher@mail.com
-  - password: 123
+   _Untuk Linux / cPanel (Terminal):_
 
-## Important Change with index.php
+   ```bash
+   cd public
+   ln -s ../writable/uploads uploads
+   ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the _public_ folder,
-for better security and separation of components.
+6. **Jalankan Aplikasi (Local Development)**
+   Gunakan server bawaan CodeIgniter untuk pengembangan:
+   ```bash
+   php spark serve
+   ```
+   SIAKAD PKBM sekarang dapat diakses di URL: `http://localhost:8080/`.
 
-This means that you should configure your web server to "point" to your project's _public_ folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter _public/..._, as the rest of your logic and the
-framework are exposed.
+## 🔑 Login Default (Akun Dummy)
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Data _dummy_ telah terbuat saat Anda menjalankan proses seeder. Anda dapat masuk/login melalui URL `http://localhost:8080/login` dengan menggunakan akun berikut:
 
-## Repository Management
+**1. Superadmin**
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- Email: `super@admin.com`
+- Password: `password`
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+**2. Guru (Teacher)**
 
-## Server Requirements
+- Email: `teacher@mail.com`
+- Password: `123`
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+**3. Siswa (Student)**
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- Email: `student@mail.com`
+- Password: `123`
 
-> [!WARNING]
->
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+_Aplikasi ini dibangun menggunakan [CodeIgniter 4](https://codeigniter.com)._
