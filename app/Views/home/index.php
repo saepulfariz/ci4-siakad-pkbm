@@ -78,49 +78,38 @@
 
 <body>
 
-    <nav style="background: #172B55; box-shadow: 0 2px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
-        <div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px;">
-            <div
-                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-                <div style="display: flex; align-items: center; gap: 16px;"><img
-                        src="<?= asset_url(); ?>assets/images/logo.png"
-                        alt="Logo PKBM Hayati Nusantara" style="height: 50px; width: auto;"
-                        onerror="this.src=''; this.alt='Logo PKBM Hayati Nusantara'; this.style.display='none';">
-                    <div>
-                        <div id="nav-title" style="font-size: 20px; font-weight: 700; color: #FAFFFE;">
-                            PKBM Hayati Nusantara
-                        </div>
-                        <div style="font-size: 12px; color: #F5B73B;">
-                            NPSN : P9999412
-                        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #172B55; box-shadow: 0 2px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+        <div class="container" style="max-width: 1280px;">
+            <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 16px;">
+                <img src="<?= asset_url(); ?>assets/images/logo.png" alt="Logo PKBM Hayati Nusantara" style="height: 50px; width: auto;" onerror="this.src=''; this.alt='Logo PKBM Hayati Nusantara'; this.style.display='none';">
+                <div>
+                    <div id="nav-title" style="font-size: 20px; font-weight: 700; color: #FAFFFE; line-height: 1.2;">
+                        PKBM Hayati Nusantara
+                    </div>
+                    <div style="font-size: 12px; color: #F5B73B; line-height: 1.2;">
+                        NPSN : P9999412
                     </div>
                 </div>
-                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                    <a class="page-scroll" href="#beranda"
-                        style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;"
-                        onmouseover="this.style.background='rgba(245,183,59,0.2)'"
-                        onmouseout="this.style.background='transparent'">Beranda</a>
-                    <a class="page-scroll" href="#tentang"
-                        style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;"
-                        onmouseover="this.style.background='rgba(245,183,59,0.2)'"
-                        onmouseout="this.style.background='transparent'">Tentang</a>
-                    <a class="page-scroll" href="#program"
-                        style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;"
-                        onmouseover="this.style.background='rgba(245,183,59,0.2)'"
-                        onmouseout="this.style.background='transparent'">Program</a>
-                    <a class="page-scroll" href="#kontak"
-                        style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;"
-                        onmouseover="this.style.background='rgba(245,183,59,0.2)'"
-                        onmouseout="this.style.background='transparent'">Kontak</a>
-                    <a href="<?= base_url('login'); ?>" id="btn-login" class="btn-primary"
-                        style="text-decoration:none;padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; font-size: 14px;">Login</a>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="navbar-nav align-items-center" style="gap: 12px; padding: 10px 0;">
+                    <a class="nav-item nav-link page-scroll" href="#beranda" style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;" onmouseover="this.style.background='rgba(245,183,59,0.2)'" onmouseout="this.style.background='transparent'">Beranda</a>
+                    <a class="nav-item nav-link page-scroll" href="#tentang" style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;" onmouseover="this.style.background='rgba(245,183,59,0.2)'" onmouseout="this.style.background='transparent'">Tentang</a>
+                    <a class="nav-item nav-link page-scroll" href="#program" style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;" onmouseover="this.style.background='rgba(245,183,59,0.2)'" onmouseout="this.style.background='transparent'">Program</a>
+                    <a class="nav-item nav-link page-scroll" href="#kontak" style="color: rgb(250, 255, 254); text-decoration: none; padding: 8px 16px; border-radius: 6px; transition: 0.3s; font-weight: 500; background: transparent;" onmouseover="this.style.background='rgba(245,183,59,0.2)'" onmouseout="this.style.background='transparent'">Kontak</a>
+                    <a href="<?= base_url('login'); ?>" id="btn-login" class="btn-primary mt-3 mt-lg-0 ml-lg-2" style="text-decoration:none;padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; font-size: 14px;">Login</a>
                 </div>
             </div>
         </div>
     </nav>
     <section id="beranda" style="position: relative; height: 600px; overflow: hidden;">
         <!-- <div class="hero-slider">
-            <div class="slide">
+            <div class="slide"> 
                 <img src="" alt="Gedung Sekolah"
                     onerror="this.src=''; this.alt='Gedung Sekolah'; this.style.display='none';" style="display: none;">
             </div>
