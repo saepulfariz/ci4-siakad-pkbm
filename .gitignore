@@ -125,8 +125,7 @@ _modules/*
 /results/
 /phpunit*.xml
 
-
-composer.lock
+database.db
 
 /public/uploads
 /writable/uploads/*
