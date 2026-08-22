@@ -33,6 +33,9 @@ $routes->group('/superadmin', ['filter' => 'session'], function ($routes) {
     $routes->resource('auth-menus', ['controller' => '\App\Controllers\Superadmin\AuthMenus']);
 });
 
+$routes->get('profile', '\App\Controllers\Superadmin\Profile::index', ['filter' => 'session']);
+$routes->put('profile', '\App\Controllers\Superadmin\Profile::update', ['filter' => 'session']);
+
 $routes->get('change-password', '\App\Controllers\Superadmin\Profile::changePassword', ['filter' => 'session']);
 $routes->put('change-password', '\App\Controllers\Superadmin\Profile::updatePassword', ['filter' => 'session']);
 
