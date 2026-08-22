@@ -309,10 +309,10 @@
                 style="font-size: 42px; font-weight: 700; margin-bottom: 48px; text-align: center; color: #fff;">
                 Ekstrakurikuler</h2>
             <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;"><img
-                    src="https://pstiumpwr.com/wp-content/uploads/2018/10/Lab-Komputer-SMP-Negeri-12-Binjai-Gambar-Ilustrasi.jpg"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                     alt="Ekstrakurikuler"
-                    style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #F5B73B; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-                    onerror="this.src=''; this.alt='Ekstrakurikuler'; this.style.display='none';">
+                    style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #F5B73B; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;"
+                    onerror="this.style.display='none';">
                 <div style="flex: 1; min-width: 300px;" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
                     <p style="line-height: 1.9; color: #fff; margin-bottom: 24px; font-size: 16px;">
                         Di era digital, kemampuan komputer bukan lagi pilihan, melainkan keharusan. Kami menyediakan fasilitas yang memadai dan mentor yang siap membimbing dari nol hingga mahir (Zero to Hero).
@@ -561,19 +561,19 @@
 
 
         $('.page-scroll').on('click', function(e) {
-			e.preventDefault();
+            e.preventDefault();
 
-			const tujuan = $(this).attr('href');
-			const elemenTujuan = $(tujuan);
+            const tujuan = $(this).attr('href');
+            const elemenTujuan = $(tujuan);
 
-			// cek mobile atau bukan
-			const isMobile = $(window).width() <= 768; // bisa kamu sesuaikan
-			const offset = isMobile ? 185 : 55;
+            // cek mobile atau bukan
+            const isMobile = $(window).width() <= 768; // bisa kamu sesuaikan
+            const offset = isMobile ? 185 : 55;
 
-			$('html, body').animate({
-				scrollTop: elemenTujuan.offset().top - offset
-			}, 1250);
-		});
+            $('html, body').animate({
+                scrollTop: elemenTujuan.offset().top - offset
+            }, 1250);
+        });
     </script>
     <script>
         document.getElementById("contact-form").addEventListener("submit", function(e) {
