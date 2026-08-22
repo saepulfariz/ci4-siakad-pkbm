@@ -28,7 +28,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3><?= $class_current->name; ?></h3>
+            <h3><?= $class_current->name ?? ''; ?></h3>
             <p><?= temp_lang('dashboard.current_class'); ?></p>
           </div>
           <div class="icon">
