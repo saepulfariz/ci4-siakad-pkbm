@@ -42,7 +42,14 @@ class Dashboard extends BaseController
         $check_superadmin = auth()->user()->inGroup('superadmin');
 
         if ($check_superadmin) {
-            $login_student = db_connect()->query("SELECT 
+            $db = db_connect();
+            $isSqlite = $db->DBDriver === 'SQLite3';
+
+            $dayOfWeek = $isSqlite ? "CAST(strftime('%w', l.date) AS INTEGER) + 1" : "DAYOFWEEK(l.date)";
+            $yearWeek = $isSqlite ? "strftime('%Y-%W', l.date)" : "YEARWEEK(l.date, 1)";
+            $currentYearWeek = $isSqlite ? "strftime('%Y-%W', 'now', 'localtime')" : "YEARWEEK(CURDATE(), 1)";
+
+            $login_student = $db->query("SELECT 
                                                         d.day_number,
                                                         COALESCE(COUNT(agu.user_id), 0) AS total
                                                     FROM (
@@ -55,16 +62,16 @@ class Dashboard extends BaseController
                                                         SELECT 7
                                                     ) d
                                                     LEFT JOIN auth_logins l
-                                                        ON DAYOFWEEK(l.date) = d.day_number
+                                                        ON $dayOfWeek = d.day_number
                                                         AND l.success = 1
-                                                        AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                        AND $yearWeek = $currentYearWeek
                                                     LEFT JOIN auth_groups_users agu
                                                         ON l.user_id = agu.user_id
-                                                        AND agu.group = 'student'
+                                                        AND agu.`group` = 'student'
                                                     GROUP BY d.day_number
                                                     ORDER BY d.day_number;")->getResultArray();
 
-            $login_teacher = db_connect()->query("SELECT 
+            $login_teacher = $db->query("SELECT 
                                                         d.day_number,
                                                         COALESCE(COUNT(agu.user_id), 0) AS total
                                                     FROM (
@@ -77,12 +84,12 @@ class Dashboard extends BaseController
                                                         SELECT 7
                                                     ) d
                                                     LEFT JOIN auth_logins l
-                                                        ON DAYOFWEEK(l.date) = d.day_number
+                                                        ON $dayOfWeek = d.day_number
                                                         AND l.success = 1
-                                                        AND YEARWEEK(l.date, 1) = YEARWEEK(CURDATE(), 1)
+                                                        AND $yearWeek = $currentYearWeek
                                                     LEFT JOIN auth_groups_users agu
                                                         ON l.user_id = agu.user_id
-                                                        AND agu.group = 'teacher'
+                                                        AND agu.`group` = 'teacher'
                                                     GROUP BY d.day_number
                                                     ORDER BY d.day_number;")->getResultArray();
 
